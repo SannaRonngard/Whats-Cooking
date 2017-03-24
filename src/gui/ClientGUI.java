@@ -1,5 +1,7 @@
 package gui;
 
-public class ClientGUI {
+import javax.swing.*;
+
+public class ClientGUI extends JFrame {
 
 }
