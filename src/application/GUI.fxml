@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane style="-fx-background-color: #FFFFFF;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
    <children>
       <AnchorPane layoutX="-24.0" prefHeight="508.0" prefWidth="642.0">
          <children>
@@ -68,7 +67,7 @@
                   <Image url="@../../images/logo.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="367.0" layoutY="90.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="140.0" text="Show Recipes" />
+            <Button fx:id="btnShowRecipes" layoutX="367.0" layoutY="90.0" mnemonicParsing="false" onAction="#handle" prefHeight="26.0" prefWidth="140.0" text="Show Recipes" />
             <Button layoutX="517.0" layoutY="90.0" mnemonicParsing="false" text="Clear Ingredients" />
             <TextArea layoutX="367.0" layoutY="51.0" prefHeight="33.0" prefWidth="269.0" text="Search Recipes" />
          </children>
