@@ -19,7 +19,27 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Text fill="#2f8a3d" layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What's Cooking is a recipe application that gives you suggestions for recipes based on what kind of ingredients you have in your kitchen at the moment. " wrappingWidth="583.6829261779785">
+                              <Text fill="#45a753" layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What's Cooking is a recipe application that gives you suggestions for recipes based on what kind of ingredients you have in your kitchen at the moment." wrappingWidth="583.6829261779785">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#45a753" layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How it's working: " underline="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#45a753" layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What is this?" underline="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#45a753" layoutX="14.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Click on the tabs and choose one or more ingredients from the different categories." wrappingWidth="583.6829261779785">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#45a753" layoutX="14.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Click the &quot;Show Recipes&quot; button. Voila! You will now get suggestions on recipes you can cook based on the ingredients you have chosen." wrappingWidth="583.6829261779785">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
