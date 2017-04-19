@@ -44,7 +44,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 	@FXML
 	public void handle(ActionEvent event) {
 		if(event.getSource() == btnShowRecipes) {
-			System.out.println("FUNKA DÅÅÅÅÅÅÅÅÅ");
+			System.out.println("Det funkar");
 		}
 	}
 	
