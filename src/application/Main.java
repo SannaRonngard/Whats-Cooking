@@ -19,25 +19,25 @@ import javafx.scene.layout.FlowPane;
  */
 public class Main extends Application implements EventHandler<ActionEvent> {
 
-	Stage window;
-	FlowPane fp1, fp2;
-	Scene sceneMain, sceneRecipe;
 	@FXML
 	private Button btnSearchRecipes;
 	@FXML
 	private Button btnClearIngredients;
+//	Stage window;
+//	FlowPane fp1, fp2;
+//	Scene sceneMain, sceneRecipe;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			window = primaryStage;
+//			window = primaryStage;
 			btnSearchRecipes = new Button();
 			btnClearIngredients = new Button();
 			btnSearchRecipes.setOnAction(this);
 			btnClearIngredients.setOnAction(this);
 			Parent root = FXMLLoader.load(getClass().getResource("/application/GUI.fxml"));
-			Scene scene = new Scene(root,642,508);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Scene scene = new Scene(root,624,521);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -52,11 +52,11 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 	@FXML
 	public void handle(ActionEvent event) {
 		if(event.getSource() == btnSearchRecipes) {
-			System.out.println("Tar fram ny scene med förslag på recept");
-			window.setScene(sceneRecipe);
+			System.out.println("Sökning på recept");
+//			window.setScene(sceneRecipe);
 		}
 		if(event.getSource() == btnClearIngredients) {
-			System.out.println("Rensar ingredienserna");
+			System.out.println("Rensar alla checkboxes");
 		}
 	}
 	
