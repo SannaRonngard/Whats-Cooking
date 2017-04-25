@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 
 /**
  * Class for running the application, eventhandling and connecting logic with FXML file
@@ -18,18 +19,25 @@ import javafx.scene.control.Button;
  */
 public class Main extends Application implements EventHandler<ActionEvent> {
 
+	Stage window;
+	FlowPane fp1, fp2;
+	Scene sceneMain, sceneRecipe;
 	@FXML
-	private Button btnShowRecipes;
-	
+	private Button btnSearchRecipes;
+	@FXML
+	private Button btnClearIngredients;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			btnShowRecipes = new Button();
-			btnShowRecipes.setOnAction(this);
+			window = primaryStage;
+			btnSearchRecipes = new Button();
+			btnClearIngredients = new Button();
+			btnSearchRecipes.setOnAction(this);
+			btnClearIngredients.setOnAction(this);
 			Parent root = FXMLLoader.load(getClass().getResource("/application/GUI.fxml"));
 			Scene scene = new Scene(root,642,508);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -43,8 +51,12 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 	 */
 	@FXML
 	public void handle(ActionEvent event) {
-		if(event.getSource() == btnShowRecipes) {
-			System.out.println("Det funkar");
+		if(event.getSource() == btnSearchRecipes) {
+			System.out.println("Tar fram ny scene med förslag på recept");
+			window.setScene(sceneRecipe);
+		}
+		if(event.getSource() == btnClearIngredients) {
+			System.out.println("Rensar ingredienserna");
 		}
 	}
 	
