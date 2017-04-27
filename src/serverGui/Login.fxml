@@ -23,7 +23,7 @@
                </font>
             </Label>
          </children></Pane>
-      <Button fx:id="btnLogin" layoutX="50.0" layoutY="209.0" mnemonicParsing="false" onAction="#Login" prefHeight="39.0" prefWidth="300.0" style="-fx-background-color: #43AF43;" text="Log in" textFill="WHITE">
+      <Button fx:id="btnLogin" layoutX="50.0" layoutY="209.0" mnemonicParsing="false" onAction="#Login" prefHeight="39.0" prefWidth="300.0" style="-fx-background-color: #43AF43;" text="Log in" textFill="WHITE" AnchorPane.leftAnchor="50.0">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -44,6 +44,6 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label fx:id="lblStatus" layoutX="63.0" layoutY="263.0" />
+      <Label fx:id="lblStatus" layoutX="63.0" layoutY="263.0" AnchorPane.leftAnchor="55.0" />
    </children>
 </AnchorPane>
