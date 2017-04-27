@@ -16,7 +16,7 @@ public class DBController {
 		public void Login(ActionEvent event){
 			if(txtUsername.getText().equals("user") && txtPassword.getText().equals("password")){
 				lblStatus.setTextFill(Color.web("#43af43"));
-				lblStatus.setText("Log in sucessful");
+				lblStatus.setText("Log in successful!");
 			} else {
 				lblStatus.setTextFill(Color.web("#b22222"));
 				lblStatus.setText("Username or password wrong. Try again!");
