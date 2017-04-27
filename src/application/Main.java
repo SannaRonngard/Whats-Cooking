@@ -38,7 +38,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 		}
 	}
 	
-	/**
+	/*
 	 * Method for eventhandling
 	 */
 	@FXML
