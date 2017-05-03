@@ -1,4 +1,5 @@
 package serverGui;
+import database.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,7 @@ public class DBController {
 		private Hyperlink hlContactSupport;
 		@FXML
 		private Pane pane;
+//		private DBConnection db = new DBConnection(); 
 		/**
 		 * Method performs the log in sequence. 
 		 * If: login details are correct: Log in window is hidden, and next stage opens. 

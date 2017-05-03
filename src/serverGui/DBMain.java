@@ -19,9 +19,7 @@ public class DBMain extends Application implements EventHandler<ActionEvent> {
 		try{
 			Parent root = FXMLLoader.load( getClass().getResource("/serverGui/Login.fxml"));
 			Scene scene = new Scene(root,500,450);
-			//scene.getStylesheets().add(getClass().getResource("serverGui.css").toExternalForm());
 			primaryStage.setResizable(false);
-			//primaryStage.getIcons().add(new Image("images/icon.png"));
 			primaryStage.setTitle("What's Cooking Admin");
 			primaryStage.setScene(scene);
 			primaryStage.show();
