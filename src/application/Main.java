@@ -14,7 +14,7 @@ import javafx.scene.layout.FlowPane;
 /**
  * Class for running the application, eventhandling and connecting logic with FXML file
  * Extends Application for Java FX and implements EventHandler for eventhandling
- * @author Linus Forsberg
+ * @author Linus Forsberg....
  *
  */
 public class Main extends Application implements EventHandler<ActionEvent> {
