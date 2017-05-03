@@ -29,9 +29,7 @@ public class DBController {
 		private PasswordField txtPassword;
 		@FXML
 		private Button btnLogin;
-<<<<<<< HEAD
 		
-=======
 		@FXML
 		private Hyperlink hlContactSupport;
 		@FXML
@@ -44,21 +42,19 @@ public class DBController {
 		 * @param event
 		 * @throws Exception
 		 */
->>>>>>> origin/master
 		public void Login(ActionEvent event) throws Exception {
 
 			if(txtUsername.getText().equals("user") && txtPassword.getText().equals("password")){
 				lblStatus.setTextFill(Color.web("#43af43"));
 				lblStatus.setText("Log in successful!");
-<<<<<<< HEAD
+
 				
 				
 				/*
 				 * Om villkoret stämmer öppnas nästa scen. 
 				 */
-=======
+
 				((Node)(event.getSource())).getScene().getWindow().hide();
->>>>>>> origin/master
 				Stage primaryStage = new Stage();
 				Parent root = FXMLLoader.load( getClass().getResource("/serverGui/Menu.fxml"));
 				Scene scene = new Scene(root,650,500);
