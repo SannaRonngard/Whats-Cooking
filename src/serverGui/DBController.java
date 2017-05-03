@@ -16,11 +16,15 @@ public class DBController {
 		private TextField txtUsername; 
 		@FXML
 		private PasswordField txtPassword;
+		@FXML
+		private Button btnLogin;
 		
 		public void Login(ActionEvent event) throws Exception {
 			if(txtUsername.getText().equals("user") && txtPassword.getText().equals("password")){
 				lblStatus.setTextFill(Color.web("#43af43"));
 				lblStatus.setText("Log in successful!");
+				
+				
 				/*
 				 * Om villkoret stämmer öppnas nästa scen. 
 				 */
