@@ -34,7 +34,7 @@ public class DBConnection {
 		return this.password;
 	}
 	
-	   public static void main(String args[]) {
+	   public void initiate() {
 		   DBConnection db = new DBConnection();
 		   Connection connection = null;
 		   // Try for Driver
@@ -60,7 +60,6 @@ public class DBConnection {
 			} else {
 				System.out.println("Failed to make connection!");
 			}
-		   
 	   }
 	   
 }
