@@ -9,25 +9,43 @@ import java.sql.Connection;
  *
  */
 public class DBConnection {
-	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/databaseName";
-	private static String username = "user";
-	private static String password = "password";
+	private String driver;
+	private String url;
+	private String username;
+	private String password;
 	
-	public static void main(String[] args) throws Exception {
-		getConnection();
+	public DBConnection(){
+		this.driver = "org.postgresql.Driver";
+		this.url = "jdbc:postgresql://localhost:5432/testdb";
+		this.username = "user";
+		this.password = "password";
+	}
+	public String getDriver(){
+		return this.driver;
+	}
+	public String getUrl(){
+		return this.url;
+	}
+	public String getUsername(){
+		return this.username;
+	}
+	public String getPassword(){
+		return this.password;
 	}
 	
-	public static Connection getConnection() throws Exception{
-		try{
-			Class.forName(driver);
-			Connection connection = DriverManager.getConnection(url, username, password);
-			System.out.println("You are connected");
-			return connection;
-			
-		} catch(Exception e){ System.out.println(e);}
-		
-		return null;
-	}
-
+	   public static void main(String args[]) {
+		   DBConnection db = new DBConnection();
+		   Connection connection = null;
+		   try {
+			   Class.forName(db.driver);
+		       connection = DriverManager.getConnection(db.getUrl(),db.getUsername(), db.getPassword());
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		         System.err.println(e.getClass().getName()+": "+e.getMessage());
+		         System.exit(0);
+		      }
+		      System.out.println("Opened database successfully");
+		   }
+	   
 }
+
