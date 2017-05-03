@@ -28,12 +28,20 @@ public class DBController {
 		@FXML
 		private PasswordField txtPassword;
 		@FXML
+<<<<<<< HEAD
 		private Button btnLogin;
+=======
+		private Button btnLogin = new Button();
+		
+>>>>>>> origin/master
 		@FXML
 		private Hyperlink hlContactSupport;
 		@FXML
 		private Pane pane;
-//		private DBConnection db = new DBConnection(); 
+		
+		private DBConnection db = new DBConnection(); 
+		
+		
 		/**
 		 * Method performs the log in sequence. 
 		 * If: login details are correct: Log in window is hidden, and next stage opens. 
@@ -42,32 +50,38 @@ public class DBController {
 		 * @throws Exception
 		 */
 		public void Login(ActionEvent event) throws Exception {
-
-			if(txtUsername.getText().equals("user") && txtPassword.getText().equals("password")){
-				lblStatus.setTextFill(Color.web("#43af43"));
-				lblStatus.setText("Log in successful!");
-
+			
+			if(event.getSource() == btnLogin){
 				
 				
-				/*
-				 * Om villkoret stämmer öppnas nästa scen. 
-				 */
-
-				((Node)(event.getSource())).getScene().getWindow().hide();
-				Stage primaryStage = new Stage();
-				Parent root = FXMLLoader.load( getClass().getResource("/serverGui/Menu.fxml"));
-				Scene scene = new Scene(root,650,500);
-				scene.getStylesheets().add(getClass().getResource("serverGui.css").toExternalForm());
-				primaryStage.setScene(scene);
-				primaryStage.show();
 			} else {
+				if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword())){
+					lblStatus.setTextFill(Color.web("#43af43"));
+					lblStatus.setText("Log in successful!");
+					// Starta databas
+					db.initiate();
+					//Öppna nästa scen 
+					((Node)(event.getSource())).getScene().getWindow().hide();
+					Stage primaryStage = new Stage();
+					Parent root = FXMLLoader.load( getClass().getResource("/serverGui/Menu.fxml"));
+					Scene scene = new Scene(root,650,500);
+					primaryStage.setScene(scene);
+					primaryStage.show();
+				} else {
 				txtUsername.clear();
 				txtPassword.clear();
 				lblStatus.setTextFill(Color.web("#b22222"));
 				lblStatus.setText("Username or password wrong. Try again!");
+				}
 			}
 		}
-		
+
+		/*
+		 * Om user
+		 * Öppna userGUI, starta db 
+		 * Annars om admin 
+		 * Öppna adminGUI, starta db 
+		 * Annars
+		 * Fel inloggningsuppgifter 
+		 */	
 	}
-
-

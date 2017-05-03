@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Connection;
 /**
  * 
@@ -9,25 +10,57 @@ import java.sql.Connection;
  *
  */
 public class DBConnection {
-	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/databaseName";
-	private static String username = "user";
-	private static String password = "password";
+	private String driver;
+	private String url;
+	private String username;
+	private String password;
 	
-	public static void main(String[] args) throws Exception {
-		getConnection();
+	public DBConnection(){
+		this.driver = "org.postgresql.Driver";
+		this.url = "jdbc:postgresql://localhost:5432/testdb";
+		this.username = "user";
+		this.password = "password";
+	}
+	public String getDriver(){
+		return this.driver;
+	}
+	public String getUrl(){
+		return this.url;
+	}
+	public String getUsername(){
+		return this.username;
+	}
+	public String getPassword(){
+		return this.password;
 	}
 	
-	public static Connection getConnection() throws Exception{
-		try{
-			Class.forName(driver);
-			Connection connection = DriverManager.getConnection(url, username, password);
-			System.out.println("You are connected");
-			return connection;
-			
-		} catch(Exception e){ System.out.println(e);}
-		
-		return null;
-	}
+	   public void initiate() {
+		   DBConnection db = new DBConnection();
+		   Connection connection = null;
+		   // Try for Driver
+		   try {
+				Class.forName(db.driver);
+			} catch (ClassNotFoundException e) {
+				System.out.println("Where is your PostgreSQL JDBC Driver? Include in your library path!");
+				e.printStackTrace();
+				return;
+			}
+		   //Try to connect to database with details
+		   try {
+				connection = DriverManager.getConnection(db.getUrl(), db.getUsername(),db.getPassword());
 
+			} catch (SQLException e) {
+				System.out.println("Connection Failed! Check output console");
+				e.printStackTrace();
+				return;
+			}
+		   //If user details match and connection was successful or not
+		   if (connection != null) {
+				System.out.println("You are connected!");
+			} else {
+				System.out.println("Failed to make connection!");
+			}
+	   }
+	   
 }
+
