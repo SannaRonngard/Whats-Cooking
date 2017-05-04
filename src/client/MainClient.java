@@ -246,7 +246,7 @@ public class MainClient extends Application {
 					Button btt = new Button("Go back");
 					meatPane.getChildren().addAll(btt);
 					root.getChildren().remove(main);
-					root.getChildren().add(fruitPane);
+					root.getChildren().add(meatPane);
 					
 					btt.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
@@ -266,7 +266,7 @@ public class MainClient extends Application {
 				@Override
 				public void run() {
 					Button btt = new Button("Go back");
-					meatPane.getChildren().addAll(btt);
+					spannPane.getChildren().addAll(btt);
 					root.getChildren().remove(main);
 					root.getChildren().add(spannPane);
 					
@@ -289,12 +289,12 @@ public class MainClient extends Application {
 				@Override
 				public void run() {
 					Button btt = new Button("Go back");
-					meatPane.getChildren().addAll(btt);
+					vegetablePane.getChildren().addAll(btt);
 					root.getChildren().remove(main);
-					root.getChildren().add(fruitPane);
+					root.getChildren().add(vegetablePane);
 					
 					btt.setOnMouseClicked(e -> {
-						root.getChildren().remove(meatPane);
+						root.getChildren().remove(vegetablePane);
 						root.getChildren().add(main);
 						transitionToHome(1000);
 					});
