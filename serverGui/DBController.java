@@ -33,6 +33,9 @@ public class DBController {
 =======
 		private Button btnLogin;
 		
+<<<<<<< HEAD:serverGui/DBController.java
+>>>>>>> parent of 3a581f7... Client:src/serverGui/DBController.java
+=======
 >>>>>>> parent of 3a581f7... Client:src/serverGui/DBController.java
 		@FXML
 		private Hyperlink hlContactSupport;
