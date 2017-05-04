@@ -34,6 +34,9 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="150.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="137.0" fitWidth="270.0" layoutX="128.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/Whats-Cooking-LOGO.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>
