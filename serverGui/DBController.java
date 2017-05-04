@@ -28,7 +28,12 @@ public class DBController {
 		@FXML
 		private PasswordField txtPassword;
 		@FXML
+<<<<<<< HEAD:serverGui/DBController.java
 		private Button btnLogin = new Button();
+=======
+		private Button btnLogin;
+		
+>>>>>>> parent of 3a581f7... Client:src/serverGui/DBController.java
 		@FXML
 		private Hyperlink hlContactSupport;
 		@FXML

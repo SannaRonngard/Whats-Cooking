@@ -9,10 +9,10 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
-
+		
 	public static void main (String[]args) throws UnknownHostException, IOException{
 		int number, temp;
-
+		
 		Scanner sc = new Scanner (System.in);
 		Socket simpleSocket = new Socket("127.0.0.1",1342);
 		Scanner sc1 = new Scanner (simpleSocket.getInputStream());
@@ -23,5 +23,5 @@ public class Client {
 		temp = sc1.nextInt();
 		System.out.println(temp);
 
-	}
+}
 }

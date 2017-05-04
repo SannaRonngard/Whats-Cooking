@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="Images"/>
 	<classpathentry kind="lib" path="postgresql-42.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+=======
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/sofya/Documents/LocalWorkSpace/Whats-Cooking/postgresql-42.0.0.jar"/>
+>>>>>>> parent of 3a581f7... Client
 	<classpathentry kind="output" path="bin"/>
 </classpath>
