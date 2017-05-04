@@ -49,7 +49,7 @@ public class DBController {
 		 * @param event
 		 * @throws Exception
 		 */
-		public void Login(ActionEvent event) throws Exception {
+		public void handle(ActionEvent event) throws Exception {
 			
 			if(event.getSource() == btnLogin){
 				

@@ -7,13 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 /**
  * Main class for server application.
  * @author Sofia Larsson
  */
 public class DBMain extends Application implements EventHandler<ActionEvent> {
-
 	@Override
 	public void start(Stage primaryStage ) {
 		try{
