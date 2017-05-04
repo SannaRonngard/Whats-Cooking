@@ -1,4 +1,4 @@
-package serverGui;
+package gui;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,11 +14,11 @@ import javafx.stage.Stage;
  * Main class for server application. Hej
  * @author Sofia Larsson
  */
-public class DBMain extends Application implements EventHandler<ActionEvent> {
+public class Main extends Application implements EventHandler<ActionEvent> {
 	@Override
 	public void start(Stage primaryStage ) {
 		try{
-			Parent root = FXMLLoader.load( getClass().getResource("/serverGui/Login.fxml"));
+			Parent root = FXMLLoader.load( getClass().getResource("/gui/Login.fxml"));
 			Scene scene = new Scene(root,500,450);
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("What's Cooking Admin");
