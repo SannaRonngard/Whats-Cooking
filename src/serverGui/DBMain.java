@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 /**
- * Main class for server application.
+ * Main class for server application. Hej
  * @author Sofia Larsson
  */
 public class DBMain extends Application implements EventHandler<ActionEvent> {
