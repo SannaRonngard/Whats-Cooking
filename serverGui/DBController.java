@@ -28,12 +28,7 @@ public class DBController {
 		@FXML
 		private PasswordField txtPassword;
 		@FXML
-<<<<<<< HEAD
-		private Button btnLogin;
-=======
 		private Button btnLogin = new Button();
-		
->>>>>>> origin/master
 		@FXML
 		private Hyperlink hlContactSupport;
 		@FXML
