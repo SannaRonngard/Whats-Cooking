@@ -1,4 +1,5 @@
-package serverGui;
+package gui;
+import client.MainClient;
 import database.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,39 +19,46 @@ import javafx.stage.Stage;
  * Server controller.
  * @author Sofia Larsson
  */
-public class DBController {
+public class GUIController {
+		@FXML
+		private Button btnAdmin;
+		@FXML
+		private Button btnLogin; 
+		@FXML
+		private Button btnUser;
+		private DBConnection db;
 		@FXML 
 		private Label lblLogIn;
 		@FXML
 		private Label lblStatus;
-		@FXML
-		private TextField txtUsername; 
-		@FXML
-		private PasswordField txtPassword;
-		@FXML
-		private Button btnLogin = new Button();
-		
+		private MainClient clientGUI;
 		@FXML
 		private Hyperlink hlContactSupport;
 		@FXML
 		private Pane pane;
+		@FXML
+		private PasswordField txtPassword;
+		@FXML
+		private TextField txtUsername; 
 		
-		private DBConnection db = new DBConnection(); 
-		
-		
+		public GUIController(){
+			this.btnLogin = new Button();
+			this.btnUser = new Button();
+			this.btnAdmin = new Button();
+		}
 		/**
-		 * Method performs the log in sequence. 
-		 * If: login details are correct: Log in window is hidden, and next stage opens. 
-		 * Else: log in details are wrong. Clear user and pw fields and display message. 
 		 * @param event
 		 * @throws Exception
 		 */
 		public void handle(ActionEvent event) throws Exception {
-			
-			if(event.getSource() == btnLogin){
-				
-				
-			} else {
+			db = new DBConnection();
+			clientGUI = new MainClient();
+			if(event.getSource() == btnUser){
+				((Node)(event.getSource())).getScene().getWindow().hide(); //stäng fönster 
+			//USER - Öppne userGUI	OCH anslut till server 
+			} else { // ANNARS OM ADMIN 
+				//Starta Log in ruta
+				//OM LÖSEN OCH SÅNT ÄR RÄTT ANSLUT TILL SERVER 
 				if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword())){
 					lblStatus.setTextFill(Color.web("#43af43"));
 					lblStatus.setText("Log in successful!");
@@ -71,13 +79,5 @@ public class DBController {
 				}
 			}
 		}
-
-		/*
-		 * Om user
-		 * Öppna userGUI, starta db 
-		 * Annars om admin 
-		 * Öppna adminGUI, starta db 
-		 * Annars
-		 * Fel inloggningsuppgifter 
-		 */	
+		
 	}
