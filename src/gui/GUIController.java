@@ -1,7 +1,10 @@
 package gui;
+import java.io.IOException;
+
 import client.MainClient;
 import database.DBConnection;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,31 +18,25 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 /**
- * Server controller.
+ * Controller
  * @author Sofia Larsson
  */
-public class GUIController {
-		@FXML
-		private Button btnAdmin;
-		@FXML
-		private Button btnLogin; 
-		@FXML
-		private Button btnUser;
-		private DBConnection db;
-		@FXML 
-		private Label lblLogIn;
-		@FXML
-		private Label lblStatus;
+public class GUIController implements EventHandler<ActionEvent>{
+		
+		@FXML private Button btnAdmin;
+		@FXML private Button btnLogin; 
+		@FXML private Button btnUser;
+		@FXML private Label lblLogIn;
+		@FXML private Label lblStatus;
+		@FXML private Hyperlink hlContactSupport;
+		@FXML private Pane pane;
+		@FXML private PasswordField txtPassword;
+		@FXML private TextField txtUsername; 
+		
 		private MainClient clientGUI;
-		@FXML
-		private Hyperlink hlContactSupport;
-		@FXML
-		private Pane pane;
-		@FXML
-		private PasswordField txtPassword;
-		@FXML
-		private TextField txtUsername; 
+		private DBConnection db;
 		
 		public GUIController(){
 			this.btnLogin = new Button();
@@ -50,34 +47,57 @@ public class GUIController {
 		 * @param event
 		 * @throws Exception
 		 */
-		public void handle(ActionEvent event) throws Exception {
+		public void handle(ActionEvent event) {
 			db = new DBConnection();
-			clientGUI = new MainClient();
-			if(event.getSource() == btnUser){
-				((Node)(event.getSource())).getScene().getWindow().hide(); //stäng fönster 
-			//USER - Öppne userGUI	OCH anslut till server 
-			} else { // ANNARS OM ADMIN 
-				//Starta Log in ruta
-				//OM LÖSEN OCH SÅNT ÄR RÄTT ANSLUT TILL SERVER 
-				if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword())){
-					lblStatus.setTextFill(Color.web("#43af43"));
-					lblStatus.setText("Log in successful!");
-					// Starta databas
-					db.initiate();
-					//Öppna nästa scen 
-					((Node)(event.getSource())).getScene().getWindow().hide();
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load( getClass().getResource("/serverGui/Menu.fxml"));
-					Scene scene = new Scene(root,650,500);
-					primaryStage.setScene(scene);
-					primaryStage.show();
-				} else {
-				txtUsername.clear();
-				txtPassword.clear();
-				lblStatus.setTextFill(Color.web("#b22222"));
-				lblStatus.setText("Username or password wrong. Try again!");
+			
+			if(event.getSource() == btnUser) {
+				((Node)(event.getSource())).getScene().getWindow().hide(); 
+				//db.initiate();<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			}
+			
+			if(event.getSource() == btnAdmin) {  
+
+				((Node)(event.getSource())).getScene().getWindow().hide(); 
+				Stage stageLogin = new Stage();
+				Parent rootLogin = null;
+				try {
+					rootLogin = FXMLLoader.load( getClass().getResource("/gui/Login.fxml") );
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
+				Scene sceneLogin = new Scene(rootLogin, Color.TRANSPARENT);
+				stageLogin.setScene(sceneLogin);
+				stageLogin.show();
+				
+			} else if(event.getSource() == btnLogin){
+				
+					if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
+						System.out.println("funkar");
+						lblStatus.setTextFill(Color.web("#43af43"));
+						lblStatus.setText("Log in successful!");
+						
+						((Node)(event.getSource())).getScene().getWindow().hide();
+						Stage stageMenu = new Stage();
+						Parent rootMenu = null;
+						try {
+							rootMenu = FXMLLoader.load( getClass().getResource("/gui/Menu.fxml") );
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						Scene sceneMenu = new Scene(rootMenu,650,500);
+						stageMenu.setScene(sceneMenu);
+						stageMenu.show();
+						//db.initiate();<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+					} else {
+					txtUsername.clear();
+					txtPassword.clear();
+					lblStatus.setTextFill(Color.web("#ff6347"));
+					lblStatus.setText("Ooops! Try again!");
+					}
+				
+				}
+				
 			}
 		}
 		
-	}
+	
