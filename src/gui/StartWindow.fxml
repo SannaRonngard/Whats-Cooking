@@ -7,34 +7,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="StartPane" prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+<AnchorPane fx:id="StartPane" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <ImageView fitHeight="450.0" fitWidth="500.0" pickOnBounds="true">
+      <ImageView fitHeight="350.0" fitWidth="400.0" opacity="0.6" pickOnBounds="true">
          <image>
             <Image url="@../../Images/Whats-Cooking-Background.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnUser" layoutX="100.0" layoutY="170.0" mnemonicParsing="false" onAction="#handle" opacity="0.6" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: white;">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnAdmin" layoutX="100.0" layoutY="262.0" mnemonicParsing="false" onAction="#handle" opacity="0.29" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: black;">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Label layoutX="215.0" layoutY="264.0" text="admin">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="205.0" layoutY="175.0" text="user">
+      <Label layoutX="155.0" layoutY="140.0" text="user">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <ImageView fitHeight="137.0" fitWidth="270.0" layoutX="128.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="165.0" layoutY="225.0" text="admin">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnUser" layoutX="50.0" layoutY="135.0" mnemonicParsing="false" onAction="#handle" opacity="0.1" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: black;">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdmin" layoutX="50.0" layoutY="223.0" mnemonicParsing="false" onAction="#handle" opacity="0.3" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: black;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="120.0" fitWidth="200.0" layoutX="100.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Images/Whats-Cooking-LOGO.png" />
          </image></ImageView>
