@@ -66,13 +66,13 @@ public class GUIController implements EventHandler<ActionEvent>{
 					e.printStackTrace();
 				}
 				Scene sceneLogin = new Scene(rootLogin, Color.TRANSPARENT);
+				stageLogin.initStyle(StageStyle.TRANSPARENT);
 				stageLogin.setScene(sceneLogin);
 				stageLogin.show();
 				
 			} else if(event.getSource() == btnLogin){
 				
 					if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
-						System.out.println("funkar");
 						lblStatus.setTextFill(Color.web("#43af43"));
 						lblStatus.setText("Log in successful!");
 						
@@ -84,7 +84,8 @@ public class GUIController implements EventHandler<ActionEvent>{
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-						Scene sceneMenu = new Scene(rootMenu,650,500);
+						Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
+						stageMenu.initStyle(StageStyle.TRANSPARENT);
 						stageMenu.setScene(sceneMenu);
 						stageMenu.show();
 						//db.initiate();<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

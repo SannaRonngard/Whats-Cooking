@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /***
@@ -85,7 +86,7 @@ public class MainClient extends Application {
 			this.createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 			this.createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 			this.createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
-			
+			primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
