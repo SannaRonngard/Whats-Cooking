@@ -88,7 +88,7 @@ public class GUIController implements EventHandler<ActionEvent>{
 						stageMenu.initStyle(StageStyle.TRANSPARENT);
 						stageMenu.setScene(sceneMenu);
 						stageMenu.show();
-						//db.initiate();<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+						db.initiate();
 					} else {
 					txtUsername.clear();
 					txtPassword.clear();
