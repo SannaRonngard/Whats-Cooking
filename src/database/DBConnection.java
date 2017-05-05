@@ -17,9 +17,9 @@ public class DBConnection {
 	
 	public DBConnection(){
 		this.driver = "org.postgresql.Driver";
-		this.url = "jdbc:postgresql://localhost:5432/testdb";
-		this.username = "user";
-		this.password = "password";
+		this.url = "jdbc:postgresql://104.155.0.136/test";
+		this.username = "postgres";
+		this.password = "bigheadteam";
 	}
 	public String getDriver(){
 		return this.driver;
@@ -35,11 +35,10 @@ public class DBConnection {
 	}
 	
 	   public void initiate() {
-		   DBConnection db = new DBConnection();
 		   Connection connection = null;
 		   // Try for Driver
 		   try {
-				Class.forName(db.driver);
+				Class.forName(driver);
 			} catch (ClassNotFoundException e) {
 				System.out.println("Where is your PostgreSQL JDBC Driver? Include in your library path!");
 				e.printStackTrace();
@@ -47,7 +46,7 @@ public class DBConnection {
 			}
 		   //Try to connect to database with details
 		   try {
-				connection = DriverManager.getConnection(db.getUrl(), db.getUsername(),db.getPassword());
+				connection = DriverManager.getConnection(getUrl(), getUsername(), getPassword());
 
 			} catch (SQLException e) {
 				System.out.println("Connection Failed! Check output console");

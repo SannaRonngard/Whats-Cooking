@@ -72,7 +72,6 @@ public class GUIController implements EventHandler<ActionEvent>{
 			} else if(event.getSource() == btnLogin){
 				
 					if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
-						System.out.println("funkar");
 						lblStatus.setTextFill(Color.web("#43af43"));
 						lblStatus.setText("Log in successful!");
 						
@@ -87,7 +86,7 @@ public class GUIController implements EventHandler<ActionEvent>{
 						Scene sceneMenu = new Scene(rootMenu,650,500);
 						stageMenu.setScene(sceneMenu);
 						stageMenu.show();
-						//db.initiate();<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+						db.initiate();
 					} else {
 					txtUsername.clear();
 					txtPassword.clear();
