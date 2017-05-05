@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /***
@@ -40,7 +41,7 @@ public class MainClient extends Application {
 	private HashMap<MealType, String> mealTypes = new HashMap<>();
 	private Scene scene;
 	private Pane root = new Pane();
-	private Pane main = new Pane();
+	private Pane mainWheelPane = new Pane();
 	private Pane dairyPane = new Pane();
 	private Pane meatPane = new Pane(); 
 	private Pane fruitPane = new Pane(); 
@@ -66,8 +67,8 @@ public class MainClient extends Application {
 			backgroundImage.fitWidthProperty().bind(root.widthProperty());
 			backgroundImage.fitHeightProperty().bind(root.heightProperty());
 			
-			root.getChildren().addAll(backgroundImage,main);
-			main.getChildren().add(wheel);
+			root.getChildren().addAll(backgroundImage,mainWheelPane);
+			mainWheelPane.getChildren().add(wheel);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
@@ -80,12 +81,12 @@ public class MainClient extends Application {
 			
 			this.addWheel(wheel);
 			
-			this.createBoundingBoxes(MealType.MEAT, main, 400, 103, 163, 180);
-			this.createBoundingBoxes(MealType.VEGETABLES, main, 623, 103, 163, 180);
-			this.createBoundingBoxes(MealType.FRUITS, main, 685, 300, 170, 150);
-			this.createBoundingBoxes(MealType.DAIRY, main, 335, 300, 170, 150);
-			this.createBoundingBoxes(MealType.SPANN,main, 500, 457, 185, 140);
-			
+			this.createBoundingBoxes(MealType.MEAT, mainWheelPane, 400, 103, 163, 180);
+			this.createBoundingBoxes(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
+			this.createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
+			this.createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
+			this.createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
+			primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -201,13 +202,14 @@ public class MainClient extends Application {
 				public void run() {
 					Button btt = new Button("Go back");
 					dairyPane.getChildren().addAll(btt);
-					root.getChildren().remove(main);
+					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
 					
 					btt.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
-						root.getChildren().add(main);
+						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
+						
 					});
 				}
 		    	
@@ -223,12 +225,12 @@ public class MainClient extends Application {
 					public void run() {
 						Button btt = new Button("Go back");
 						fruitPane.getChildren().addAll(btt);
-						root.getChildren().remove(main);
+						root.getChildren().remove(mainWheelPane);
 						root.getChildren().add(fruitPane);
 						
 						btt.setOnMouseClicked(e -> {
 							root.getChildren().remove(fruitPane);
-							root.getChildren().add(main);
+							root.getChildren().add(mainWheelPane);
 							transitionToHome(1000);
 						});
 					}
@@ -245,12 +247,12 @@ public class MainClient extends Application {
 				public void run() {
 					Button btt = new Button("Go back");
 					meatPane.getChildren().addAll(btt);
-					root.getChildren().remove(main);
+					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(meatPane);
 					
 					btt.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
-						root.getChildren().add(main);
+						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
 					});
 				}
@@ -267,12 +269,12 @@ public class MainClient extends Application {
 				public void run() {
 					Button btt = new Button("Go back");
 					spannPane.getChildren().addAll(btt);
-					root.getChildren().remove(main);
+					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(spannPane);
 					
 					btt.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
-						root.getChildren().add(main);
+						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
 					});
 				}
@@ -290,12 +292,12 @@ public class MainClient extends Application {
 				public void run() {
 					Button btt = new Button("Go back");
 					vegetablePane.getChildren().addAll(btt);
-					root.getChildren().remove(main);
+					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(vegetablePane);
 					
 					btt.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
-						root.getChildren().add(main);
+						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
 					});
 				}
