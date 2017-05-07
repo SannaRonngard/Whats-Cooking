@@ -79,6 +79,7 @@ public class GUIController implements Initializable {
 //				window.setScene(sceneClient);
 //				window.show();
 			}
+
 			if(event.getSource() == btnLogin) {
 				if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword())){
 					lblStatus.setTextFill(Color.web("#43af43"));
@@ -92,6 +93,44 @@ public class GUIController implements Initializable {
 					window.setScene(sceneAdminMenu);
 					window.show();
 				} else {
+
+			
+			if(event.getSource() == btnAdmin) {  
+
+				((Node)(event.getSource())).getScene().getWindow().hide(); 
+				Stage stageLogin = new Stage();
+				Parent rootLogin = null;
+				try {
+					rootLogin = FXMLLoader.load( getClass().getResource("/gui/Login.fxml") );
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				Scene sceneLogin = new Scene(rootLogin, Color.TRANSPARENT);
+				stageLogin.initStyle(StageStyle.TRANSPARENT);
+				stageLogin.setScene(sceneLogin);
+				stageLogin.show();
+				
+			} else if(event.getSource() == btnLogin){
+				
+					if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
+						lblStatus.setTextFill(Color.web("#43af43"));
+						lblStatus.setText("Log in successful!");
+						
+						((Node)(event.getSource())).getScene().getWindow().hide();
+						Stage stageMenu = new Stage();
+						Parent rootMenu = null;
+						try {
+							rootMenu = FXMLLoader.load( getClass().getResource("/gui/Menu.fxml") );
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
+						stageMenu.initStyle(StageStyle.TRANSPARENT);
+						stageMenu.setScene(sceneMenu);
+						stageMenu.show();
+						db.initiate();
+					} else {
+
 					txtUsername.clear();
 					txtPassword.clear();
 					lblStatus.setTextFill(Color.web("#ff6347"));
