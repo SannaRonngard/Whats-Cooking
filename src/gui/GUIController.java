@@ -135,8 +135,10 @@ public class GUIController implements Initializable {
 					txtPassword.clear();
 					lblStatus.setTextFill(Color.web("#ff6347"));
 					lblStatus.setText("Ooops! Try again!");
+					}
+			  }
 				}
-			}	
+			}
 		}
 			
 		@Override
