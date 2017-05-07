@@ -143,7 +143,7 @@ public class MainClient extends Application {
 	
 	private void addHoverAction(Rectangle box, MealType mealType){
 		box.setOnMouseClicked(e -> {
-			changeScene(mealType);
+			changeScene(mealType); 
 		});
 		box.setOnMouseEntered(e -> {
 			switch(mealType){
