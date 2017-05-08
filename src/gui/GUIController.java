@@ -65,7 +65,7 @@ public class GUIController implements Initializable {
 				Scene sceneLogin = new Scene(parentLogin);
 				Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
 				this.window = window;
-				window.setOnCloseRequest(e ->{ 
+				window.setOnCloseRequest(e -> { 
 					e.consume();
 					closeAppConfirm();
 					});
@@ -85,77 +85,43 @@ public class GUIController implements Initializable {
 //				window.setScene(sceneClient);
 //				window.show();
 			}
-
-			if(event.getSource() == btnLogin) {
-				if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword())){
-					lblStatus.setTextFill(Color.web("#43af43"));
-					lblStatus.setText("Log in successful!");
-					db.initiate();
-					Parent parentAdminMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml"));//Instantiate a parent
-					Scene sceneAdminMenu = new Scene(parentAdminMenu);
-					Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
-					this.window = window;
-					window.setOnCloseRequest(e ->{ 
-						e.consume();
-						closeAppConfirm();
-						});
-					window.setScene(sceneAdminMenu);
-					window.show();
-				} else {
-
-			
-			if(event.getSource() == btnAdmin) {  
-
-				((Node)(event.getSource())).getScene().getWindow().hide(); 
-				Stage stageLogin = new Stage();
-				Parent rootLogin = null;
-				try {
-					rootLogin = FXMLLoader.load( getClass().getResource("/gui/Login.fxml") );
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				Scene sceneLogin = new Scene(rootLogin, Color.TRANSPARENT);
-				stageLogin.initStyle(StageStyle.TRANSPARENT);
-				stageLogin.setScene(sceneLogin);
-				stageLogin.show();
+					if(event.getSource() == btnLogin) {
 				
-			} else if(event.getSource() == btnLogin){
-				
-					if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
-						lblStatus.setTextFill(Color.web("#43af43"));
-						lblStatus.setText("Log in successful!");
+						if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
+							lblStatus.setTextFill(Color.web("#43af43"));
+							lblStatus.setText("Log in successful!");
 						
-						((Node)(event.getSource())).getScene().getWindow().hide();
-						Stage stageMenu = new Stage();
-						Parent rootMenu = null;
-						try {
-							rootMenu = FXMLLoader.load( getClass().getResource("/gui/Menu.fxml") );
-						} catch (IOException e) {
+							((Node)(event.getSource())).getScene().getWindow().hide();
+							Stage window = new Stage();
+							Parent rootMenu = null;
+							try {
+							rootMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml") );
+							} catch (IOException e) {
 							e.printStackTrace();
-						}
-						Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
-						stageMenu.initStyle(StageStyle.TRANSPARENT);
-						stageMenu.setScene(sceneMenu);
-						stageMenu.show();
-						db.initiate();
-					} else {
+								}
+							Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
+							
+							window.initStyle(StageStyle.TRANSPARENT);
+							window.setHeight(500);
+							window.setWidth(650);
+							window.setScene(sceneMenu);
+							window.show();
+							db.initiate();
+						} else {
 
-					txtUsername.clear();
-					txtPassword.clear();
-					lblStatus.setTextFill(Color.web("#ff6347"));
-					lblStatus.setText("Ooops! Try again!");
+							txtUsername.clear();
+							txtPassword.clear();
+							lblStatus.setTextFill(Color.web("#ff6347"));
+							lblStatus.setText("Ooops! Try again!");
+						}
 					}
-			  }
 				}
-			}
-		}
 		
 		private void closeAppConfirm(){
 			Boolean answer = ConfirmBox.blueprint("", "Are you sure you want to exit?");
 			if(answer)
 			window.close();
 		}
-		private void closeApp() { window.close(); }
 		
 		
 		@Override
