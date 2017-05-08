@@ -29,14 +29,14 @@ public class AlertBox {
 		 */
 		Label label = new Label(); 
 		label.setText(message);
-		Button closeButton = new Button(buttonText);
-		closeButton.setOnAction( e -> window.close() );
+		Button button = new Button(buttonText);
+		button.setOnAction( e -> window.close() );
 		/*
 		 * Add button and label to layout 
 		 */
 		VBox layout = new VBox(20); 
 		layout.getChildren().add(label);
-		layout.getChildren().add(closeButton);
+		layout.getChildren().add(button);
 		/*
 		 * Make new scene, add window to the scene and show scene, 
 		 * the scene needs to be closed before you can return to the previous one

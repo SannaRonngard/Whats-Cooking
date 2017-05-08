@@ -37,13 +37,15 @@ public class GUIController implements Initializable {
 		@FXML private PasswordField txtPassword;
 		@FXML private TextField txtUsername; 
 		private DBConnection db;
-		@FXML public Button closeButton;
+		@FXML public Button btnCloseLogin;
+		private Stage window;
 		
 		public GUIController(){
 			this.btnLogin = new Button();
 			this.btnUser = new Button();
 			this.btnAdmin = new Button();
 			this.btnContact = new Button();
+			this.btnCloseLogin = new Button();
 			this.db = new DBConnection();
 		}
 		/**
@@ -62,8 +64,11 @@ public class GUIController implements Initializable {
 				Parent parentLogin = FXMLLoader.load( getClass().getResource("/gui/Login.fxml"));//Instantiate a parent
 				Scene sceneLogin = new Scene(parentLogin);
 				Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
-				closeButton = new Button("Close the window");
-				closeButton.setOnAction( e -> window.close() );
+				this.window = window;
+				window.setOnCloseRequest(e ->{ 
+					e.consume();
+					closeAppConfirm();
+					});
 				window.setHeight(350);
 				window.setWidth(424);
 				window.setScene(sceneLogin);
@@ -74,8 +79,9 @@ public class GUIController implements Initializable {
 //				Parent parentClient = FXMLLoader.load( getClass().getResource("/gui/Client.fxml"));//Instantiate a parent
 //				Scene sceneClient = new Scene(parentClient);
 //				Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
-//				closeButton = new Button("Close the window");
-//				closeButton.setOnAction( e -> window.close() );
+//				this.window = window;
+//				closeButton = new Button("");
+//				closeButton.setOnAction( e -> closeApp() );
 //				window.setScene(sceneClient);
 //				window.show();
 			}
@@ -88,8 +94,11 @@ public class GUIController implements Initializable {
 					Parent parentAdminMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml"));//Instantiate a parent
 					Scene sceneAdminMenu = new Scene(parentAdminMenu);
 					Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
-					closeButton = new Button("Close the window");
-					closeButton.setOnAction( e -> window.close() );
+					this.window = window;
+					window.setOnCloseRequest(e ->{ 
+						e.consume();
+						closeAppConfirm();
+						});
 					window.setScene(sceneAdminMenu);
 					window.show();
 				} else {
@@ -138,12 +147,17 @@ public class GUIController implements Initializable {
 				}
 			}	
 		}
-			
+		
+		private void closeAppConfirm(){
+			Boolean answer = ConfirmBox.blueprint("", "Are you sure you want to exit?");
+			if(answer)
+			window.close();
+		}
+		private void closeApp() { window.close(); }
+		
+		
 		@Override
-		public void initialize(URL location, ResourceBundle resources) {
-			// TODO 
-			
-		}	
+		public void initialize(URL location, ResourceBundle resources) {}	
 			
 	}
 		
