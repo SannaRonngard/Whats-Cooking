@@ -28,6 +28,8 @@ public class GUIController implements Initializable {
 		
 		@FXML private Button btnAdmin;
 		@FXML private Button btnUser;
+		@FXML private Button btnCloseStart;
+		@FXML private Button btnMiniStart;
 		
 		@FXML private Button btnLogin; 
 		@FXML private Label lblLogIn;
@@ -36,9 +38,14 @@ public class GUIController implements Initializable {
 
 		@FXML private PasswordField txtPassword;
 		@FXML private TextField txtUsername; 
-		private DBConnection db;
-		@FXML public Button btnCloseLogin;
+		@FXML private Button btnCloseLogin;
+		@FXML private Button btnMiniLogin;
+		
+		@FXML private Button btnCloseAdminMenu;
+		@FXML private Button btnMiniAdminMenu;
+		
 		private Stage window;
+		private DBConnection db;
 		
 		public GUIController(){
 			this.btnLogin = new Button();
@@ -46,6 +53,11 @@ public class GUIController implements Initializable {
 			this.btnAdmin = new Button();
 			this.btnContact = new Button();
 			this.btnCloseLogin = new Button();
+			this.btnMiniLogin = new Button();
+			this.btnCloseStart = new Button();
+			this.btnMiniStart = new Button();
+			this.btnCloseAdminMenu = new Button();
+			this.btnMiniAdminMenu = new Button();
 			this.db = new DBConnection();
 		}
 		/**
@@ -55,11 +67,24 @@ public class GUIController implements Initializable {
 		 */
 		@FXML
 		private void handleButtonAction(ActionEvent event) throws IOException {
-			
+			btnCloseStart.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
+			btnMiniStart.setOnAction(e -> {
+				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+	            stage.setIconified(true);
+			});
+			btnCloseLogin.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
+			btnMiniLogin.setOnAction(e -> {
+				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+	            stage.setIconified(true);
+			});
 			btnContact.setOnAction(e -> {
 				AlertBox.blueprint("Contact", "Email support at: support@whatscooking.com", "Return to login", 100, 300);
 			});
-			
+			btnCloseAdminMenu.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
+			btnMiniAdminMenu.setOnAction(e -> {
+				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+	            stage.setIconified(true);
+			});
 			if(event.getSource() == btnAdmin) {
 				Parent parentLogin = FXMLLoader.load( getClass().getResource("/gui/Login.fxml"));//Instantiate a parent
 				Scene sceneLogin = new Scene(parentLogin);
@@ -91,17 +116,30 @@ public class GUIController implements Initializable {
 							lblStatus.setTextFill(Color.web("#43af43"));
 							lblStatus.setText("Log in successful!");
 						
-							((Node)(event.getSource())).getScene().getWindow().hide();
-							Stage window = new Stage();
-							Parent rootMenu = null;
-							try {
-							rootMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml") );
-							} catch (IOException e) {
-							e.printStackTrace();
-								}
-							Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
-							sceneMenu.getStylesheets().add(getClass().getResource("/gui/wc_styleSheet.css").toExternalForm());
-							window.initStyle(StageStyle.TRANSPARENT);
+//							((Node)(event.getSource())).getScene().getWindow().hide();
+//							Stage window = new Stage();
+//							Parent rootMenu = null;
+//							try {
+//							rootMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml") );
+//							} catch (IOException e) {
+//							e.printStackTrace();
+//								}
+//							Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
+//							window.initStyle(StageStyle.TRANSPARENT);
+//							window.setHeight(500);
+//							window.setWidth(650);
+//							window.setScene(sceneMenu);
+//							window.show();
+//							db.initiate();
+							
+							Parent rootMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml"));//Instantiate a parent
+							Scene sceneMenu = new Scene(rootMenu);
+							Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
+							this.window = window;
+							window.setOnCloseRequest(e -> { 
+								e.consume();
+								closeAppConfirm();
+								});
 							window.setHeight(500);
 							window.setWidth(650);
 							window.setScene(sceneMenu);
@@ -122,14 +160,6 @@ public class GUIController implements Initializable {
 			if(answer)
 			window.close();
 		}
-//		 btnMinimize.setOnAction(new EventHandler<ActionEvent>() {
-//
-//		        public void handle(ActionEvent event) {
-//		            Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-//		            // is stage minimizable into task bar. (true | false)
-//		            stage.setIconified(true);
-//		        }
-//		    });
 		
 		
 		@Override
