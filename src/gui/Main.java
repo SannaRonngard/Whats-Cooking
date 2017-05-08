@@ -16,22 +16,26 @@ import javafx.stage.StageStyle;
  * @author Sofia Larsson
  */
 public class Main extends Application {
-	Stage primaryStage;
+	Stage window;
 	
 	@Override
 	public void start(Stage stage ) throws Exception { setUserAgentStylesheet(STYLESHEET_CASPIAN);
-//			this.primaryStage = primaryStage; //Making a reference to the primary stage. Needed for other methods. 
+			window = stage; //Making a reference to the primary stage. Needed for other methods. 
 			final Parent rootStart = FXMLLoader.load( getClass().getResource("/gui/StartWindow.fxml"));
-			final Scene scene = new Scene(rootStart);
-			
+			final Scene scene = new Scene(rootStart, 350, 424);
 			stage.initStyle(StageStyle.TRANSPARENT);
+			stage.setOnCloseRequest(e -> closeProgram());
 			stage.setTitle("What's Cooking");
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.setHeight(350);
-			stage.setWidth(400);
+			stage.setWidth(424);
 			stage.show();
 
+	}
+	private void closeProgram(){
+		System.out.println("Closed properly");
+		window.close();
 	}
 	
 	public static void main(String[] args) { launch(args); }

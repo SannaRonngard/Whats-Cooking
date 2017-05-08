@@ -62,7 +62,7 @@
             <Image url="@../../Images/1494174365_minus.png" />
          </image>
       </ImageView>
-      <Button fx:id="closeButton" layoutX="330.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: transparent;" text="Button" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="btnCloseLogin" layoutX="330.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: transparent;" text="Button" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       
     </children>
 </AnchorPane>
