@@ -100,7 +100,7 @@ public class GUIController implements Initializable {
 							e.printStackTrace();
 								}
 							Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
-							
+							sceneMenu.getStylesheets().add(getClass().getResource("/gui/wc_styleSheet.css").toExternalForm());
 							window.initStyle(StageStyle.TRANSPARENT);
 							window.setHeight(500);
 							window.setWidth(650);
@@ -122,6 +122,14 @@ public class GUIController implements Initializable {
 			if(answer)
 			window.close();
 		}
+//		 btnMinimize.setOnAction(new EventHandler<ActionEvent>() {
+//
+//		        public void handle(ActionEvent event) {
+//		            Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+//		            // is stage minimizable into task bar. (true | false)
+//		            stage.setIconified(true);
+//		        }
+//		    });
 		
 		
 		@Override

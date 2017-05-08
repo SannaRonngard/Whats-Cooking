@@ -12,12 +12,14 @@ public class ConfirmBox {
 	public static boolean blueprint(String title, String message) {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL); // Block any user interraction  antil the alertbox is closed
+		window.initStyle(StageStyle.TRANSPARENT);
 		window.setTitle(title);
 		window.setMinHeight(100);
 		window.setMinWidth(200);
+		
 		Label label = new Label(); 
 		label.setText(message);
-
+		label.setId("bold-label");
 		//Create two buttons
 		Button yesButton = new Button("Yes");
 		Button cancelButton = new Button("Cancel");
@@ -35,6 +37,7 @@ public class ConfirmBox {
 		layout.getChildren().addAll(label, yesButton, cancelButton);
 		layout.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(layout);
+		scene.getStylesheets().add("/gui/wc_styleSheet.css");
 		window.setScene(scene);
 		window.showAndWait();
 		

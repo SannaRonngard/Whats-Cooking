@@ -1,0 +1,29 @@
+.root{
+	
+	-fx-background-color: #dadada;
+}
+
+.label{
+	-fx-text-fill: #000000;
+}
+.check-box{
+	
+}
+
+#bold-label{
+	-fx-font-weight: bold;
+}
+
+.button{
+	-fx-background-color: linear-gradient( #43AF43, #1a461a);
+	-fx-text-fill: #FFFFFF;
+	-fx-background-radius: 4;
+}
+
+/*.color1 { color: #dadada} ljusgrå
+.color2 { color: #666666} grå
+.color3 { color: #b4b4b4} ljusgrå
+#484848 grå 
+#a1d7a1 ljusgrön
+#43af43 wc grön
+#1a461a mörkgrön */
