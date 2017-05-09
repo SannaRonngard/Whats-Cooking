@@ -14,7 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -47,6 +47,8 @@ public class GUIController implements Initializable {
 		@FXML private Rectangle barLogin;
 		private Stage window;
 		private DBConnection db;
+		private static double xOffSet = 0;
+		private static double yOffSet = 0;
 		
 		public GUIController(){
 			this.btnLogin = new Button();
@@ -62,31 +64,43 @@ public class GUIController implements Initializable {
 			this.barLogin = new Rectangle();
 			this.db = new DBConnection();
 		}
+		
 		/**
 		 * Method that is called whenever an event occurs. 
 		 * @param event
 		 * @throws Exception
 		 */
+		
+		
+		
 		@FXML
 		private void handleButtonAction(ActionEvent event) throws IOException {
 			btnCloseStart.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
 			btnMiniStart.setOnAction(e -> {
 				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
 	            stage.setIconified(true);
+	            
 			});
+			
 			btnCloseLogin.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
 			btnMiniLogin.setOnAction(e -> {
 				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
 	            stage.setIconified(true);
+	            
 			});
+			
 			btnContact.setOnAction(e -> {
 				AlertBox.blueprint("Contact", "Email support at: support@whatscooking.com", "Return to login", 100, 300);
+				
 			});
+			
 			btnCloseAdminMenu.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
 			btnMiniAdminMenu.setOnAction(e -> {
 				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
 	            stage.setIconified(true);
+	            
 			});
+			
 			if(event.getSource() == btnAdmin) {
 				Parent parentLogin = FXMLLoader.load( getClass().getResource("/gui/Login.fxml"));//Instantiate a parent
 				Scene sceneLogin = new Scene(parentLogin);
@@ -95,11 +109,32 @@ public class GUIController implements Initializable {
 				window.setOnCloseRequest(e -> { 
 					e.consume();
 					closeAppConfirm();
+					
 					});
+				
 				window.setHeight(350);
 				window.setWidth(424);
 				window.setScene(sceneLogin);
 				window.show();
+				
+				barLogin.setOnMousePressed(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						xOffSet = window.getX() - event.getScreenX();
+						yOffSet = window.getY() - event.getScreenY();
+					
+					}
+				});
+				
+				barLogin.setOnMouseDragged(new EventHandler<MouseEvent> () {
+					@Override
+					public void handle(MouseEvent event) {
+						window.setX(event.getScreenX() + xOffSet);
+						window.setY(event.getScreenY() + yOffSet);
+						
+					}	
+				});
+				
 			}
 			if(event.getSource() == btnUser) {
 				System.out.println("på G");
