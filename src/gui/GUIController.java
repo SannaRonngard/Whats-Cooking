@@ -14,9 +14,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -28,6 +29,8 @@ public class GUIController implements Initializable {
 		
 		@FXML private Button btnAdmin;
 		@FXML private Button btnUser;
+		@FXML private Button btnCloseStart;
+		@FXML private Button btnMiniStart;
 		
 		@FXML private Button btnLogin; 
 		@FXML private Label lblLogIn;
@@ -36,9 +39,16 @@ public class GUIController implements Initializable {
 
 		@FXML private PasswordField txtPassword;
 		@FXML private TextField txtUsername; 
-		private DBConnection db;
-		@FXML public Button btnCloseLogin;
+		@FXML private Button btnCloseLogin;
+		@FXML private Button btnMiniLogin;
+		
+		@FXML private Button btnCloseAdminMenu;
+		@FXML private Button btnMiniAdminMenu;
+		@FXML private Rectangle barLogin;
 		private Stage window;
+		private DBConnection db;
+		private static double xOffSet = 0;
+		private static double yOffSet = 0;
 		
 		public GUIController(){
 			this.btnLogin = new Button();
@@ -46,18 +56,49 @@ public class GUIController implements Initializable {
 			this.btnAdmin = new Button();
 			this.btnContact = new Button();
 			this.btnCloseLogin = new Button();
+			this.btnMiniLogin = new Button();
+			this.btnCloseStart = new Button();
+			this.btnMiniStart = new Button();
+			this.btnCloseAdminMenu = new Button();
+			this.btnMiniAdminMenu = new Button();
+			this.barLogin = new Rectangle();
 			this.db = new DBConnection();
 		}
+		
 		/**
 		 * Method that is called whenever an event occurs. 
 		 * @param event
 		 * @throws Exception
 		 */
+		
+		
+		
 		@FXML
 		private void handleButtonAction(ActionEvent event) throws IOException {
+			btnCloseStart.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
+			btnMiniStart.setOnAction(e -> {
+				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+	            stage.setIconified(true);
+	            
+			});
+			
+			btnCloseLogin.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
+			btnMiniLogin.setOnAction(e -> {
+				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+	            stage.setIconified(true);
+	            
+			});
 			
 			btnContact.setOnAction(e -> {
 				AlertBox.blueprint("Contact", "Email support at: support@whatscooking.com", "Return to login", 100, 300);
+				
+			});
+			
+			btnCloseAdminMenu.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
+			btnMiniAdminMenu.setOnAction(e -> {
+				Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+	            stage.setIconified(true);
+	            
 			});
 			
 			if(event.getSource() == btnAdmin) {
@@ -65,14 +106,35 @@ public class GUIController implements Initializable {
 				Scene sceneLogin = new Scene(parentLogin);
 				Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
 				this.window = window;
-				window.setOnCloseRequest(e ->{ 
+				window.setOnCloseRequest(e -> { 
 					e.consume();
 					closeAppConfirm();
+					
 					});
+				
 				window.setHeight(350);
 				window.setWidth(424);
 				window.setScene(sceneLogin);
 				window.show();
+				
+				barLogin.setOnMousePressed(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						xOffSet = window.getX() - event.getScreenX();
+						yOffSet = window.getY() - event.getScreenY();
+					
+					}
+				});
+				
+				barLogin.setOnMouseDragged(new EventHandler<MouseEvent> () {
+					@Override
+					public void handle(MouseEvent event) {
+						window.setX(event.getScreenX() + xOffSet);
+						window.setY(event.getScreenY() + yOffSet);
+						
+					}	
+				});
+				
 			}
 			if(event.getSource() == btnUser) {
 				System.out.println("på G");
@@ -85,75 +147,56 @@ public class GUIController implements Initializable {
 //				window.setScene(sceneClient);
 //				window.show();
 			}
-
-			if(event.getSource() == btnLogin) {
-				if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword())){
-					lblStatus.setTextFill(Color.web("#43af43"));
-					lblStatus.setText("Log in successful!");
-					db.initiate();
-					Parent parentAdminMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml"));//Instantiate a parent
-					Scene sceneAdminMenu = new Scene(parentAdminMenu);
-					Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
-					this.window = window;
-					window.setOnCloseRequest(e ->{ 
-						e.consume();
-						closeAppConfirm();
-						});
-					window.setScene(sceneAdminMenu);
-					window.show();
-				} else {
-
-			
-			if(event.getSource() == btnAdmin) {  
-
-				((Node)(event.getSource())).getScene().getWindow().hide(); 
-				Stage stageLogin = new Stage();
-				Parent rootLogin = null;
-				try {
-					rootLogin = FXMLLoader.load( getClass().getResource("/gui/Login.fxml") );
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				Scene sceneLogin = new Scene(rootLogin, Color.TRANSPARENT);
-				stageLogin.initStyle(StageStyle.TRANSPARENT);
-				stageLogin.setScene(sceneLogin);
-				stageLogin.show();
+					if(event.getSource() == btnLogin) {
 				
-			} else if(event.getSource() == btnLogin){
-				
-					if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
-						lblStatus.setTextFill(Color.web("#43af43"));
-						lblStatus.setText("Log in successful!");
+						if(txtUsername.getText().equals(db.getUsername()) && txtPassword.getText().equals(db.getPassword()) ){
+							lblStatus.setTextFill(Color.web("#43af43"));
+							lblStatus.setText("Log in successful!");
 						
-						((Node)(event.getSource())).getScene().getWindow().hide();
-						Stage stageMenu = new Stage();
-						Parent rootMenu = null;
-						try {
-							rootMenu = FXMLLoader.load( getClass().getResource("/gui/Menu.fxml") );
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
-						stageMenu.initStyle(StageStyle.TRANSPARENT);
-						stageMenu.setScene(sceneMenu);
-						stageMenu.show();
-						db.initiate();
-					} else {
+//							((Node)(event.getSource())).getScene().getWindow().hide();
+//							Stage window = new Stage();
+//							Parent rootMenu = null;
+//							try {
+//							rootMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml") );
+//							} catch (IOException e) {
+//							e.printStackTrace();
+//								}
+//							Scene sceneMenu = new Scene(rootMenu,Color.TRANSPARENT);
+//							window.initStyle(StageStyle.TRANSPARENT);
+//							window.setHeight(500);
+//							window.setWidth(650);
+//							window.setScene(sceneMenu);
+//							window.show();
+//							db.initiate();
+							
+							Parent rootMenu = FXMLLoader.load( getClass().getResource("/gui/AdminMenu.fxml"));//Instantiate a parent
+							Scene sceneMenu = new Scene(rootMenu);
+							Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
+							this.window = window;
+							window.setOnCloseRequest(e -> { 
+								e.consume();
+								closeAppConfirm();
+								});
+							window.setHeight(500);
+							window.setWidth(650);
+							window.setScene(sceneMenu);
+							window.show();
+							db.initiate();
+						} else {
 
-					txtUsername.clear();
-					txtPassword.clear();
-					lblStatus.setTextFill(Color.web("#ff6347"));
-					lblStatus.setText("Ooops! Try again!");
+							txtUsername.clear();
+							txtPassword.clear();
+							lblStatus.setTextFill(Color.web("#ff6347"));
+							lblStatus.setText("Ooops! Try again!");
+						}
+					}
 				}
-			}	
-		}
-		
+
 		private void closeAppConfirm(){
 			Boolean answer = ConfirmBox.blueprint("", "Are you sure you want to exit?");
 			if(answer)
 			window.close();
 		}
-		private void closeApp() { window.close(); }
 		
 		
 		@Override

@@ -4,65 +4,88 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="424.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+<VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <ImageView fitHeight="350.0" fitWidth="424.0" opacity="0.6" pickOnBounds="true">
-         <image>
-            <Image url="@../../Images/Whats-Cooking-Background.png" />
-         </image>
-      </ImageView>
-      <Pane fx:id="pane" layoutY="304.0" opacity="0.59" prefHeight="47.0" prefWidth="424.0" style="-fx-background-color: ghostwhite;" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="424.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="40.0" layoutY="4.0" prefHeight="40.0" prefWidth="191.0" text="Forgot your log in details?" textFill="#648364">
+            <ImageView fitHeight="350.0" fitWidth="424.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../Images/Whats-Cooking-Background.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="227.0" layoutY="309.0" prefHeight="30.0" prefWidth="120.0" text="Contact support!" underline="true" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="70.0">
                <font>
-                  <Font size="16.0" />
-               </font></Label>
-            <Label layoutX="231.0" layoutY="4.0" prefHeight="40.0" prefWidth="129.0" text="Contact support!" textFill="#648364" underline="true">
-               <font>
-                  <Font size="16.0" />
+                  <Font size="15.0" />
                </font>
+               <effect>
+                  <Glow />
+               </effect>
             </Label>
-            <Button fx:id="btnContact" layoutX="231.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="129.0" style="-fx-background-color: transparent;" />
-         </children></Pane>
-      <Button fx:id="btnLogin" layoutX="35.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleButtonAction" onKeyPressed="#handleButtonAction" prefHeight="40.0" prefWidth="358.0" style="-fx-background-color: #43AF43;" text="Log in" textFill="WHITE" AnchorPane.leftAnchor="35.0">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <TextField fx:id="txtUsername" layoutX="35.0" layoutY="127.0" opacity="0.8" prefHeight="40.0" prefWidth="358.0" promptText="Username">
-         <font>
-            <Font size="18.0" />
-         </font></TextField>
-      <PasswordField fx:id="txtPassword" layoutX="35.0" layoutY="180.0" opacity="0.8" prefHeight="40.0" prefWidth="358.0" promptText="Password">
-         <font>
-            <Font size="18.0" />
-         </font></PasswordField>
-      <Label fx:id="lblLogIn" layoutX="142.0" layoutY="26.0" prefHeight="70.0" prefWidth="144.0" text="Log In" textFill="#000000cb" AnchorPane.leftAnchor="142.0">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
-      <Label layoutX="90.0" layoutY="96.0" text="Welcome to What's Cooking database!" textFill="#43af43" AnchorPane.leftAnchor="90.0">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="lblStatus" layoutX="63.0" layoutY="263.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="50.0" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="398.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../Images/1494174280_Close.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="376.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../Images/1494174365_minus.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnCloseLogin" layoutX="330.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: transparent;" text="Button" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      
-    </children>
-</AnchorPane>
+            <Label layoutX="46.0" layoutY="309.0" prefHeight="30.0" prefWidth="181.0" text="Forgot your log in details?" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="185.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+            <Button fx:id="btnContact" layoutX="223.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="129.0" style="-fx-background-color: transparent;" textFill="WHITE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="223.0" />
+            <Button fx:id="btnLogin" layoutX="35.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleButtonAction" onKeyPressed="#handleButtonAction" opacity="0.8" prefHeight="40.0" prefWidth="358.0" style="-fx-background-color: #43af43;" text="Sign in" textFill="WHITE" AnchorPane.leftAnchor="35.0">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <TextField fx:id="txtUsername" layoutX="35.0" layoutY="127.0" opacity="0.8" prefHeight="40.0" prefWidth="358.0" promptText="Username">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="txtPassword" layoutX="35.0" layoutY="180.0" opacity="0.8" prefHeight="40.0" prefWidth="358.0" promptText="Password">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </PasswordField>
+            <Label fx:id="lblLogIn" layoutX="120.0" layoutY="57.0" prefHeight="70.0" prefWidth="229.0" text="Welcome" textFill="#ffffffcc" AnchorPane.bottomAnchor="223.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="75.0">
+               <font>
+                  <Font name="Trebuchet MS Italic" size="46.0" />
+               </font>
+               <effect>
+                  <DropShadow spread="0.45">
+                     <input>
+                        <Glow level="0.71" />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <Label fx:id="lblStatus" layoutX="63.0" layoutY="263.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="50.0" />
+            <Rectangle fx:id="barLogin" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="82.0" layoutY="-4.0" opacity="0.3" stroke="TRANSPARENT" strokeType="INSIDE" width="424.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="398.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../../Images/1494174280_Close.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="376.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../../Images/1494174365_minus.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnCloseLogin" layoutX="330.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="btnMiniLogin" layoutX="410.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="0.0" />
+            
+          </children>
+      </AnchorPane>
+   </children>
+</VBox>
