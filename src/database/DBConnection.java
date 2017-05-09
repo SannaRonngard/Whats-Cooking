@@ -13,6 +13,7 @@ public class DBConnection {
 	private String url;
 	private String username;
 	private String password;
+	private Connection connection = null;
 
 	public DBConnection(){
 		this.driver = "org.postgresql.Driver";
@@ -32,9 +33,11 @@ public class DBConnection {
 	public String getPassword(){
 		return this.password;
 	}
+	public Connection getConnection(){
+		return this.connection;
+	}
 
 	public void initiate() {
-		Connection connection = null;
 		// Try for Driver
 		try {
 			Class.forName(driver);
@@ -54,15 +57,6 @@ public class DBConnection {
 		//If user details match and connection was successful or not
 		if (connection != null) {
 			System.out.println("You are connected!");
-			try { 
-				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM recipe;");
-				ResultSet rs = stmt.executeQuery();
-				while (rs.next()) {
-					System.out.println(rs.getString(1));
-				}
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
 		} else {
 			System.out.println("Failed to make connection!");
 		}
