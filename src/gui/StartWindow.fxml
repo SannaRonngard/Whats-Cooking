@@ -57,7 +57,7 @@
          <effect>
             <DropShadow height="35.83" radius="13.7075" spread="0.21">
                <input>
-                  <ColorAdjust brightness="-1.0" />
+                  <ColorAdjust brightness="-0.56" contrast="-1.0" hue="-0.7" saturation="-1.0" />
                </input></DropShadow>
          </effect></ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="82.0" opacity="0.3" stroke="TRANSPARENT" strokeType="INSIDE" width="426.0" AnchorPane.leftAnchor="0.0" />
