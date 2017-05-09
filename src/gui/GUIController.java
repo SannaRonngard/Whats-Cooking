@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -43,7 +44,7 @@ public class GUIController implements Initializable {
 		
 		@FXML private Button btnCloseAdminMenu;
 		@FXML private Button btnMiniAdminMenu;
-		
+		@FXML private Rectangle barLogin;
 		private Stage window;
 		private DBConnection db;
 		
@@ -58,6 +59,7 @@ public class GUIController implements Initializable {
 			this.btnMiniStart = new Button();
 			this.btnCloseAdminMenu = new Button();
 			this.btnMiniAdminMenu = new Button();
+			this.barLogin = new Rectangle();
 			this.db = new DBConnection();
 		}
 		/**
@@ -154,7 +156,7 @@ public class GUIController implements Initializable {
 						}
 					}
 				}
-		
+
 		private void closeAppConfirm(){
 			Boolean answer = ConfirmBox.blueprint("", "Are you sure you want to exit?");
 			if(answer)
