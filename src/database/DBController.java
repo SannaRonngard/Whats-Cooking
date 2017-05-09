@@ -29,15 +29,12 @@ public class DBController {
 			rs.close();
 
 			String sql = "INSERT INTO recipe (recipeid,title,prepTime,content) " + "VALUES ('"
-					+ recipeId + "','" + recipe.getTitle() + "','" + recipe.getprepTime()
+					+ recipeId + "','" + recipe.getTitle() + "','" + recipe.getPrepTime()
 					+ "','" + recipe.getContent() + "','" + "');";
-
-			String[] ingredientsList = recipe.getIngredientsList();
-			String ingredientList = "";
-
-			for (int i = 0; i < ingredientList.length; i++) {
+			String[] ingredientArray = recipe.getIngredientArray();
+			for (int i = 0; i < ingredientArray.length; i++) {
 				sql += "\nINSERT INTO ingredient(ingredientid,recipeid,name) VALUES (" + ingredientId + "," + recipeId
-						+ ",'" + ingredientList[i] + "');";
+						+ ",'" + ingredientArray[i] + "');";
 				ingredientId++;
 			}
 			st.executeUpdate(sql);
