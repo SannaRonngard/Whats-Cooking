@@ -12,6 +12,9 @@ import javafx.stage.StageStyle;
 /**
  * Main class for server application.
  * @author Sofia Larsson
+ * @author Linus Forsberg
+ * @author Olle Olsson
+ * @author Sanna Rönngård
  */
 public class Main extends Application {
 	Stage window;

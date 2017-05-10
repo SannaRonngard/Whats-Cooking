@@ -3,7 +3,7 @@ package database;
 import java.sql.*;
 
 /**
- * 
+ * Class that gets the database driver and user credentials. 
  * @author Sofia Larsson
  * @author Linus Forsberg
  *
@@ -14,7 +14,9 @@ public class DBConnection {
 	private String username;
 	private String password;
 	private Connection connection = null;
-
+	/**
+	 * User details are temporary and will later on be passed only by user. 
+	 */
 	public DBConnection(){
 		this.driver = "org.postgresql.Driver";
 		this.url = "jdbc:postgresql://104.155.0.136/whatscooking";
