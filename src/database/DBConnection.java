@@ -3,7 +3,7 @@ package database;
 import java.sql.*;
 
 /**
- * 
+ * Class that gets the database driver and user credentials. 
  * @author Sofia Larsson
  * @author Linus Forsberg
  *
@@ -13,7 +13,10 @@ public class DBConnection {
 	private String url;
 	private String username;
 	private String password;
-
+	private Connection connection = null;
+	/**
+	 * User details are temporary and will later on be passed only by user. 
+	 */
 	public DBConnection(){
 		this.driver = "org.postgresql.Driver";
 		this.url = "jdbc:postgresql://104.155.0.136/whatscooking";
@@ -32,9 +35,11 @@ public class DBConnection {
 	public String getPassword(){
 		return this.password;
 	}
+	public Connection getConnection(){
+		return this.connection;
+	}
 
 	public void initiate() {
-		Connection connection = null;
 		// Try for Driver
 		try {
 			Class.forName(driver);
@@ -54,15 +59,6 @@ public class DBConnection {
 		//If user details match and connection was successful or not
 		if (connection != null) {
 			System.out.println("You are connected!");
-			try { 
-				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM recipe;");
-				ResultSet rs = stmt.executeQuery();
-				while (rs.next()) {
-					System.out.println(rs.getString(1));
-				}
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
 		} else {
 			System.out.println("Failed to make connection!");
 		}
