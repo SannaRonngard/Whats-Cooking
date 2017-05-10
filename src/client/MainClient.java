@@ -39,7 +39,7 @@ public class MainClient extends Application {
 	private int layoutY = 104;
 	
 	private HashMap<MealType, String> mealTypes = new HashMap<>();
-	private Scene scene;
+	private Scene userLoginScene;
 	private Pane root = new Pane();
 	private Pane mainWheelPane = new Pane();
 	private Pane dairyPane = new Pane();
@@ -56,9 +56,9 @@ public class MainClient extends Application {
 	 */
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage userLoginStage) {
 		try {
-			scene = new Scene(root,1200,750);
+			userLoginScene = new Scene(root,1200,750);
 			
 			backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
 			
@@ -70,7 +70,7 @@ public class MainClient extends Application {
 			root.getChildren().addAll(backgroundImage,mainWheelPane);
 			mainWheelPane.getChildren().add(wheel);
 			
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			userLoginScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
 			mealTypes.put(MealType.DAIRY, "WhatsCooking_Dairy.png");
@@ -87,10 +87,10 @@ public class MainClient extends Application {
 			this.createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 			this.createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
 			
-			primaryStage.initStyle(StageStyle.TRANSPARENT);
-			primaryStage.setResizable(false);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			userLoginStage.initStyle(StageStyle.TRANSPARENT);
+			userLoginStage.setResizable(false);
+			userLoginStage.setScene(userLoginScene);
+			userLoginStage.show();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
