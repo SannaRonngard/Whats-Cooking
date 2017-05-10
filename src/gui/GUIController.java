@@ -109,7 +109,10 @@ public class GUIController implements Initializable {
 				window.setOnCloseRequest(e -> { 
 					e.consume();
 					closeAppConfirm();
+					
 					});
+				
+				//Code for moving undecorated window does not work
 				barLogin.setOnMousePressed(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent event) {
@@ -126,9 +129,12 @@ public class GUIController implements Initializable {
 						window.setY(event.getScreenY() + yOffSet);
 					}	
 				});	
+				
 			}
 			if(event.getSource() == btnUser) {
 				System.out.println("på G");
+				
+				
 //				Parent parentClient = FXMLLoader.load( getClass().getResource("/gui/Client.fxml"));//Instantiate a parent
 //				Scene sceneClient = new Scene(parentClient);
 //				Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();

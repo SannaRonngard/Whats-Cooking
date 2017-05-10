@@ -86,6 +86,7 @@ public class MainClient extends Application {
 			this.createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 			this.createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 			this.createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
+			
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
@@ -200,12 +201,12 @@ public class MainClient extends Application {
 		    createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					dairyPane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
@@ -223,12 +224,12 @@ public class MainClient extends Application {
 			  createTransition(1000,new Runnable(){
 					@Override
 					public void run() {
-						Button btt = new Button("Go back");
-						fruitPane.getChildren().addAll(btt);
+						Button goBackBtn = new Button("Go back");
+						fruitPane.getChildren().addAll(goBackBtn);
 						root.getChildren().remove(mainWheelPane);
 						root.getChildren().add(fruitPane);
 						
-						btt.setOnMouseClicked(e -> {
+						goBackBtn.setOnMouseClicked(e -> {
 							root.getChildren().remove(fruitPane);
 							root.getChildren().add(mainWheelPane);
 							transitionToHome(1000);
@@ -245,12 +246,12 @@ public class MainClient extends Application {
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					meatPane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					meatPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(meatPane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
@@ -267,12 +268,12 @@ public class MainClient extends Application {
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					spannPane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					spannPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(spannPane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
@@ -290,12 +291,12 @@ public class MainClient extends Application {
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					vegetablePane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					vegetablePane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(vegetablePane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
