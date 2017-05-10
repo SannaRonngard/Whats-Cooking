@@ -24,25 +24,31 @@ public class AlertBox {
 		window.setHeight(height);
 		window.setWidth(width);
 		window.setResizable(false);
+		
 		/*
 		 * Example of buttons and labels that
 		 * cloud be added to the alertbox. 
 		 */
+		
 		Label label = new Label(); 
 		label.setText(message);
 		label.setId("bold-label");
 		Button button = new Button(buttonText);
 		button.setOnAction( e -> window.close() );
+		
 		/*
 		 * Add button and label to layout 
 		 */
+		
 		VBox layout = new VBox(20); 
 		layout.getChildren().addAll(label, button);
 		layout.setAlignment(Pos.CENTER);
+		
 		/*
 		 * Make new scene, add window to the scene and show scene, 
 		 * the scene needs to be closed before you can return to the previous one
 		 */
+		
 		Scene scene = new Scene(layout);
 		scene.getStylesheets().add("/gui/wc_styleSheet.css");
 		window.setScene(scene);
