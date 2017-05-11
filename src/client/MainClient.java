@@ -39,7 +39,7 @@ public class MainClient extends Application {
 	private int layoutY = 104;
 	
 	private HashMap<MealType, String> mealTypes = new HashMap<>();
-	private Scene scene;
+	private Scene userLoginScene;
 	private Pane root = new Pane();
 	private Pane mainWheelPane = new Pane();
 	private Pane dairyPane = new Pane();
@@ -56,9 +56,9 @@ public class MainClient extends Application {
 	 */
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage userLoginStage) {
 		try {
-			scene = new Scene(root,1200,750);
+			userLoginScene = new Scene(root,1200,750);
 			
 			backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
 			
@@ -70,7 +70,7 @@ public class MainClient extends Application {
 			root.getChildren().addAll(backgroundImage,mainWheelPane);
 			mainWheelPane.getChildren().add(wheel);
 			
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			userLoginScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
 			mealTypes.put(MealType.DAIRY, "WhatsCooking_Dairy.png");
@@ -86,10 +86,11 @@ public class MainClient extends Application {
 			this.createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 			this.createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 			this.createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
-			primaryStage.initStyle(StageStyle.TRANSPARENT);
-			primaryStage.setResizable(false);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			
+			userLoginStage.initStyle(StageStyle.TRANSPARENT);
+			userLoginStage.setResizable(false);
+			userLoginStage.setScene(userLoginScene);
+			userLoginStage.show();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -143,7 +144,7 @@ public class MainClient extends Application {
 	
 	private void addHoverAction(Rectangle box, MealType mealType){
 		box.setOnMouseClicked(e -> {
-			changeScene(mealType);
+			changeScene(mealType); 
 		});
 		box.setOnMouseEntered(e -> {
 			switch(mealType){
@@ -200,12 +201,12 @@ public class MainClient extends Application {
 		    createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					dairyPane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
@@ -223,12 +224,12 @@ public class MainClient extends Application {
 			  createTransition(1000,new Runnable(){
 					@Override
 					public void run() {
-						Button btt = new Button("Go back");
-						fruitPane.getChildren().addAll(btt);
+						Button goBackBtn = new Button("Go back");
+						fruitPane.getChildren().addAll(goBackBtn);
 						root.getChildren().remove(mainWheelPane);
 						root.getChildren().add(fruitPane);
 						
-						btt.setOnMouseClicked(e -> {
+						goBackBtn.setOnMouseClicked(e -> {
 							root.getChildren().remove(fruitPane);
 							root.getChildren().add(mainWheelPane);
 							transitionToHome(1000);
@@ -245,12 +246,12 @@ public class MainClient extends Application {
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					meatPane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					meatPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(meatPane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
@@ -267,12 +268,12 @@ public class MainClient extends Application {
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					spannPane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					spannPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(spannPane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
@@ -290,12 +291,12 @@ public class MainClient extends Application {
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button btt = new Button("Go back");
-					vegetablePane.getChildren().addAll(btt);
+					Button goBackBtn = new Button("Go back");
+					vegetablePane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(vegetablePane);
 					
-					btt.setOnMouseClicked(e -> {
+					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);

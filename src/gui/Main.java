@@ -13,34 +13,29 @@ import javafx.stage.StageStyle;
  * Main class for server application.
  * @author Sofia Larsson
  */
-public class Main extends Application implements EventHandler<ActionEvent> {
+public class Main extends Application {
+	Stage window;
 	
 	@Override
-	public void start(Stage primaryStage ) {
-		setUserAgentStylesheet(STYLESHEET_CASPIAN);
-		try{
-			Parent root = FXMLLoader.load( getClass().getResource("/gui/StartWindow.fxml"));
-			Scene scene = new Scene(root,Color.TRANSPARENT);
-			primaryStage.setScene(scene);
-			primaryStage.setWidth(400);
-			primaryStage.setHeight(350);
-			primaryStage.setResizable(false);
-			primaryStage.initStyle(StageStyle.TRANSPARENT);
-			primaryStage.setTitle("What's Cooking");
-			primaryStage.show();
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-	
-	public static void main(String[] args){
-		launch(args);
-	}
+	public void start(Stage stage ) throws Exception { setUserAgentStylesheet(STYLESHEET_CASPIAN);
+			window = stage; //Making a reference to the primary stage. Needed for other methods. 
+			final Parent rootStart = FXMLLoader.load( getClass().getResource("/gui/StartWindow.fxml"));
+			final Scene scene = new Scene(rootStart, 350, 424);
+			stage.initStyle(StageStyle.TRANSPARENT);
+			stage.setOnCloseRequest(e -> closeProgram());
+			stage.setTitle("What's Cooking");
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.setHeight(350);
+			stage.setWidth(424);
+			stage.show();
 
-	@Override
-	public void handle(ActionEvent event) {
-		// TODO Auto-generated method stub
-		
 	}
+	private void closeProgram(){
+		System.out.println("Closed properly");
+		window.close();
+	}
+	
+	public static void main(String[] args) { launch(args); }
 
 }
