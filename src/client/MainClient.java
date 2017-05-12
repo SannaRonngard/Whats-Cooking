@@ -212,8 +212,7 @@ public class MainClient extends Application {
 						transitionToHome(1000);
 						
 					});
-				}
-		    	
+				}	
 		    });
 		    
 			break;
@@ -234,8 +233,7 @@ public class MainClient extends Application {
 							root.getChildren().add(mainWheelPane);
 							transitionToHome(1000);
 						});
-					}
-			    	
+					}	
 			    });
 			  
 			break;
@@ -256,8 +254,7 @@ public class MainClient extends Application {
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
 					});
-				}
-				
+				}	
 			});
 						
 			break;
@@ -279,7 +276,6 @@ public class MainClient extends Application {
 						transitionToHome(1000);
 					});
 				}
-				
 			});
 			
 			
@@ -302,13 +298,11 @@ public class MainClient extends Application {
 						transitionToHome(1000);
 					});
 				}
-				
 			});
 			
 			break;
 		default:
 			break;
-		
 		}
 	}
 	
