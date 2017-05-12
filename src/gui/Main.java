@@ -17,7 +17,7 @@ public class Main extends Application {
 	Stage window;
 	
 	@Override
-	public void start(Stage stage ) throws Exception { setUserAgentStylesheet(STYLESHEET_CASPIAN);
+	public void start(Stage stage) throws Exception { setUserAgentStylesheet(STYLESHEET_CASPIAN);
 			window = stage; //Making a reference to the primary stage. Needed for other methods. 
 			final Parent rootStart = FXMLLoader.load( getClass().getResource("/gui/StartWindow.fxml"));
 			final Scene scene = new Scene(rootStart, 350, 424);

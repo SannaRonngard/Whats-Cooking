@@ -19,11 +19,11 @@ public class DBController {
 			db.getConnection().setAutoCommit(false);
 			Statement st = db.getConnection().createStatement();
 			Statement idSt = db.getConnection().createStatement();
-			ResultSet rs = idSt.executeQuery("SELECT (SELECT COUNT(*) FROM recipe) AS recipeCount,"
-												+"(SELECT COUNT(*) FROM ingredient) AS ingredientCount;");
+			ResultSet rs = idSt.executeQuery("SELECT (SELECT COUNT(*) FROM recipe) AS recipeCounter,"
+												+"(SELECT COUNT(*) FROM ingredient) AS ingredientCounter;");
 			rs.next();
-			int recipeId = rs.getInt("recipeCount");
-			int ingredientId = rs.getInt("ingredientCount");
+			int recipeId = rs.getInt("recipeCounter");
+			int ingredientId = rs.getInt("ingredientCounter");
 			recipeId++;
 			ingredientId++;
 			rs.close();
