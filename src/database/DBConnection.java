@@ -18,10 +18,21 @@ public class DBConnection {
 	 * User details are temporary and will later on be passed only by user. 
 	 */
 	public DBConnection(){
+		
 		this.driver = "org.postgresql.Driver";
-		this.url = "jdbc:postgresql://104.155.0.136/whatscooking";
-		this.username = "postgres";
-		this.password = "bigheadteam";
+		
+		//lokal db
+//		this.url = "jdbc:postgresql://localhost:5432/whats_cooking";
+		
+		//db på mah's server
+		this.url = "jdbc:postgresql://pgserver.mah.se/ae7689";
+		this.username = "ae7689";
+		this.password = "s05q21rc";
+		
+		//db på google cloud
+//		this.url = "jdbc:postgresql://104.155.0.136/whatscooking";
+//		this.username = "postgres";
+//		this.password = "bigheadteam";
 	}
 	public String getDriver(){
 		return this.driver;
@@ -59,10 +70,20 @@ public class DBConnection {
 		//If user details match and connection was successful or not
 		if (connection != null) {
 			System.out.println("You are connected!");
+			try { 
+				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM test");
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					System.out.println(rs.getString(2));
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("Failed to make connection!");
 		}
 	}
+	
 	//testmetod för querys
 	public static void main(String args[]) {
 		DBConnection dbc = new DBConnection();
