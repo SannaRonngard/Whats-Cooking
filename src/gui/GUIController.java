@@ -25,23 +25,23 @@ import javafx.stage.Stage;
  * @author Olle Olsson
  * @author Sanna Rönngård
  */
-public class GUIController implements Initializable {
-		
+public class GuiController implements Initializable {
+		//
 		@FXML private Button btnAdmin;
 		@FXML private Button btnUser;
 		@FXML private Button btnCloseStart;
 		@FXML private Button btnMiniStart;
-		
+	
 		@FXML private Button btnLogin; 
 		@FXML private Label lblLogIn;
 		@FXML private Label lblStatus;
 		@FXML private Button btnContact;
-
+		//Login
 		@FXML private PasswordField txtPassword;
 		@FXML private TextField txtUsername; 
 		@FXML private Button btnCloseLogin;
 		@FXML private Button btnMiniLogin;
-		
+		//AdminMenu
 		@FXML private Button btnCloseAdminMenu;
 		@FXML private Button btnMiniAdminMenu;
 		@FXML private Rectangle barLogin;
@@ -50,7 +50,7 @@ public class GUIController implements Initializable {
 		private static double xOffSet = 0;
 		private static double yOffSet = 0;
 		
-		public GUIController(){
+		public GuiController(){
 			this.btnLogin = new Button();
 			this.btnUser = new Button();
 			this.btnAdmin = new Button();
@@ -64,15 +64,11 @@ public class GUIController implements Initializable {
 			this.barLogin = new Rectangle();
 			this.db = new DBConnection();
 		}
-		
 		/**
 		 * Method that is called whenever an event occurs. 
 		 * @param event
 		 * @throws Exception
 		 */
-		
-		
-		
 		@FXML
 		private void handleButtonAction(ActionEvent event) throws IOException {
 			btnCloseStart.setOnAction(e -> ((Node)(event.getSource())).getScene().getWindow().hide());
