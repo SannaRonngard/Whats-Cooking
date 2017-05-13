@@ -7,9 +7,17 @@ import java.sql.Statement;
 /**
  * Querys for database 
  * @author Sofia Larsson
+ * @author Linus Forsberg
  */
 public class DBController {
-	private DBConnection db = new DBConnection();
+	private DBConnection db;
+	private Recipe recipe;
+	
+	public DBController() {
+		this.db = new DBConnection();
+		this.recipe = recipe;
+	}
+	
 	/******************************
 	 * Store a recipe in database *
 	 * @param recipe 			  *
@@ -42,5 +50,19 @@ public class DBController {
 			db.getConnection().commit();
 			db.getConnection().close();
 			} catch (SQLException e) {}	
+	}
+	
+	/**
+	 * Gets a list of recipes and shows it in user interface.
+	 */
+	public void showRecipeList() {
+		recipe.getRecipeTitleList();
+	}
+	
+	/**
+	 * Shows chosen recipe in GUI
+	 */
+	public void showRecipe() {
+		
 	}
 }
