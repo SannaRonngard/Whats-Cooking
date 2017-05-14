@@ -1,10 +1,12 @@
-package gui;
+package control;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import database.DBConnection;
+import gui.AlertBox;
+import gui.ConfirmBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,32 +27,31 @@ import javafx.stage.Stage;
  * @author Olle Olsson
  * @author Sanna Rönngård
  */
-public class GuiController implements Initializable {
-		//
+public class GUIController implements Initializable {
+		//Start
 		@FXML private Button btnAdmin;
 		@FXML private Button btnUser;
 		@FXML private Button btnCloseStart;
 		@FXML private Button btnMiniStart;
-	
+		//Login
 		@FXML private Button btnLogin; 
 		@FXML private Label lblLogIn;
 		@FXML private Label lblStatus;
 		@FXML private Button btnContact;
-		//Login
 		@FXML private PasswordField txtPassword;
 		@FXML private TextField txtUsername; 
 		@FXML private Button btnCloseLogin;
 		@FXML private Button btnMiniLogin;
+		//Client
+		private Client client;
 		//AdminMenu
 		@FXML private Button btnCloseAdminMenu;
 		@FXML private Button btnMiniAdminMenu;
 		@FXML private Rectangle barLogin;
 		private Stage window;
 		private DBConnection db;
-		private static double xOffSet = 0;
-		private static double yOffSet = 0;
 		
-		public GuiController(){
+		public GUIController(){
 			this.btnLogin = new Button();
 			this.btnUser = new Button();
 			this.btnAdmin = new Button();
@@ -63,6 +64,7 @@ public class GuiController implements Initializable {
 			this.btnMiniAdminMenu = new Button();
 			this.barLogin = new Rectangle();
 			this.db = new DBConnection();
+			this.client = new Client();
 		}
 		/**
 		 * Method that is called whenever an event occurs. 
@@ -107,38 +109,10 @@ public class GuiController implements Initializable {
 					closeAppConfirm();
 					
 					});
-				
-				//Code for moving undecorated window does not work
-				barLogin.setOnMousePressed(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						xOffSet = window.getX() - event.getScreenX();
-						yOffSet = window.getY() - event.getScreenY();
-					
-					}
-				});
-				
-				barLogin.setOnMouseDragged(new EventHandler<MouseEvent> () {
-					@Override
-					public void handle(MouseEvent event) {
-						window.setX(event.getScreenX() + xOffSet);
-						window.setY(event.getScreenY() + yOffSet);
-					}	
-				});	
-				
 			}
 			if(event.getSource() == btnUser) {
-				System.out.println("på G");
-				
-				
-//				Parent parentClient = FXMLLoader.load( getClass().getResource("/gui/Client.fxml"));//Instantiate a parent
-//				Scene sceneClient = new Scene(parentClient);
-//				Stage window = (Stage)((Node)event.getSource() ).getScene().getWindow();
-//				this.window = window;
-//				closeButton = new Button("");
-//				closeButton.setOnAction( e -> closeApp() );
-//				window.setScene(sceneClient);
-//				window.show();
+				System.out.println("knapptest");
+				client.clientGui();
 			}
 					if(event.getSource() == btnLogin) {
 				

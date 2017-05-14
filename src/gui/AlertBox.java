@@ -5,7 +5,11 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
-
+/**
+ * Blueprint for pop-up widows
+ * @author Sofia Larsson
+ *
+ */
 public class AlertBox {
 	
 	/**
