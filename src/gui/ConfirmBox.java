@@ -20,6 +20,7 @@ public class ConfirmBox {
 		Label label = new Label(); 
 		label.setText(message);
 		label.setId("bold-label");
+		
 		//Create two buttons
 		Button yesButton = new Button("Yes");
 		Button cancelButton = new Button("Cancel");
@@ -27,10 +28,13 @@ public class ConfirmBox {
 		yesButton.setOnAction(e -> {
 			answer = true;
 			window.close();
+		
 		});
+		
 		cancelButton.setOnAction(e -> {
 			answer = false;
 			window.close();
+			
 		});
 		
 		VBox layout = new VBox(10); 
