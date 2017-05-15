@@ -4,7 +4,10 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
-
+/**
+ * Blueprint for a simple confirmbox
+ * @author Sofia Larsson
+ */
 public class ConfirmBox {
 	
 	static boolean answer;
