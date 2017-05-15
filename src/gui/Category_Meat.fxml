@@ -5,16 +5,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 
+
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-Background.png" />
+            <Image url="@../../Images/Whats-Cooking-Background.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="168.0" fitWidth="285.0" layoutX="405.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-LOGO.png" />
+            <Image url="@../../Images/Whats-Cooking-LOGO.png" />
          </image>
       </ImageView>
       <Pane layoutX="356.0" layoutY="181.0" prefHeight="200.0" prefWidth="400.0">
