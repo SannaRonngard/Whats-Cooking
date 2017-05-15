@@ -5,26 +5,31 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-Background.png" />
+            <Image url="@../../Images/Whats-Cooking-Background.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="168.0" fitWidth="285.0" layoutX="406.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-LOGO.png" />
+            <Image url="@../../Images/Whats-Cooking-LOGO.png" />
          </image>
       </ImageView>
       <Pane layoutX="341.0" layoutY="167.0" prefHeight="200.0" prefWidth="400.0">
          <children>
-            <CheckBox layoutX="10.0" layoutY="11.0" mnemonicParsing="false" text="Milk" />
-            <CheckBox layoutX="10.0" layoutY="40.0" mnemonicParsing="false" text="Cream" />
-            <CheckBox layoutX="11.0" layoutY="70.0" mnemonicParsing="false" text="Sour cream" />
-            <CheckBox layoutX="11.0" layoutY="102.0" mnemonicParsing="false" text="Yogurt" />
-            <CheckBox layoutX="4.0" layoutY="137.0" mnemonicParsing="false" text="Butter" />
+            <CheckBox fx:id="checkBox_Milk" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" text="Milk" />
+            <CheckBox fx:id="checkBox_Cream" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" text="Cream" />
+            <CheckBox fx:id="checkBox_Sour_Cream" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" text="Sour cream" />
+            <CheckBox fx:id="checkBox_Creme_Fraiche" layoutX="11.0" layoutY="101.0" mnemonicParsing="false" text="Creme Fraiché" />
+            <CheckBox fx:id="checkBox_Yogurt" layoutX="11.0" layoutY="132.0" mnemonicParsing="false" text="Yogurt" />
+            <CheckBox fx:id="checkBox_Hard_Cheese" layoutX="130.0" layoutY="12.0" mnemonicParsing="false" text="Hard cheese" />
+            <CheckBox fx:id="checkBox_Soft_Cheese" layoutX="130.0" layoutY="41.0" mnemonicParsing="false" text="Soft cheese" />
+            <CheckBox fx:id="checkBox_Cottage_Cheese" layoutX="130.0" layoutY="70.0" mnemonicParsing="false" text="Cottage cheese" />
+            <CheckBox fx:id="checkBox_Blue_Cheese" layoutX="130.0" layoutY="101.0" mnemonicParsing="false" text=" Blue cheese" />
+            <CheckBox fx:id="checkBox_Parmesan" layoutX="130.0" layoutY="131.0" mnemonicParsing="false" text="Parmesan" />
+            <CheckBox fx:id="checkBox_Butter" layoutX="244.0" layoutY="14.0" mnemonicParsing="false" text="Butter" />
          </children>
       </Pane>
    </children>
