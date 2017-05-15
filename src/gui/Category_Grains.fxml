@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-Background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="285.0" layoutX="405.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-LOGO.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="356.0" layoutY="181.0" prefHeight="200.0" prefWidth="400.0">
+         <children>
+            <CheckBox fx:id="checkBox_Wheat" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" text="Wheat" />
+            <CheckBox fx:id="checkBox_Oats" layoutX="11.0" layoutY="38.0" mnemonicParsing="false" text="Oats" />
+            <CheckBox fx:id="checkBox_Barley" layoutX="11.0" layoutY="68.0" mnemonicParsing="false" text="Barley" />
+            <CheckBox fx:id="checkBox_CornMeal" layoutX="11.0" layoutY="97.0" mnemonicParsing="false" text="Cornmeal" />
+            <CheckBox fx:id="checkBox_Rye" layoutX="11.0" layoutY="127.0" mnemonicParsing="false" text="Rye" />
+            <CheckBox fx:id="checkBox_Rice" layoutX="104.0" layoutY="10.0" mnemonicParsing="false" text="Rice" />
+            <CheckBox fx:id="checkBox_Bulgur" layoutX="104.0" layoutY="37.0" mnemonicParsing="false" text="Bulgur" />
+            <CheckBox fx:id="checkBox_Couscous" layoutX="104.0" layoutY="65.0" mnemonicParsing="false" text="Couscous" />
+            <CheckBox fx:id="checkBox_Cracked_Wheat" layoutX="104.0" layoutY="93.0" mnemonicParsing="false" text="Cracked wheat" />
+            <CheckBox fx:id="checkBox_Bread" layoutX="238.0" layoutY="10.0" mnemonicParsing="false" text="Bread" />
+            <CheckBox fx:id="checkBox_Pasta" layoutX="238.0" layoutY="38.0" mnemonicParsing="false" text="Pasta" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
