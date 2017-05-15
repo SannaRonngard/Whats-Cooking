@@ -15,6 +15,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+/**
+ * @author OlleOlsson
+ *
+ */
+
 public class Client {
 	private static MealType currentMealType = MealType.ALL;
 	private static int wheelHeight = 580;
