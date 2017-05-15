@@ -78,9 +78,9 @@ public class Client {
 		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 		createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
 
-		Button closeBtn = new Button("X");
-		closeBtn.setLayoutX(1160);
-		closeBtn.setLayoutY(25);
+		Button closeBtn = new Button("Stäng ner detta skit");
+		closeBtn.setLayoutX(1070);
+		closeBtn.setLayoutY(50);
 		closeBtn.setOnAction( e -> window.close() );
 		root.getChildren().add(closeBtn);
 
