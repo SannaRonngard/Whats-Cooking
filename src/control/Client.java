@@ -3,10 +3,13 @@ package control;
 import java.util.HashMap;
 
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,21 +19,31 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
+ * Client that shows the window when the 'Get Recipe' button in the 
+ * application is clicked. 
  * @author OlleOlsson
  *
  */
 
 public class Client {
 	private static MealType currentMealType = MealType.ALL;
+	private static MenuTools currentMenuTool = MenuTools.QUESTIONMARK;
 	private static int wheelHeight = 580;
 	private static int wheelWidth = 464;
-	private static int layoutX = 368;
-	private static int layoutY = 104;
+	private static int questionMarkHeight = 30; 
+	private static double questionMarkWidth = 44.7;
+	private static int wheelLayoutX = 368;
+	private static int wheelLayoutY = 104;
+	private static int questionMarkLayoutX = 1150;
+	private static int questionMarkLayoutY = 10;
 	public static final String IMAGE_SOURCE_DIRECTORY = "";
 	private static Scene userLoginScene;
 	private static Pane root = new Pane();
 	private static Pane mainWheelPane = new Pane();
 	private static HashMap<MealType, String> mealTypes = new HashMap<>();
+	private static Pane questionMarkPane = new Pane();
+	private static HashMap<MenuTools, String> menuTools = new HashMap<>();
+	private static ImageView tools = new ImageView(); 
 	private Pane dairyPane = new Pane();
 	private Pane meatPane = new Pane(); 
 	private Pane fruitPane = new Pane(); 
@@ -38,6 +51,7 @@ public class Client {
 	private Pane vegetablePane = new Pane();
 	private static boolean transitioning = false;
 	private static ImageView wheel = new ImageView();
+	private static ImageView questionMarc = new ImageView();
 	private static ImageView backgroundImage;
 /*
  * Making a new stage where scene and root components are placed. 
@@ -49,10 +63,13 @@ public class Client {
 		backgroundImage.setPreserveRatio(false);
 		backgroundImage.fitWidthProperty().bind(root.widthProperty());
 		backgroundImage.fitHeightProperty().bind(root.heightProperty());
-		root.getChildren().addAll(backgroundImage,mainWheelPane);
+		root.getChildren().addAll(backgroundImage,mainWheelPane,questionMarkPane);
 		mainWheelPane.getChildren().add(wheel);
 		setMealTypes();
 		addWheel(wheel);
+		questionMarkPane.getChildren().add(tools);
+		setToolIcons();
+		addMenuTools(tools);
 		createBoundingBoxes(MealType.MEAT, mainWheelPane, 400, 103, 163, 180);
 		createBoundingBoxes(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
 		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
@@ -99,12 +116,25 @@ public class Client {
 		fade.setToValue(1);
 		fade.play();
 	}
+	
 	/**
-	 * Enum types (a special data type that enables for a variable to be a set of predefined constants)
+	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
+	 */
+	public static enum MenuTools{
+		QUESTIONMARK; 
+}
+
+	/**
+	 * Enum types of different food categories (a special data type that enables for a variable to be a set of predefined constants)
 	 */
 	public static enum MealType{
 		MEAT,VEGETABLES,FRUITS,SPANN,DAIRY,ALL;
 	}
+	
+	public static void setToolIcons(){
+		menuTools.put(MenuTools.QUESTIONMARK, "questionMark.png");
+	}
+	
 	public static void setMealTypes(){
 		mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
 		mealTypes.put(MealType.DAIRY, "WhatsCooking_Dairy.png");
@@ -123,6 +153,17 @@ public class Client {
 		String url = IMAGE_SOURCE_DIRECTORY + image;
 		return url;
 	}
+	
+	public static void addMenuTools(ImageView menuToolImages){
+		menuToolImages.setImage(new Image("questionMark.png"));
+		menuToolImages.setPreserveRatio(true);
+		menuToolImages.setLayoutX(questionMarkLayoutX);
+		menuToolImages.setLayoutY(questionMarkLayoutY);
+		menuToolImages.setFitHeight(questionMarkHeight);
+		menuToolImages.setFitWidth(questionMarkWidth);
+		menuToolImages.setPickOnBounds(true);
+		
+	}
 
 	/***
 	 * Method that takes an image of the 'FoodWheel' and puts it in given position.  
@@ -133,8 +174,8 @@ public class Client {
 		wheelImage.setPreserveRatio(true);
 		wheelImage.setFitHeight(wheelHeight);
 		wheelImage.setFitWidth(wheelWidth);
-		wheelImage.setLayoutX(layoutX);
-		wheelImage.setLayoutY(layoutY);
+		wheelImage.setLayoutX(wheelLayoutX);
+		wheelImage.setLayoutY(wheelLayoutY);
 
 	}
 	
