@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-Background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="285.0" layoutX="498.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-LOGO.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="441.0" layoutY="142.0" prefHeight="200.0" prefWidth="400.0">
+         <children>
+            <CheckBox fx:id="checkBox_Apple" layoutX="11.0" layoutY="11.0" mnemonicParsing="false" text="Apple" />
+            <CheckBox fx:id="checkBox_Pear" layoutX="11.0" layoutY="40.0" mnemonicParsing="false" text="Pear" />
+            <CheckBox fx:id="checkBox_Orange" layoutX="109.0" layoutY="12.0" mnemonicParsing="false" text="Orange" />
+            <CheckBox fx:id="checkBox_Mandarin" layoutX="109.0" layoutY="70.0" mnemonicParsing="false" text="Mandarin" />
+            <CheckBox fx:id="checkBox_Grapefruit" layoutX="109.0" layoutY="41.0" mnemonicParsing="false" text="Grapefruit" />
+            <CheckBox fx:id="checkBox_Lemon" layoutX="109.0" layoutY="101.0" mnemonicParsing="false" text="Lemon" />
+            <CheckBox layoutX="109.0" layoutY="131.0" mnemonicParsing="false" text="Lime" />
+            <CheckBox fx:id="checkBox_Banana" layoutX="11.0" layoutY="70.0" mnemonicParsing="false" text="Banana" />
+            <CheckBox fx:id="checkBox_Strawberry" layoutX="200.0" layoutY="11.0" mnemonicParsing="false" text="Strawberry" />
+            <CheckBox fx:id="checkBox_Blueberry" layoutX="200.0" layoutY="40.0" mnemonicParsing="false" text="Blueberry" />
+            <CheckBox fx:id="checkBox_Blackberry" layoutX="200.0" layoutY="69.0" mnemonicParsing="false" text="Blackberry" />
+            <CheckBox fx:id="checkBox_Cherry" layoutX="200.0" layoutY="99.0" mnemonicParsing="false" text="Cherry" />
+            <CheckBox fx:id="checkBox_Pineapple" layoutX="11.0" layoutY="100.0" mnemonicParsing="false" text="Pineapple" />
+            <CheckBox fx:id="checkBox_Apricot" layoutX="12.0" layoutY="129.0" mnemonicParsing="false" text="Apricot" />
+            <CheckBox fx:id="checkBox_Grapes" layoutX="201.0" layoutY="129.0" mnemonicParsing="false" text="Grapes" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
