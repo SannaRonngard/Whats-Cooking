@@ -20,7 +20,7 @@ public class Client {
 	private static int wheelHeight = 580;
 	private static int wheelWidth = 464;
 	private static int layoutX = 368;
-	private static int layoutY = 104;
+	private static int layoutY = 105;
 	public static final String IMAGE_SOURCE_DIRECTORY = "";
 	private static Scene userLoginScene;
 	private static Pane root = new Pane();
@@ -34,12 +34,12 @@ public class Client {
 	private static boolean transitioning = false;
 	private static ImageView wheel = new ImageView();
 	private static ImageView backgroundImage;
+	Stage window = new Stage();
 /*
  * Making a new stage where scene and root components are placed. 
  */
 	public void clientGui() {
-		Stage window = new Stage();
-		userLoginScene = new Scene(root,1200,650);
+		userLoginScene = new Scene(root,1200,750);
 		backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
 		backgroundImage.setPreserveRatio(false);
 		backgroundImage.fitWidthProperty().bind(root.widthProperty());
@@ -53,6 +53,13 @@ public class Client {
 		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 		createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
+		
+		Button closeBtn = new Button("X");
+		closeBtn.setLayoutX(1160);
+		closeBtn.setLayoutY(25);
+		closeBtn.setOnAction( e -> window.close() );
+		root.getChildren().add(closeBtn);
+		
 		window.initModality(Modality.APPLICATION_MODAL); // Block any user interraction until window is closed
 		window.initStyle(StageStyle.TRANSPARENT);
 		window.setTitle("What's Cooking");
@@ -212,7 +219,9 @@ public class Client {
 		    createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button goBackBtn = new Button("Go back");
+					Button goBackBtn = new Button("<---");
+					goBackBtn.setLayoutY(500);
+					goBackBtn.setLayoutX(10);
 					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
@@ -315,6 +324,10 @@ public class Client {
 		default:
 			break;
 		}
+	}
+	private void closeProgram(){
+		System.out.println("Closed properly");
+		window.close();
 	}
 
 }
