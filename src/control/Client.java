@@ -1,10 +1,14 @@
 package control;
 
+import java.io.IOException;
 import java.util.HashMap;
+import javafx.application.Application;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -257,10 +261,11 @@ public class Client {
 	 * Run-methods (x5) for changing the scenes with given time-interval.
 	 * @param type - switches between the Enum types
 	 */
-	public void changeScene(MealType type){
+	public void changeScene(MealType type) {
 
 		switch(type){
 		case DAIRY:
+			System.out.println("knapptest DIARY");
 			if(transitioning)
 				return;
 
@@ -273,7 +278,17 @@ public class Client {
 					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
-
+					
+				    try {
+				    	Pane fxmlDairyPane = FXMLLoader.load(getClass().getResource("/gui/Category_Dairy.fxml"));
+				    	dairyPane.getChildren().add(fxmlDairyPane);
+				    	fxmlDairyPane.getChildren().addAll(goBackBtn);
+				    	
+				    } catch (IOException e) {
+				    	e.printStackTrace();
+				    	
+				    }
+					
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
 						root.getChildren().add(mainWheelPane);
@@ -282,7 +297,8 @@ public class Client {
 					});
 				}
 		    });
-
+		    		    
+		    
 			break;
 		case FRUITS:
 			if(transitioning)
@@ -296,6 +312,17 @@ public class Client {
 						root.getChildren().remove(mainWheelPane);
 						root.getChildren().add(fruitPane);
 
+						try {
+							
+					    	Pane fxmlFruitPane = FXMLLoader.load(getClass().getResource("/gui/Category_Fruit.fxml"));
+					    	fruitPane.getChildren().add(fxmlFruitPane);
+					    	fxmlFruitPane.getChildren().addAll(goBackBtn);
+					    	
+					    } catch (IOException e) {
+					    	e.printStackTrace();
+					    	
+					    }
+						
 						goBackBtn.setOnMouseClicked(e -> {
 							root.getChildren().remove(fruitPane);
 							root.getChildren().add(mainWheelPane);
@@ -316,6 +343,16 @@ public class Client {
 					meatPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(meatPane);
+					try {
+						
+				    	Pane fxmlMeatPane = FXMLLoader.load(getClass().getResource("/gui/Category_Meat.fxml"));
+				    	meatPane.getChildren().add(fxmlMeatPane);
+				    	fxmlMeatPane.getChildren().addAll(goBackBtn);
+				    	
+				    } catch (IOException e) {
+				    	e.printStackTrace();
+				    	
+				    }
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
@@ -337,6 +374,16 @@ public class Client {
 					spannPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(spannPane);
+					try {
+						
+				    	Pane fxmlGrainsPane = FXMLLoader.load(getClass().getResource("/gui/Category_Grains.fxml"));
+				    	spannPane.getChildren().add(fxmlGrainsPane);
+				    	fxmlGrainsPane.getChildren().addAll(goBackBtn);
+				    	
+				    } catch (IOException e) {
+				    	e.printStackTrace();
+				    	
+				    }
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
@@ -359,6 +406,16 @@ public class Client {
 					vegetablePane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(vegetablePane);
+					try {
+						
+				    	Pane fxmlVegetablesPane = FXMLLoader.load(getClass().getResource("/gui/Category_Vegetables.fxml"));
+				    	vegetablePane.getChildren().add(fxmlVegetablesPane);
+				    	fxmlVegetablesPane.getChildren().addAll(goBackBtn);
+				    	
+				    } catch (IOException e) {
+				    	e.printStackTrace();
+				    	
+				    }
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
