@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-Background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="168.0" fitWidth="285.0" layoutX="498.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-LOGO.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="441.0" layoutY="135.0" prefHeight="200.0" prefWidth="600.0">
+         <children>
+            <CheckBox layoutX="10.0" layoutY="1.0" mnemonicParsing="false" text="Tomato" />
+            <CheckBox layoutX="11.0" layoutY="30.0" mnemonicParsing="false" text="Cucumber" />
+            <CheckBox layoutX="11.0" layoutY="88.0" mnemonicParsing="false" text="Pepper" />
+            <CheckBox layoutX="11.0" layoutY="146.0" mnemonicParsing="false" text="Zucchini" />
+            <CheckBox layoutX="11.0" layoutY="117.0" mnemonicParsing="false" text="Aubergine" />
+            <CheckBox layoutX="11.0" layoutY="174.0" mnemonicParsing="false" text="Pumpkin" />
+            <CheckBox layoutX="11.0" layoutY="59.0" mnemonicParsing="false" text="Avocado" />
+            <CheckBox layoutX="108.0" layoutY="1.0" mnemonicParsing="false" text="Onion" />
+            <CheckBox layoutX="109.0" layoutY="30.0" mnemonicParsing="false" text="Garlic" />
+            <CheckBox layoutX="109.0" layoutY="60.0" mnemonicParsing="false" text="Spring Onion" />
+            <CheckBox layoutX="109.0" layoutY="88.0" mnemonicParsing="false" text="Leek" />
+            <CheckBox layoutX="109.0" layoutY="116.0" mnemonicParsing="false" text="Celery" />
+            <CheckBox layoutX="109.0" layoutY="146.0" mnemonicParsing="false" text="Aspargus" />
+            <CheckBox layoutX="109.0" layoutY="173.0" mnemonicParsing="false" text="Artichoke" />
+            <CheckBox layoutX="230.0" layoutY="-2.0" mnemonicParsing="false" text="Potato" />
+            <CheckBox layoutX="230.0" layoutY="27.0" mnemonicParsing="false" text="Sweet Potato" />
+            <CheckBox layoutX="229.0" layoutY="57.0" mnemonicParsing="false" text="Radish" />
+            <CheckBox layoutX="229.0" layoutY="86.0" mnemonicParsing="false" text="Parsnip" />
+            <CheckBox layoutX="230.0" layoutY="117.0" mnemonicParsing="false" text="Carrot" />
+            <CheckBox layoutX="231.0" layoutY="147.0" mnemonicParsing="false" text="Cabbage" />
+            <CheckBox layoutX="230.0" layoutY="174.0" mnemonicParsing="false" text="Cauliflower" />
+            <CheckBox layoutX="339.0" mnemonicParsing="false" text="Salad" />
+            <CheckBox layoutX="339.0" layoutY="29.0" mnemonicParsing="false" text="Spinach" />
+            <CheckBox layoutX="339.0" layoutY="58.0" mnemonicParsing="false" text="Sweetcorn" />
+            <CheckBox layoutX="340.0" layoutY="86.0" mnemonicParsing="false" text="Green peas" />
+            <CheckBox layoutX="340.0" layoutY="116.0" mnemonicParsing="false" text="Chick peas" />
+            <CheckBox layoutX="340.0" layoutY="146.0" mnemonicParsing="false" text="White bean" />
+            <CheckBox layoutX="340.0" layoutY="173.0" mnemonicParsing="false" text="Black bean" />
+            <CheckBox layoutX="435.0" mnemonicParsing="false" text="Coriander" />
+            <CheckBox layoutX="435.0" layoutY="27.0" mnemonicParsing="false" text="Tarragon" />
+            <CheckBox layoutX="436.0" layoutY="57.0" mnemonicParsing="false" text="Parsley" />
+            <CheckBox layoutX="437.0" layoutY="86.0" mnemonicParsing="false" text="Dill" />
+            <CheckBox layoutX="438.0" layoutY="115.0" mnemonicParsing="false" text="Chili" />
+            <CheckBox layoutX="439.0" layoutY="146.0" mnemonicParsing="false" text="Lemongrass" />
+         </children></Pane>
+   </children>
+</Pane>
