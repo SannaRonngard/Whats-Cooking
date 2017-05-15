@@ -9,15 +9,15 @@
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-Background.png" />
+            <Image url="@../../Images/Whats-Cooking-Background.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="168.0" fitWidth="285.0" layoutX="498.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="168.0" fitWidth="285.0" layoutX="451.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@workspace/Whats-Cooking/Images/Whats-Cooking-LOGO.png" />
+            <Image url="@../../Images/Whats-Cooking-LOGO.png" />
          </image>
       </ImageView>
-      <Pane layoutX="441.0" layoutY="142.0" prefHeight="200.0" prefWidth="400.0">
+      <Pane layoutX="356.0" layoutY="181.0" prefHeight="200.0" prefWidth="400.0">
          <children>
             <CheckBox fx:id="checkBox_Apple" layoutX="11.0" layoutY="11.0" mnemonicParsing="false" text="Apple" />
             <CheckBox fx:id="checkBox_Pear" layoutX="11.0" layoutY="40.0" mnemonicParsing="false" text="Pear" />
@@ -34,6 +34,10 @@
             <CheckBox fx:id="checkBox_Pineapple" layoutX="11.0" layoutY="100.0" mnemonicParsing="false" text="Pineapple" />
             <CheckBox fx:id="checkBox_Apricot" layoutX="12.0" layoutY="129.0" mnemonicParsing="false" text="Apricot" />
             <CheckBox fx:id="checkBox_Grapes" layoutX="201.0" layoutY="129.0" mnemonicParsing="false" text="Grapes" />
+            <CheckBox fx:id="checkBox_Mango" layoutX="299.0" layoutY="12.0" mnemonicParsing="false" text="Mango" />
+            <CheckBox fx:id="checkBox_Papaya" layoutX="299.0" layoutY="40.0" mnemonicParsing="false" text="Papaya" />
+            <CheckBox fx:id="checkBox_Kiwi" layoutX="299.0" layoutY="67.0" mnemonicParsing="false" text="Kiwi" />
+           
          </children>
       </Pane>
    </children>
