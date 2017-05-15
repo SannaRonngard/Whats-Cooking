@@ -17,7 +17,6 @@ public class DBController {
 		this.db = new DBConnection();
 		this.recipe = recipe;
 	}
-	
 	/******************************
 	 * Store a recipe in database *
 	 * @param recipe 			  *

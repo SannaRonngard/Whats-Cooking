@@ -1,123 +1,148 @@
-package client;
+package control;
 
 import java.util.HashMap;
+
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-/***
- * Client class that displays the main Window of the application
- * @author OlleOlsson
- *
- */
-
-public class MainClient extends Application {
-	
+public class Client {
+	private static MealType currentMealType = MealType.ALL;
+	private static int wheelHeight = 580;
+	private static int wheelWidth = 464;
+	private static int layoutX = 368;
+	private static int layoutY = 104;
 	public static final String IMAGE_SOURCE_DIRECTORY = "";
-	
-	private MealType currentMealType = MealType.ALL;
-	
-	private boolean transitioning = false;
-	
-	private int wheelHeight = 580;
-	private int wheelWidth = 464;
-	private int layoutX = 368;
-	private int layoutY = 104;
-	
-	private HashMap<MealType, String> mealTypes = new HashMap<>();
-	private Scene userLoginScene;
-	private Pane root = new Pane();
-	private Pane mainWheelPane = new Pane();
+	private static Scene userLoginScene;
+	private static Pane root = new Pane();
+	private static Pane mainWheelPane = new Pane();
+	private static HashMap<MealType, String> mealTypes = new HashMap<>();
 	private Pane dairyPane = new Pane();
 	private Pane meatPane = new Pane(); 
 	private Pane fruitPane = new Pane(); 
 	private Pane spannPane = new Pane(); 
 	private Pane vegetablePane = new Pane();
-	
-	private ImageView wheel = new ImageView();
-	private ImageView backgroundImage;
-	
-	/***
-	 * Startmethod that starts the application and opens a window
+	private static boolean transitioning = false;
+	private static ImageView wheel = new ImageView();
+	private static ImageView backgroundImage;
+/*
+ * Making a new stage where scene and root components are placed. 
+ */
+	public void clientGui() {
+		Stage window = new Stage();
+		userLoginScene = new Scene(root,1200,650);
+		backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
+		backgroundImage.setPreserveRatio(false);
+		backgroundImage.fitWidthProperty().bind(root.widthProperty());
+		backgroundImage.fitHeightProperty().bind(root.heightProperty());
+		root.getChildren().addAll(backgroundImage,mainWheelPane);
+		mainWheelPane.getChildren().add(wheel);
+		setMealTypes();
+		addWheel(wheel);
+		createBoundingBoxes(MealType.MEAT, mainWheelPane, 400, 103, 163, 180);
+		createBoundingBoxes(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
+		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
+		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
+		createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
+		window.initModality(Modality.APPLICATION_MODAL); // Block any user interraction until window is closed
+		window.initStyle(StageStyle.TRANSPARENT);
+		window.setTitle("What's Cooking");
+		window.setResizable(false);
+		window.setScene(userLoginScene);
+		window.show();
+	}
+	/**
+	 * Method that creates a transition between the scenes
+	 * @param duration - duration of the transition 
+	 * @param script - if the script is not null the transition runs. 
 	 */
-	
-	@Override
-	public void start(Stage userLoginStage) {
-		try {
-			userLoginScene = new Scene(root,1200,750);
-			
-			backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
-			
-			backgroundImage.setPreserveRatio(false);
-			
-			backgroundImage.fitWidthProperty().bind(root.widthProperty());
-			backgroundImage.fitHeightProperty().bind(root.heightProperty());
-			
-			root.getChildren().addAll(backgroundImage,mainWheelPane);
-			mainWheelPane.getChildren().add(wheel);
-			
-			userLoginScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-			mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
-			mealTypes.put(MealType.DAIRY, "WhatsCooking_Dairy.png");
-			mealTypes.put(MealType.FRUITS, "WhatsCooking_Fruit.png");
-			mealTypes.put(MealType.MEAT, "WhatsCooking_Meat.png");
-			mealTypes.put(MealType.SPANN, "WhatsCooking_Spann.png");
-			mealTypes.put(MealType.VEGETABLES, "WhatsCooking_Vegetables.png");
-			
-			this.addWheel(wheel);
-			
-			this.createBoundingBoxes(MealType.MEAT, mainWheelPane, 400, 103, 163, 180);
-			this.createBoundingBoxes(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
-			this.createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
-			this.createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
-			this.createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
-			
-			userLoginStage.initStyle(StageStyle.TRANSPARENT);
-			userLoginStage.setResizable(false);
-			userLoginStage.setScene(userLoginScene);
-			userLoginStage.show();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+	private void createTransition(int duration, Runnable script){
+		transitioning = true;
+		
+		FadeTransition fade = new FadeTransition();
+		fade.setDuration(Duration.millis(duration));
+		fade.setNode(wheel);
+		fade.setFromValue(1);
+		fade.setToValue(0);
+		fade.setOnFinished(e -> {
+			if(script!=null){
+				script.run();
+			}
+			transitioning = false;
+		});
+		fade.play();
 	}
 	
-	
-	private void createFruitPane(){
+	/**
+	 * Creates a transition to the original startup view. 
+	 * @param duration - duration of the transition
+	 */
+	private static void transitionToHome(int duration){
+		FadeTransition fade = new FadeTransition();
+		fade.setDuration(Duration.millis(duration));
+		fade.setNode(wheel);
+		fade.setFromValue(0);
+		fade.setToValue(1);
+		fade.play();
+	}
+	/**
+	 * Enum types (a special data type that enables for a variable to be a set of predefined constants)
+	 */
+	public static enum MealType{
+		MEAT,VEGETABLES,FRUITS,SPANN,DAIRY,ALL;
+	}
+	public static void setMealTypes(){
+		mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
+		mealTypes.put(MealType.DAIRY, "WhatsCooking_Dairy.png");
+		mealTypes.put(MealType.FRUITS, "WhatsCooking_Fruit.png");
+		mealTypes.put(MealType.MEAT, "WhatsCooking_Meat.png");
+		mealTypes.put(MealType.SPANN, "WhatsCooking_Spann.png");
+		mealTypes.put(MealType.VEGETABLES, "WhatsCooking_Vegetables.png");
 		
 	}
-	
+	/**
+	 * Method that loads the different images form the source folder
+	 * @param image - images from the source directory 
+	 * @return - returns the url for the images 
+	 */
+	public static String loadResource(String image) {
+		String url = IMAGE_SOURCE_DIRECTORY + image;
+		return url;
+	}
+
 	/***
 	 * Method that takes an image of the 'FoodWheel' and puts it in given position.  
 	 * @param wheelImage - image of the wheel.
 	 */
-	
-	public void addWheel(ImageView wheelImage){
+	public static void addWheel(ImageView wheelImage){
 		wheelImage.setImage(new Image(mealTypes.get(currentMealType)));
 		wheelImage.setPreserveRatio(true);
-		wheelImage.setFitHeight(this.wheelHeight);
-		wheelImage.setFitWidth(this.wheelWidth);
-		wheelImage.setLayoutX(this.layoutX);
-		wheelImage.setLayoutY(this.layoutY);
+		wheelImage.setFitHeight(wheelHeight);
+		wheelImage.setFitWidth(wheelWidth);
+		wheelImage.setLayoutX(layoutX);
+		wheelImage.setLayoutY(layoutY);
 
 	}
 	
-	/***
+	/**
+	 * Method that changes the different categories color 
+	 * @param mealType - Enum
+	 */
+	public static void changeWheelImage(MealType mealType){
+		currentMealType = mealType;
+		wheel.setImage(new Image(mealTypes.get(mealType)));
+	}
+	
+	/**
 	 * Method that creates BoundingBoxes over the categories to allow a specific category to be selected
 	 * @param mealType - takes an Enum type (given mealcategory) 
 	 * @param pane - Base class for layout panes which need to expose the children list as public so that users of the subclass can freely add/remove children
@@ -127,7 +152,6 @@ public class MainClient extends Application {
 	 * @param height - height of boundingbox 
 	 * (To see Bounding boxes, add "boundingBox.setStroke(Color.BLACK);"
 	 */
-	
 	public void createBoundingBoxes(MealType mealType, Pane pane, int x, int y, int width, int height){
 		Rectangle boundingBox = new Rectangle(x,y,width,height);
 		boundingBox.setFill(Color.TRANSPARENT);
@@ -135,13 +159,12 @@ public class MainClient extends Application {
 		addHoverAction(boundingBox,mealType);
 	}
 	
-	/***
+	/**
 	 * Method that lights up the category that the mouse is hovering over. When no categori is being hovered over, the wheel
 	 * is in it's standard color (when mouse exits the box).
 	 * @param box - 
 	 * @param mealType -
 	 */
-	
 	private void addHoverAction(Rectangle box, MealType mealType){
 		box.setOnMouseClicked(e -> {
 			changeScene(mealType); 
@@ -174,23 +197,11 @@ public class MainClient extends Application {
 			changeWheelImage(MealType.ALL);
 		});
 	}
-	
-	/**
-	 * Method that changes the different categories color 
-	 * @param mealType - Enum
-	 */
-	
-	public void changeWheelImage(MealType mealType){
-		currentMealType = mealType;
-		wheel.setImage(new Image(mealTypes.get(mealType)));
-	}
-	
 	/**
 	 * Method that switches scene when one category is pressed. 
 	 * Run-methods (x5) for changing the scenes with given time-interval.
 	 * @param type - switches between the Enum types 
 	 */
-	
 	public void changeScene(MealType type){
 		
 		switch(type){
@@ -305,73 +316,5 @@ public class MainClient extends Application {
 			break;
 		}
 	}
-	
-	/**
-	 * Method that creates a transition between the scenes
-	 * @param duration - duration of the transition 
-	 * @param script - if the script is not null the transition runs. 
-	 */
-	
-	private void createTransition(int duration, Runnable script){
-		transitioning = true;
-		
-		FadeTransition fade = new FadeTransition();
-		fade.setDuration(Duration.millis(duration));
-		fade.setNode(wheel);
-		fade.setFromValue(1);
-		fade.setToValue(0);
-		fade.setOnFinished(e -> {
-			if(script!=null){
-				script.run();
-			}
-			transitioning = false;
-		});
-		fade.play();
-	}
-	
-	/**
-	 * Creates a transition to the original startup view. 
-	 * @param duration - duration of the transition
-	 */
-	
-	private void transitionToHome(int duration){
-		FadeTransition fade = new FadeTransition();
-		fade.setDuration(Duration.millis(duration));
-		fade.setNode(wheel);
-		fade.setFromValue(0);
-		fade.setToValue(1);
-		fade.play();
-	}
-	
-	/**
-	 * Method that loads the different images form the source folder
-	 * @param image - images from the source directory 
-	 * @return - returns the url for the images 
-	 */
-	
-	public static String loadResource(String image) {
-		String url = IMAGE_SOURCE_DIRECTORY + image;
-		return url;
-	}
-	
-	/**
-	 * Main-method that launches the application. 
-	 * @param args
-	 */
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
-	/**
-	 * Enum types (a special data type that enables for a variable to be a set of predefined constants)
-	 * @author OlleOlsson
-	 *
-	 */
-	
-	public enum MealType{
-		MEAT,VEGETABLES,FRUITS,SPANN,DAIRY,ALL;
-	}
+
 }
-
-
