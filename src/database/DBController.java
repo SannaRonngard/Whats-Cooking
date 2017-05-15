@@ -1,8 +1,6 @@
 package database;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Querys for database 
@@ -10,12 +8,13 @@ import java.sql.Statement;
  * @author Linus Forsberg
  */
 public class DBController {
-	private DBConnection db;
+	private DBConnection dbc;
 	private Recipe recipe;
-	
+
 	public DBController() {
-		this.db = new DBConnection();
+		this.dbc = new DBConnection();
 		this.recipe = recipe;
+		dbc.initiate();
 	}
 	/******************************
 	 * Store a recipe in database *
@@ -23,11 +22,11 @@ public class DBController {
 	 ******************************/
 	public void newRecipe(Recipe recipe) {
 		try {
-			db.getConnection().setAutoCommit(false);
-			Statement st = db.getConnection().createStatement();
-			Statement idSt = db.getConnection().createStatement();
+			dbc.getConnection().setAutoCommit(false);
+			Statement st = dbc.getConnection().createStatement();
+			Statement idSt = dbc.getConnection().createStatement();
 			ResultSet rs = idSt.executeQuery("SELECT (SELECT COUNT(*) FROM recipe) AS recipeCounter,"
-												+"(SELECT COUNT(*) FROM ingredient) AS ingredientCounter;");
+					+"(SELECT COUNT(*) FROM ingredient) AS ingredientCounter;");
 			rs.next();
 			int recipeId = rs.getInt("recipeCounter");
 			int ingredientId = rs.getInt("ingredientCounter");
@@ -46,22 +45,54 @@ public class DBController {
 			}
 			st.executeUpdate(sql);
 			st.close();
-			db.getConnection().commit();
-			db.getConnection().close();
-			} catch (SQLException e) {}	
+			dbc.getConnection().commit();
+			dbc.getConnection().close();
+		} catch (SQLException e) {}	
 	}
-	
+
 	/**
 	 * Gets a list of recipes and shows it in user interface.
 	 */
-	public void showRecipeList() {
-		recipe.getRecipeTitleList();
-	}
-	
-	/**
-	 * Shows chosen recipe in GUI
-	 */
-	public void showRecipe() {
+	public void showRecipeList(String[] ingredientArray) {
+		PreparedStatement stmt;
+		ResultSet rs;
+		String ingredient = "";
+		try {
+			for(int i = 0; i < ingredientArray.length; i++ ) {
+				ingredient = ingredientArray[i];
 		
+			}
+			stmt = dbc.getConnection().prepareStatement("SELECT title FROM recipe WHERE recipe.ingredients LIKE '%" + ingredient +"%'");
+			rs = stmt.executeQuery();
+				while (rs.next()) {
+					System.out.println(rs.getString("title"));
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Gets recipes from chosen ingredients
+	 * @param ingredientArray - list of chosen ingredients
+	 */
+	public void getRecipeFromIngredients(String[] ingredientArray) {
+		try { 
+			PreparedStatement stmt = dbc.getConnection().prepareStatement("SELECT recipe.title FROM recipe.ingredients WHERE content LIKE" + ingredientArray);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString(4));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	//testmetod för querys
+	public static void main(String[] args) {
+		DBController dbc = new DBController();
+		String[] ingredientArray = {"salt"};
+		dbc.showRecipeList(ingredientArray);
 	}
 }
