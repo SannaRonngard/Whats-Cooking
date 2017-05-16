@@ -25,7 +25,7 @@
             <CheckBox fx:id="checkBox_Mandarin" layoutX="109.0" layoutY="70.0" mnemonicParsing="false" text="Mandarin" />
             <CheckBox fx:id="checkBox_Grapefruit" layoutX="109.0" layoutY="41.0" mnemonicParsing="false" text="Grapefruit" />
             <CheckBox fx:id="checkBox_Lemon" layoutX="109.0" layoutY="101.0" mnemonicParsing="false" text="Lemon" />
-            <CheckBox layoutX="109.0" layoutY="131.0" mnemonicParsing="false" text="Lime" />
+            <CheckBox fx:id= "checkBox_Lime"  layoutX="109.0" layoutY="131.0" mnemonicParsing="false" text="Lime" />
             <CheckBox fx:id="checkBox_Banana" layoutX="11.0" layoutY="70.0" mnemonicParsing="false" text="Banana" />
             <CheckBox fx:id="checkBox_Strawberry" layoutX="200.0" layoutY="11.0" mnemonicParsing="false" text="Strawberry" />
             <CheckBox fx:id="checkBox_Blueberry" layoutX="200.0" layoutY="40.0" mnemonicParsing="false" text="Blueberry" />

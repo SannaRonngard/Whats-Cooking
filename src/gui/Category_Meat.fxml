@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ClientHandler">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +19,7 @@
       </ImageView>
       <Pane layoutX="356.0" layoutY="181.0" prefHeight="200.0" prefWidth="400.0">
          <children>
-            <CheckBox fx:id="checkBox_chicken" layoutX="203.0" layoutY="11.0" mnemonicParsing="false" text="Chicken" />
+            <CheckBox fx:id="checkBox_Chicken" layoutX="203.0" layoutY="11.0" mnemonicParsing="false" text="Chicken" />
             <CheckBox fx:id="checkBox_Lamb" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" text="Lamb" />
             <CheckBox fx:id="checkBox_Pork" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" text="Pork" />
             <CheckBox fx:id="checkBox_Game" layoutX="115.0" layoutY="11.0" mnemonicParsing="false" text="Game" />
