@@ -82,6 +82,7 @@ public class Client {
 		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 		createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
+		createBoundingBoxes(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkPane, questionMarkHeight);
 
 		Button closeBtn = new Button("Stäng ner detta skit");
 		closeBtn.setLayoutX(1070);
@@ -96,6 +97,7 @@ public class Client {
 		window.setScene(userLoginScene);
 		window.show();
 	}
+	
 	/**
 	 * Method that creates a transition between the scenes
 	 * @param duration - duration of the transition
@@ -175,7 +177,6 @@ public class Client {
 		menuToolImages.setLayoutY(questionMarkLayoutY);
 		menuToolImages.setFitHeight(questionMarkHeight);
 		menuToolImages.setFitWidth(questionMarkWidth);
-		menuToolImages.setPickOnBounds(true);
 
 	}
 
@@ -217,6 +218,20 @@ public class Client {
 		boundingBox.setFill(Color.TRANSPARENT);
 		pane.getChildren().add(boundingBox);
 		addHoverAction(boundingBox,mealType);
+	}
+	
+	private void createBoundingBoxes(MenuTools questionMark, Pane pane, int questionMarkHeight, int questionMarkWidth, int questionMarkLayoutX, int questionMarkLayoutY) {
+		Rectangle boundingBox = new Rectangle(questionMarkHeight, questionMarkWidth, questionMarkLayoutX, questionMarkLayoutY); 
+		boundingBox.setFill(Color.TRANSPARENT);
+		pane.getChildren().add(boundingBox);
+		addHoverActionMenuTools(boundingBox, questionMark); 
+	
+	}
+	
+	private void addHoverActionMenuTools(Rectangle box, MenuTools menuTools) {
+		box.setOnMouseEntered(e -> {
+			//to be continued 
+		});
 	}
 
 	/**
