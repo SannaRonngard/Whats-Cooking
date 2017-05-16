@@ -60,6 +60,7 @@ public class Client {
 	private static ImageView questionMarc = new ImageView();
 	private static ImageView backgroundImage;
 	Stage window = new Stage();
+	private ClientHandler clientHandler;
 /*
  * Making a new stage where scene and root components are placed.
  */
@@ -283,6 +284,7 @@ public class Client {
 				    	Pane fxmlDairyPane = FXMLLoader.load(getClass().getResource("/gui/Category_Dairy.fxml"));
 				    	dairyPane.getChildren().add(fxmlDairyPane);
 				    	fxmlDairyPane.getChildren().addAll(goBackBtn);
+				    	
 				    	
 				    } catch (IOException e) {
 				    	e.printStackTrace();
