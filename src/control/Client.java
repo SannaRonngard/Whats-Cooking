@@ -82,7 +82,7 @@ public class Client {
 		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 		createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
-		createBoundingBoxes(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkPane, questionMarkHeight);
+		createBoundingBoxes(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
 
 		Button closeBtn = new Button("Stäng ner detta skit");
 		closeBtn.setLayoutX(1070);
