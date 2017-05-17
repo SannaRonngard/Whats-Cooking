@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ClientHandler">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ClientHandler">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,7 +27,7 @@
             <CheckBox fx:id="checkBox_Zucchini" layoutX="11.0" layoutY="146.0" mnemonicParsing="false" text="Zucchini" />
             <CheckBox fx:id="checkBox_Aubergine" layoutX="11.0" layoutY="117.0" mnemonicParsing="false" text="Aubergine" />
             <CheckBox fx:id="checkBox_Pumpkin" layoutX="11.0" layoutY="174.0" mnemonicParsing="false" text="Pumpkin" />
-            <CheckBox fx:id="checkBox_Avocado" layoutX="11.0" layoutY="59.0" mnemonicParsing="false" text="Avocado" />
+            <CheckBox fx:id="checkBox_Avocado" layoutX="11.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleCheckBoxActionVeg" text="Avocado" />
             <CheckBox fx:id="checkBox_Onion" layoutX="108.0" layoutY="1.0" mnemonicParsing="false" text="Onion" />
             <CheckBox fx:id="checkBox_Garlic" layoutX="109.0" layoutY="30.0" mnemonicParsing="false" text="Garlic" />
             <CheckBox fx:id="checkBox_Spring_Onion" layoutX="109.0" layoutY="60.0" mnemonicParsing="false" text="Spring Onion" />
@@ -54,5 +56,10 @@
             <CheckBox fx:id="checkBox_Chili" layoutX="438.0" layoutY="115.0" mnemonicParsing="false" text="Chili" />
             <CheckBox fx:id="checkBox_Lemongrass" layoutX="439.0" layoutY="146.0" mnemonicParsing="false" text="Lemongrass" />
          </children></Pane>
+      <Button fx:id="returnBtn" layoutX="406.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleCheckBoxActionVeg" text="Return">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
