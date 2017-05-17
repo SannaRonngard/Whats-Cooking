@@ -9,12 +9,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
@@ -31,17 +35,17 @@ import javafx.util.Duration;
 
 public class Client {
 	private static MealType currentMealType = MealType.ALL;
-	private static MenuTools currentMenuTool = MenuTools.QUESTIONMARK;
 	private static int wheelHeight = 580;
 	private static int wheelWidth = 464;
-	private static int layoutX = 368;
-	private static int layoutY = 105;
-	private static int questionMarkHeight = 30;
-	private static double questionMarkWidth = 44.7;
 	private static int wheelLayoutX = 368;
 	private static int wheelLayoutY = 104;
-	private static int questionMarkLayoutX = 1150;
-	private static int questionMarkLayoutY = 10;
+
+
+	private static int questionMarkHeight = 30;
+	private static int questionMarkWidth = 45;
+	private static int questionMarkLayoutX = 100;
+	private static int questionMarkLayoutY = 20;
+
 	public static final String IMAGE_SOURCE_DIRECTORY = "";
 	private static Scene userLoginScene;
 	private static Pane root = new Pane();
@@ -49,6 +53,7 @@ public class Client {
 	private static HashMap<MealType, String> mealTypes = new HashMap<>();
 	private static Pane questionMarkPane = new Pane();
 	private static HashMap<MenuTools, String> menuTools = new HashMap<>();
+
 	private static ImageView tools = new ImageView();
 	private Pane dairyPane = new Pane();
 	private Pane meatPane = new Pane();
@@ -57,13 +62,13 @@ public class Client {
 	private Pane vegetablePane = new Pane();
 	private static boolean transitioning = false;
 	private static ImageView wheel = new ImageView();
-	private static ImageView questionMarc = new ImageView();
-	private static ImageView backgroundImage;
-	Stage window = new Stage();
+	private static ImageView backgroundImage; 
 	private ClientHandler clientHandler;
-/*
- * Making a new stage where scene and root components are placed.
- */
+	Stage window = new Stage();
+
+	/*
+	 * Making a new stage where scene and root components are placed.
+	 */
 	public void clientGui() {
 		userLoginScene = new Scene(root,1200,750);
 		backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
@@ -81,14 +86,16 @@ public class Client {
 		createBoundingBoxes(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
 		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
-		createBoundingBoxes(MealType.SPANN,mainWheelPane, 500, 457, 185, 140);
-		createBoundingBoxes(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
+		createBoundingBoxes(MealType.SPANN, mainWheelPane, 500, 457, 185, 140);
+		createBoundingBoxes2(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
 
 		Button closeBtn = new Button("Stäng ner detta skit");
 		closeBtn.setLayoutX(1070);
 		closeBtn.setLayoutY(50);
 		closeBtn.setOnAction( e -> window.close() );
 		root.getChildren().add(closeBtn);
+		
+		//kommer lägga till nodes för då man klickar på frågetecken. 
 
 		window.initModality(Modality.APPLICATION_MODAL); // Block any user interraction until window is closed
 		window.initStyle(StageStyle.TRANSPARENT);
@@ -97,12 +104,13 @@ public class Client {
 		window.setScene(userLoginScene);
 		window.show();
 	}
-	
+
 	/**
 	 * Method that creates a transition between the scenes
 	 * @param duration - duration of the transition
 	 * @param script - if the script is not null the transition runs.
 	 */
+	
 	private void createTransition(int duration, Runnable script){
 		transitioning = true;
 
@@ -124,6 +132,7 @@ public class Client {
 	 * Creates a transition to the original startup view.
 	 * @param duration - duration of the transition
 	 */
+	
 	private static void transitionToHome(int duration){
 		FadeTransition fade = new FadeTransition();
 		fade.setDuration(Duration.millis(duration));
@@ -136,20 +145,30 @@ public class Client {
 	/**
 	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
 	 */
+	
 	public static enum MenuTools{
 		QUESTIONMARK;
-}
+	}
 
 	/**
 	 * Enum types of different food categories (a special data type that enables for a variable to be a set of predefined constants)
 	 */
+	
 	public static enum MealType{
 		MEAT,VEGETABLES,FRUITS,SPANN,DAIRY,ALL;
 	}
+	
+	/**
+	 * Calls the given image from the sourcefolder
+	 */
 
 	public static void setToolIcons(){
 		menuTools.put(MenuTools.QUESTIONMARK, "questionMark.png");
 	}
+	
+	/**
+	 * Calls the given image from the sourcefolder 
+	 */
 
 	public static void setMealTypes(){
 		mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
@@ -160,15 +179,22 @@ public class Client {
 		mealTypes.put(MealType.VEGETABLES, "WhatsCooking_Vegetables.png");
 
 	}
+	
 	/**
 	 * Method that loads the different images form the source folder
 	 * @param image - images from the source directory
 	 * @return - returns the url for the images
 	 */
+	
 	public static String loadResource(String image) {
 		String url = IMAGE_SOURCE_DIRECTORY + image;
 		return url;
 	}
+	
+	/**
+	 * Method that takes an image of the 'MenuTools' and puts it in the given position. 
+	 * @param menuToolImages
+	 */
 
 	public static void addMenuTools(ImageView menuToolImages){
 		menuToolImages.setImage(new Image("questionMark.png"));
@@ -180,10 +206,11 @@ public class Client {
 
 	}
 
-	/***
+	/**
 	 * Method that takes an image of the 'FoodWheel' and puts it in given position.
 	 * @param wheelImage - image of the wheel.
 	 */
+	
 	public static void addWheel(ImageView wheelImage){
 		wheelImage.setImage(new Image(mealTypes.get(currentMealType)));
 		wheelImage.setPreserveRatio(true);
@@ -198,6 +225,7 @@ public class Client {
 	 * Method that changes the different categories color
 	 * @param mealType - Enum
 	 */
+	
 	public static void changeWheelImage(MealType mealType){
 		currentMealType = mealType;
 		wheel.setImage(new Image(mealTypes.get(mealType)));
@@ -213,25 +241,68 @@ public class Client {
 	 * @param height - height of boundingbox
 	 * (To see Bounding boxes, add "boundingBox.setStroke(Color.BLACK);"
 	 */
+	
 	public void createBoundingBoxes(MealType mealType, Pane pane, int x, int y, int width, int height){
 		Rectangle boundingBox = new Rectangle(x,y,width,height);
 		boundingBox.setFill(Color.TRANSPARENT);
 		pane.getChildren().add(boundingBox);
-		addHoverAction(boundingBox,mealType);
+		addHoverActionWheel(boundingBox,mealType); 
+
 	}
-	
-	private void createBoundingBoxes(MenuTools questionMark, Pane pane, int questionMarkHeight, int questionMarkWidth, int questionMarkLayoutX, int questionMarkLayoutY) {
-		Rectangle boundingBox = new Rectangle(questionMarkHeight, questionMarkWidth, questionMarkLayoutX, questionMarkLayoutY); 
+
+	/**
+	 * 
+	 * @param menuTools - takes an Enum type (given MenuTool)
+	 * @param pane - Base class for layout panes which need to expose the children list as public so that users of the subclass can freely add/remove children
+	 * @param questionMarkLayoutX - position on x-axis 
+	 * @param questionMarkLayoutY - position on y-axis 
+	 * @param questionMarkWidth - width of boundingbox 
+	 * @param questionMarkHeight - height of boundixbox
+	 * (To see Bounding boxes, add "boundingBox.setStroke(Color.BLACK);" 
+	 */
+
+	public void createBoundingBoxes2(MenuTools menuTools, Pane pane, int questionMarkLayoutX, int questionMarkLayoutY, int questionMarkWidth, int questionMarkHeight) {
+		Rectangle boundingBox = new Rectangle(questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
 		boundingBox.setFill(Color.TRANSPARENT);
+		//		boundingBox.setStroke(Color.BLACK);
 		pane.getChildren().add(boundingBox);
-		addHoverActionMenuTools(boundingBox, questionMark); 
-	
+		addHoverActionMenuTools(boundingBox, pane, menuTools);
+
 	}
 	
-	private void addHoverActionMenuTools(Rectangle box, MenuTools menuTools) {
+	/**
+	 * Method that makes the MenuTools interactive 
+	 * @param box - area which triggers the menutools to size up 
+	 * @param menuTools - reference for the menutools 
+	 */
+
+	private void addHoverActionMenuTools(Rectangle box, Pane pane, MenuTools menuTools) {
 		box.setOnMouseEntered(e -> {
-			//to be continued 
+			tools.setScaleX(1.5);
+			tools.setScaleY(1.5);
 		});
+
+		box.setOnMouseExited(e -> {
+			tools.setScaleX(1);
+			tools.setScaleY(1);
+		});
+
+		box.setOnMouseClicked(e -> {
+			showHelpInformation(box, pane, menuTools); 
+		});
+	}
+	
+	private void showHelpInformation(Rectangle box, Pane pane, MenuTools menuTools) {
+		
+		StackPane stackPane = new StackPane();
+		stackPane.setPrefSize(1200, 750);
+		Rectangle infoBox = new Rectangle(500, 700);  
+		infoBox.setFill(Color.BLACK);
+		infoBox.setOpacity(0.5);
+		stackPane.getChildren().add(infoBox);
+		StackPane.setAlignment(infoBox, Pos.CENTER);
+		
+		pane.getChildren().add(stackPane);
 	}
 
 	/**
@@ -240,7 +311,8 @@ public class Client {
 	 * @param box -
 	 * @param mealType -
 	 */
-	private void addHoverAction(Rectangle box, MealType mealType){
+
+	private void addHoverActionWheel(Rectangle box, MealType mealType){
 		box.setOnMouseClicked(e -> {
 			changeScene(mealType);
 		});
@@ -277,6 +349,7 @@ public class Client {
 	 * Run-methods (x5) for changing the scenes with given time-interval.
 	 * @param type - switches between the Enum types
 	 */
+	
 	public void changeScene(MealType type) {
 
 		switch(type){
@@ -285,7 +358,7 @@ public class Client {
 			if(transitioning)
 				return;
 
-		    createTransition(1000,new Runnable(){
+			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
 					Button goBackBtn = new Button("<---");
@@ -294,18 +367,18 @@ public class Client {
 					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
-					
-				    try {
-				    	Pane fxmlDairyPane = FXMLLoader.load(getClass().getResource("/gui/Category_Dairy.fxml"));
-				    	dairyPane.getChildren().add(fxmlDairyPane);
-				    	fxmlDairyPane.getChildren().addAll(goBackBtn);
-				    	
-				    	
-				    } catch (IOException e) {
-				    	e.printStackTrace();
-				    	
-				    }
-					
+
+					try {
+						Pane fxmlDairyPane = FXMLLoader.load(getClass().getResource("/gui/Category_Dairy.fxml"));
+						dairyPane.getChildren().add(fxmlDairyPane);
+						fxmlDairyPane.getChildren().addAll(goBackBtn);
+
+
+					} catch (IOException e) {
+						e.printStackTrace();
+
+					}
+
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
 						root.getChildren().add(mainWheelPane);
@@ -313,40 +386,40 @@ public class Client {
 
 					});
 				}
-		    });
-		    		    
-		    
+			});
+
+
 			break;
 		case FRUITS:
 			if(transitioning)
 				return;
 
-			  createTransition(1000,new Runnable(){
-					@Override
-					public void run() {
-						Button goBackBtn = new Button("Go back");
-						fruitPane.getChildren().addAll(goBackBtn);
-						root.getChildren().remove(mainWheelPane);
-						root.getChildren().add(fruitPane);
+			createTransition(1000,new Runnable(){
+				@Override
+				public void run() {
+					Button goBackBtn = new Button("Go back");
+					fruitPane.getChildren().addAll(goBackBtn);
+					root.getChildren().remove(mainWheelPane);
+					root.getChildren().add(fruitPane);
 
-						try {
-							
-					    	Pane fxmlFruitPane = FXMLLoader.load(getClass().getResource("/gui/Category_Fruit.fxml"));
-					    	fruitPane.getChildren().add(fxmlFruitPane);
-					    	fxmlFruitPane.getChildren().addAll(goBackBtn);
-					    	
-					    } catch (IOException e) {
-					    	e.printStackTrace();
-					    	
-					    }
-						
-						goBackBtn.setOnMouseClicked(e -> {
-							root.getChildren().remove(fruitPane);
-							root.getChildren().add(mainWheelPane);
-							transitionToHome(1000);
-						});
+					try {
+
+						Pane fxmlFruitPane = FXMLLoader.load(getClass().getResource("/gui/Category_Fruit.fxml"));
+						fruitPane.getChildren().add(fxmlFruitPane);
+						fxmlFruitPane.getChildren().addAll(goBackBtn);
+
+					} catch (IOException e) {
+						e.printStackTrace();
+
 					}
-			    });
+
+					goBackBtn.setOnMouseClicked(e -> {
+						root.getChildren().remove(fruitPane);
+						root.getChildren().add(mainWheelPane);
+						transitionToHome(1000);
+					});
+				}
+			});
 
 			break;
 		case MEAT:
@@ -361,15 +434,15 @@ public class Client {
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(meatPane);
 					try {
-						
-				    	Pane fxmlMeatPane = FXMLLoader.load(getClass().getResource("/gui/Category_Meat.fxml"));
-				    	meatPane.getChildren().add(fxmlMeatPane);
-				    	fxmlMeatPane.getChildren().addAll(goBackBtn);
-				    	
-				    } catch (IOException e) {
-				    	e.printStackTrace();
-				    	
-				    }
+
+						Pane fxmlMeatPane = FXMLLoader.load(getClass().getResource("/gui/Category_Meat.fxml"));
+						meatPane.getChildren().add(fxmlMeatPane);
+						fxmlMeatPane.getChildren().addAll(goBackBtn);
+
+					} catch (IOException e) {
+						e.printStackTrace();
+
+					}
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
@@ -392,15 +465,15 @@ public class Client {
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(spannPane);
 					try {
-						
-				    	Pane fxmlGrainsPane = FXMLLoader.load(getClass().getResource("/gui/Category_Grains.fxml"));
-				    	spannPane.getChildren().add(fxmlGrainsPane);
-				    	fxmlGrainsPane.getChildren().addAll(goBackBtn);
-				    	
-				    } catch (IOException e) {
-				    	e.printStackTrace();
-				    	
-				    }
+
+						Pane fxmlGrainsPane = FXMLLoader.load(getClass().getResource("/gui/Category_Grains.fxml"));
+						spannPane.getChildren().add(fxmlGrainsPane);
+						fxmlGrainsPane.getChildren().addAll(goBackBtn);
+
+					} catch (IOException e) {
+						e.printStackTrace();
+
+					}
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
@@ -424,15 +497,15 @@ public class Client {
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(vegetablePane);
 					try {
-						
-				    	Pane fxmlVegetablesPane = FXMLLoader.load(getClass().getResource("/gui/Category_Vegetables.fxml"));
-				    	vegetablePane.getChildren().add(fxmlVegetablesPane);
-				    	fxmlVegetablesPane.getChildren().addAll(goBackBtn);
-				    	
-				    } catch (IOException e) {
-				    	e.printStackTrace();
-				    	
-				    }
+
+						Pane fxmlVegetablesPane = FXMLLoader.load(getClass().getResource("/gui/Category_Vegetables.fxml"));
+						vegetablePane.getChildren().add(fxmlVegetablesPane);
+						fxmlVegetablesPane.getChildren().addAll(goBackBtn);
+
+					} catch (IOException e) {
+						e.printStackTrace();
+
+					}
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
@@ -447,6 +520,11 @@ public class Client {
 			break;
 		}
 	}
+	
+	/**
+	 * Method that closes the program
+	 */
+	
 	private void closeProgram(){
 		System.out.println("Closed properly");
 		window.close();
