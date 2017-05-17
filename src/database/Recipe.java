@@ -26,6 +26,9 @@ public class Recipe implements Serializable {
 	 * @param prepTime
 	 * @param content
 	 */
+	public Recipe(){
+		
+	}
 	public Recipe(String title, String prepTime, String content){
 		this.title = title;
 		this.prepTime = prepTime;
@@ -86,7 +89,12 @@ public class Recipe implements Serializable {
 	public void setIngredientToList(String ingredient) {
 		ingredientList.add(ingredient);
 	}
-
+	public void removeIngredientFromList(String ingredient) {
+		if (ingredientList.contains(ingredient)) {
+			ingredientList.remove(ingredient);
+		}
+		
+	}
 	// Getting all ingredients assigned to the recipe. Returns av array of the ingredients
 	public String[] getIngredientArray() {
 		String[] ingredientArray = new String[ingredientList.size()];
