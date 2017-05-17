@@ -87,7 +87,9 @@ public class Recipe implements Serializable {
 
 	// Setting ingredients to a recipe
 	public void setIngredientToList(String ingredient) {
+		if (!ingredientList.contains(ingredient)) {
 		ingredientList.add(ingredient);
+	}
 	}
 	public void removeIngredientFromList(String ingredient) {
 		if (ingredientList.contains(ingredient)) {

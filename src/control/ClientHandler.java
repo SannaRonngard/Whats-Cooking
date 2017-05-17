@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,11 +21,13 @@ import javafx.util.StringConverter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import database.Recipe;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 /**
- * Class that handles all the checkboxes for different categories of ingredients.
+ * Class that handles all the checkboxes for different categories of
+ * ingredients.
  * 
  * @author Sanna Rönngård
  * @author Sofia Larsson
@@ -228,12 +229,15 @@ public class ClientHandler implements Initializable {
 	@FXML
 	private CheckBox checkBox_Lemongrass;
 
+	private Recipe recipe;
+
 	public ClientHandler() {
 		InitiateMeat();
 		InitiateDairy();
 		InitiateGrains();
 		InitiateFruit();
 		InitiateVegetables();
+		this.recipe = new Recipe();
 
 	}
 
@@ -242,7 +246,7 @@ public class ClientHandler implements Initializable {
 	 * box is unchecked.
 	 * 
 	 */
-	List<String> itemList = new ArrayList<String>();
+	
 
 	@FXML
 	private void handleCheckBoxActionMeat(ActionEvent event) throws IOException {
@@ -254,42 +258,38 @@ public class ClientHandler implements Initializable {
 		// checkBox_Chicken.setSelected(true);
 
 		if (checkBox_Chicken_Selected == true) {
-			if (!itemList.contains("Chicken")) {
-				itemList.add("Chicken");
-			}
+
+			recipe.setIngredientToList("Chicken");
+
 		}
 
 		if (checkBox_Chicken_Selected == false) {
-			if (itemList.contains("Chicken")) {
-				itemList.remove("Chicken");
-			}
+
+			recipe.removeIngredientFromList("Chicken");
 		}
 
 		if (checkBox_Lamb_Selected == true) {
-			if (!itemList.contains("Lamb")) {
-				itemList.add("Lamb");
-			}
+
+			recipe.setIngredientToList("Lamb");
 		}
 
 		if (checkBox_Lamb_Selected == false) {
-			if (itemList.contains("Lamb")) {
-				itemList.remove("Lamb");
-			}
+
+			recipe.removeIngredientFromList("Lamb");
+
 		}
 
 		if (checkBox_Pork_Selected == true) {
-			if (!itemList.contains("Pork")) {
-				itemList.add("Pork");
-			}
+
+			recipe.setIngredientToList("Pork");
 		}
 
 		if (checkBox_Pork_Selected == false) {
-			if (itemList.contains("Pork")) {
-				itemList.remove("Pork");
-			}
+
+			recipe.removeIngredientFromList("Pork");
 		}
 
-		System.out.println(itemList);
+		System.out.println(Arrays.toString(recipe.getIngredientArray()));
 
 	}
 
@@ -307,42 +307,33 @@ public class ClientHandler implements Initializable {
 		boolean checkBox_Cucumber_Selected = checkBox_Cucumber.isSelected();
 
 		if (checkBox_Tomato_Selected == true) {
-			if (!itemList.contains("Tomato")) {
-				itemList.add("Tomato");
-			}
+
+			recipe.setIngredientToList("Tomato");
 		}
 
 		if (checkBox_Tomato_Selected == false) {
-			if (itemList.contains("Tomato")) {
-				itemList.remove("Tomato");
-			}
+
+			recipe.removeIngredientFromList("Tomato");
 		}
 
 		if (checkBox_Potato_Selected == true) {
-			if (!itemList.contains("Potato")) {
-				itemList.add("Potato");
-			}
+			
+			recipe.setIngredientToList("Potato");
 		}
 
 		if (checkBox_Potato_Selected == false) {
-			if (itemList.contains("Potato")) {
-				itemList.remove("Potato");
-			}
+			recipe.removeIngredientFromList("Potato");
 		}
 
 		if (checkBox_Cucumber_Selected == true) {
-			if (!itemList.contains("Cucumber")) {
-				itemList.add("Cucumber");
-			}
+			recipe.setIngredientToList("Cucumber");
 		}
 
 		if (checkBox_Cucumber_Selected == false) {
-			if (itemList.contains("Cucumber")) {
-				itemList.remove("Cucumber");
-			}
+			recipe.removeIngredientFromList("Cucumber");
 		}
 
-		System.out.println(itemList);
+		System.out.println(Arrays.toString(recipe.getIngredientArray()));
 
 	}
 
