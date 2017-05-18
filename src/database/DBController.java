@@ -54,16 +54,55 @@ public class DBController {
 	 * Gets a list of recipes and shows it in user interface.
 	 * @param ingredientArray - list of chosen ingredients
 	 */
+	
 	public void showRecipeList(String[] ingredientArray) {
 		PreparedStatement stmt;
 		ResultSet rs;
-		String ingredient = "";
+//		String ingredient = "";
+		String sql = "select recipe.title from recipe join recipe_ingredients on recipe.recipeid = recipe_ingredients.recipeid join ingredients on recipe_ingredients.ingredientsid = ingredients.ingredientsid ";
 		try {
-			for(int i = 0; i < ingredientArray.length; i++ ) {
-				ingredient = ingredientArray[i];
-		
+			for(int i = 0; i < ingredientArray.length; i++) {
+				if(i > 0) {
+					sql += " AND ";
+				}
+				
+				sql = " ingredients.name = ? ";
 			}
-			stmt = dbc.getConnection().prepareStatement("SELECT title FROM recipe WHERE recipe.ingredients LIKE '%" + ingredient +"%'");
+			
+			stmt = dbc.getConnection().prepareStatement(sql);
+			
+			for(int i = 0; i < ingredientArray.length; i++) {
+				stmt.setString(i+1, ingredientArray[i]);
+			}
+	
+	
+//	public void showRecipeList(String[] ingredientArray) {
+//		PreparedStatement stmt;
+//		ResultSet rs;
+//		String ingredient = "";
+//		String sql = "SELECT title FROM recipe ";
+//		try {
+//			for(int i = 0; i < ingredientArray.length; i++) {
+//				if(i > 0) {
+//					sql += "OR ";
+//				}
+//				
+//				sql = " WHERE ingredients LIKE '%'?'%'";
+//			}
+//			
+//			stmt = dbc.getConnection().prepareStatement(sql);
+//			
+//			for(int i = 0; i < ingredientArray.length; i++) {
+//				stmt.setString(i+1, ingredientArray[i]);
+//			}
+			
+			
+			
+//			for(int i = 0; i < ingredientArray.length; i++ ) {
+//				ingredient = ingredientArray[i];
+//		
+//			}
+//			stmt = dbc.getConnection().prepareStatement("SELECT title FROM recipe WHERE recipe.ingredients LIKE '%" + ingredient +"%'");
 			rs = stmt.executeQuery();
 				while (rs.next()) {
 					System.out.println(rs.getString("title"));
@@ -93,7 +132,7 @@ public class DBController {
 	//testmetod för querys
 	public static void main(String[] args) {
 		DBController dbc = new DBController();
-		String[] ingredientArray = {"salt"};
+		String[] ingredientArray = {"pasta, salt"};
 		dbc.showRecipeList(ingredientArray);
 	}
 }
