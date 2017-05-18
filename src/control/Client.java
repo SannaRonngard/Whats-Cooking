@@ -367,23 +367,17 @@ public class Client {
 					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
-
+					
 					try {
 						Pane fxmlDairyPane = FXMLLoader.load(getClass().getResource("/gui/Category_Dairy.fxml"));
 						dairyPane.getChildren().add(fxmlDairyPane);
 						fxmlDairyPane.getChildren().addAll(goBackBtn);
-
-
-					} catch (IOException e) {
-						e.printStackTrace();
-
-					}
+					} catch (IOException e) { e.printStackTrace(); }
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
 						root.getChildren().add(mainWheelPane);
 						transitionToHome(1000);
-
 					});
 				}
 			});
