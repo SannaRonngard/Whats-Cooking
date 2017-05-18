@@ -20,8 +20,8 @@
       </ImageView>
       <Pane layoutX="356.0" layoutY="181.0" prefHeight="200.0" prefWidth="400.0">
          <children>
-            <CheckBox fx:id="checkBox_Milk" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" text="Milk" />
-            <CheckBox fx:id="checkBox_Cream" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" text="Cream" />
+            <CheckBox fx:id="checkBox_Milk" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCheckBoxActionDairy" text="Milk" />
+            <CheckBox fx:id="checkBox_Cream" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleCheckBoxActionDairy" text="Cream" />
             <CheckBox fx:id="checkBox_Sour_Cream" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" text="Sour cream" />
             <CheckBox fx:id="checkBox_Creme_Fraiche" layoutX="11.0" layoutY="101.0" mnemonicParsing="false" text="Creme Fraiché" />
             <CheckBox fx:id="checkBox_Yogurt" layoutX="11.0" layoutY="132.0" mnemonicParsing="false" text="Yogurt" />
