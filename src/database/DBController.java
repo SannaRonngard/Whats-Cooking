@@ -52,6 +52,7 @@ public class DBController {
 
 	/**
 	 * Gets a list of recipes and shows it in user interface.
+	 * @param ingredientArray - list of chosen ingredients
 	 */
 	public void showRecipeList(String[] ingredientArray) {
 		PreparedStatement stmt;
@@ -72,12 +73,12 @@ public class DBController {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Gets recipes from chosen ingredients
 	 * @param ingredientArray - list of chosen ingredients
 	 */
-	public void getRecipeFromIngredients(String[] ingredientArray) {
+	public void getChosenRecipe(String[] ingredientArray) {
 		try { 
 			PreparedStatement stmt = dbc.getConnection().prepareStatement("SELECT recipe.title FROM recipe.ingredients WHERE content LIKE" + ingredientArray);
 			ResultSet rs = stmt.executeQuery();

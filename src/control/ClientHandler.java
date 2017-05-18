@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import database.Recipe;
 import javafx.scene.control.Button;
@@ -36,305 +37,112 @@ import javafx.scene.control.CheckBox;
  */
 
 public class ClientHandler implements Initializable {
-	/**
-	 * Checkboxes - Category Meat
-	 * 
-	 */
-	@FXML
-	private CheckBox checkBox_Chicken;
-	@FXML
-	private CheckBox checkBox_Lamb;
-	@FXML
-	private CheckBox checkBox_Pork;
-	@FXML
-	private CheckBox checkBox_Game;
-	@FXML
-	private CheckBox checkBox_Rabbit;
-	@FXML
-	private CheckBox checkBox_Beef;
-	@FXML
-	private CheckBox checkBox_Duck;
-	@FXML
-	private CheckBox checkBox_Ground_Beef;
-	@FXML
-	private CheckBox checkBox_Fish;
-	@FXML
-	private CheckBox checkBox_Shrimp;
-	@FXML
-	private CheckBox checkBox_Ground_Pork;
-	@FXML
-	private CheckBox checkBox_Egg;
-	/**
-	 * Checkboxes - Category Dairy
-	 * 
-	 */
-	@FXML
-	private CheckBox checkBox_Milk;
-	@FXML
-	private CheckBox checkBox_Cream;
-	@FXML
-	private CheckBox checkBox_Sour_Cream;
-	@FXML
-	private CheckBox checkBox_Creme_Fraiche;
-	@FXML
-	private CheckBox checkBox_Yogurt;
-	@FXML
-	private CheckBox checkBox_Hard_Cheese;
-	@FXML
-	private CheckBox checkBox_Soft_Cheese;
-	@FXML
-	private CheckBox checkBox_Cottage_Cheese;
-	@FXML
-	private CheckBox checkBox_Blue_Cheese;
-	@FXML
-	private CheckBox checkBox_Parmesan;
-	@FXML
-	private CheckBox checkBox_Butter;
-	/**
-	 * Checkboxes - Category Grains
-	 * 
-	 */
-	@FXML
-	private CheckBox checkBox_Wheat;
-	@FXML
-	private CheckBox checkBox_Oats;
-	@FXML
-	private CheckBox checkBox_Barley;
-	@FXML
-	private CheckBox checkBox_CornMeal;
-	@FXML
-	private CheckBox checkBox_Rye;
-	@FXML
-	private CheckBox checkBox_Rice;
-	@FXML
-	private CheckBox checkBox_Bulgur;
-	@FXML
-	private CheckBox checkBox_Couscous;
-	@FXML
-	private CheckBox checkBox_Cracked_Wheat;
-	@FXML
-	private CheckBox checkBox_Bread;
-	@FXML
-	private CheckBox checkBox_Pasta;
-	/**
-	 * Checkboxes - Category Fruit
-	 * 
-	 */
-	@FXML
-	private CheckBox checkBox_Apple;
-	@FXML
-	private CheckBox checkBox_Pear;
-	@FXML
-	private CheckBox checkBox_Orange;
-	@FXML
-	private CheckBox checkBox_Mandarin;
-	@FXML
-	private CheckBox checkBox_Grapefruit;
-	@FXML
-	private CheckBox checkBox_Lemon;
-	@FXML
-	private CheckBox checkBox_Lime;
-	@FXML
-	private CheckBox checkBox_Banana;
-	@FXML
-	private CheckBox checkBox_Strawberry;
-	@FXML
-	private CheckBox checkBox_Blueberry;
-	@FXML
-	private CheckBox checkBox_Blackberry;
-	@FXML
-	private CheckBox checkBox_Cherry;
-	@FXML
-	private CheckBox checkBox_Pineapple;
-	@FXML
-	private CheckBox checkBox_Apricot;
-	@FXML
-	private CheckBox checkBox_Grapes;
-	@FXML
-	private CheckBox checkBox_Mango;
-	@FXML
-	private CheckBox checkBox_Papaya;
-	@FXML
-	private CheckBox checkBox_Kiwi;
-	/**
-	 * Checkboxes - Category Vegetables
-	 * 
-	 */
-	@FXML
-	private CheckBox checkBox_Tomato;
-	@FXML
-	private CheckBox checkBox_Cucumber;
-	@FXML
-	private CheckBox checkBox_Pepper;
-	@FXML
-	private CheckBox checkBox_Zucchini;
-	@FXML
-	private CheckBox checkBox_Aubergine;
-	@FXML
-	private CheckBox checkBox_Pumpkin;
-	@FXML
-	private CheckBox checkBox_Avocado;
-	@FXML
-	private CheckBox checkBox_Onion;
-	@FXML
-	private CheckBox checkBox_Garlic;
-	@FXML
-	private CheckBox checkBox_Spring_Onion;
-	@FXML
-	private CheckBox checkBox_Leek;
-	@FXML
-	private CheckBox checkBox_Celery;
-	@FXML
-	private CheckBox checkBox_Aspargus;
-	@FXML
-	private CheckBox checkBox_Artichoke;
-	@FXML
-	private CheckBox checkBox_Potato;
-	@FXML
-	private CheckBox checkBox_Sweet_Potato;
-	@FXML
-	private CheckBox checkBox_Radish;
-	@FXML
-	private CheckBox checkBox_Parsnip;
-	@FXML
-	private CheckBox checkBox_Carrot;
-	@FXML
-	private CheckBox checkBox_Cabbage;
-	@FXML
-	private CheckBox checkBox_Cauliflower;
-	@FXML
-	private CheckBox checkBox_Lettuce;
-	@FXML
-	private CheckBox checkBox_Spinach;
-	@FXML
-	private CheckBox checkBox_Sweetcorn;
-	@FXML
-	private CheckBox checkBox_Greean_Peas;
-	@FXML
-	private CheckBox checkBox_Chick_Peas;
-	@FXML
-	private CheckBox checkBox_White_Bean;
-	@FXML
-	private CheckBox checkBox_Black_Bean;
-	@FXML
-	private CheckBox checkBox_Coriander;
-	@FXML
-	private CheckBox checkBox_Tarragon;
-	@FXML
-	private CheckBox checkBox_Parsley;
-	@FXML
-	private CheckBox checkBox_Dill;
-	@FXML
-	private CheckBox checkBox_Chili;
-	@FXML
-	private CheckBox checkBox_Lemongrass;
-
-	private Recipe recipe;
+	/* Checkboxes - Category Meat */
+	@FXML
+	private CheckBox checkBox_Chicken, checkBox_Lamb, checkBox_Pork, checkBox_Game, checkBox_Rabbit,
+	checkBox_Beef, checkBox_Duck, checkBox_Ground_Beef, checkBox_Fish, checkBox_Shrimp, checkBox_Ground_Pork, 
+	checkBox_Egg;
+	/* Checkboxes - Category Dairy */
+	@FXML
+	private CheckBox checkBox_Milk, checkBox_Cream, checkBox_Sour_Cream, checkBox_Creme_Fraiche,
+	checkBox_Yogurt, checkBox_Hard_Cheese, checkBox_Soft_Cheese, checkBox_Cottage_Cheese,
+	checkBox_Blue_Cheese, checkBox_Parmesan, checkBox_Butter;
+	/* Checkboxes - Category Grains */
+	@FXML
+	private CheckBox checkBox_Wheat, checkBox_Oats, checkBox_Barley, checkBox_CornMeal,
+	checkBox_Rye, checkBox_Rice, checkBox_Bulgur, checkBox_Couscous, checkBox_Cracked_Wheat,
+	checkBox_Bread, checkBox_Pasta;
+	/* Checkboxes - Category Fruit */
+	@FXML
+	private CheckBox checkBox_Apple, checkBox_Pear, checkBox_Orange, checkBox_Mandarin, checkBox_Grapefruit,
+	checkBox_Lemon, checkBox_Lime, checkBox_Banana, checkBox_Strawberry, checkBox_Blueberry, checkBox_Blackberry,
+	checkBox_Cherry, checkBox_Pineapple, checkBox_Apricot, checkBox_Grapes, checkBox_Mango, checkBox_Papaya, checkBox_Kiwi;
+	/* Checkboxes - Category Vegetables */
+	@FXML
+	private CheckBox checkBox_Tomato, checkBox_Cucumber, checkBox_Pepper, 
+	checkBox_Zucchini, checkBox_Aubergine, checkBox_Pumpkin, checkBox_Avocado, 
+	checkBox_Onion, checkBox_Garlic, checkBox_Spring_Onion, checkBox_Leek, checkBox_Celery,
+	checkBox_Aspargus, checkBox_Artichoke, checkBox_Potato, checkBox_Sweet_Potato, checkBox_Radish,
+	checkBox_Parsnip, checkBox_Carrot, checkBox_Cabbage, checkBox_Cauliflower, checkBox_Lettuce, 
+	checkBox_Spinach, checkBox_Sweetcorn, checkBox_Green_Peas, checkBox_Chick_Peas, checkBox_White_Beans, 
+	checkBox_Black_Beans, checkBox_Coriander, checkBox_Tarragon, checkBox_Parsley, checkBox_Dill, checkBox_Chili,
+	checkBox_Lemongrass;
+	@FXML
+	private Button returnBtn;
+	
+	static List<String> listVeggies = new ArrayList<String>();
+	static List<String> listMeat = new ArrayList<String>();
+	protected static String secteditems = "";
+	private Recipe recipe = new Recipe();
 
 	public ClientHandler() {
 		InitiateMeat();
-		InitiateDairy();
-		InitiateGrains();
-		InitiateFruit();
+//		InitiateDairy();
+//		InitiateGrains();
+//		InitiateFruit();
 		InitiateVegetables();
-		this.recipe = new Recipe();
+//		this.recipe = new Recipe();
 
 	}
 
+//	@FXML
+//	private void handleButtonAction(ActionEvent event) throws IOException {
+//		// Handle Button event.
+//		returnBtn.setOnAction(e -> {
+//			System.out.println("Return button clicked");
+////			System.out.println(itemList);
+//			System.out.println(Arrays.toString(Recipe.getIngredientArray()));
+//		});
+//	}
 	/**
-	 * Method saves checked item to a list or removes it from the list whenever
+	 * Methods that saves checked item to a list or removes it from the list whenever
 	 * box is unchecked.
-	 * 
 	 */
-	
-
 	@FXML
 	private void handleCheckBoxActionMeat(ActionEvent event) throws IOException {
-		// if(event.getSource() == checkBox_Chicken) {
-		boolean checkBox_Chicken_Selected = checkBox_Chicken.isSelected();
-		boolean checkBox_Lamb_Selected = checkBox_Lamb.isSelected();
-		boolean checkBox_Pork_Selected = checkBox_Pork.isSelected();
+					
+				if (checkBox_Chicken.isSelected()==true) {
+					if (!listMeat.contains("Chicken")) {listMeat.add("Chicken");}
+			 	}
+				if (checkBox_Chicken.isSelected()==false) {
+					if (listMeat.contains("Chicken")) {listMeat.remove("Chicken");}
+		 		}
+		 
+			 	if (checkBox_Lamb.isSelected()==true) {
+			 		if (!listMeat.contains("Lamb")) {listMeat.add("Lamb");}
+			 		}
+			 		if (checkBox_Lamb.isSelected()==false) {
+			 			if (listMeat.contains("Lamb")) {listMeat.remove("Lamb");}
+			 		}
+	
+			 		
+			returnBtn.setOnAction(e -> {System.out.println(listMeat);});
 
-		// checkBox_Chicken.setSelected(true);
-
-		if (checkBox_Chicken_Selected == true) {
-
-			recipe.setIngredientToList("Chicken");
-
-		}
-
-		if (checkBox_Chicken_Selected == false) {
-
-			recipe.removeIngredientFromList("Chicken");
-		}
-
-		if (checkBox_Lamb_Selected == true) {
-
-			recipe.setIngredientToList("Lamb");
-		}
-
-		if (checkBox_Lamb_Selected == false) {
-
-			recipe.removeIngredientFromList("Lamb");
-
-		}
-
-		if (checkBox_Pork_Selected == true) {
-
-			recipe.setIngredientToList("Pork");
-		}
-
-		if (checkBox_Pork_Selected == false) {
-
-			recipe.removeIngredientFromList("Pork");
-		}
-
-		System.out.println(Arrays.toString(recipe.getIngredientArray()));
+		
 
 	}
-
-	/**
-	 * Method saves checked item to a list or removes it from the list whenever
-	 * box is unchecked.
-	 * 
-	 */
 
 	@FXML
 	private void handleCheckBoxActionVeg(ActionEvent event) throws IOException {
-		// if(event.getSource() == checkBox_Chicken) {
-		boolean checkBox_Tomato_Selected = checkBox_Tomato.isSelected();
-		boolean checkBox_Potato_Selected = checkBox_Potato.isSelected();
-		boolean checkBox_Cucumber_Selected = checkBox_Cucumber.isSelected();
 
-		if (checkBox_Tomato_Selected == true) {
-
-			recipe.setIngredientToList("Tomato");
-		}
-
-		if (checkBox_Tomato_Selected == false) {
-
-			recipe.removeIngredientFromList("Tomato");
-		}
-
-		if (checkBox_Potato_Selected == true) {
+			if (checkBox_Avocado.isSelected()==true) {
+				if (!listVeggies.contains("avocado")) {listVeggies.add("avocado");}
+			}
+			if (checkBox_Avocado.isSelected()==false) {
+				if (listVeggies.contains("avocado")) {listVeggies.remove("avocado");}
+			}
 			
-			recipe.setIngredientToList("Potato");
-		}
+		
+			returnBtn.setOnAction(e -> {
+				listVeggies.addAll(listMeat);
+				System.out.println(listVeggies);
+				});
 
-		if (checkBox_Potato_Selected == false) {
-			recipe.removeIngredientFromList("Potato");
-		}
-
-		if (checkBox_Cucumber_Selected == true) {
-			recipe.setIngredientToList("Cucumber");
-		}
-
-		if (checkBox_Cucumber_Selected == false) {
-			recipe.removeIngredientFromList("Cucumber");
-		}
-
-		System.out.println(Arrays.toString(recipe.getIngredientArray()));
-
+	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -345,113 +153,109 @@ public class ClientHandler implements Initializable {
 	public void InitiateMeat() {
 		this.checkBox_Chicken = new CheckBox();
 		this.checkBox_Lamb = new CheckBox();
-		this.checkBox_Pork = new CheckBox();
-		this.checkBox_Game = new CheckBox();
-		this.checkBox_Rabbit = new CheckBox();
-		this.checkBox_Beef = new CheckBox();
-		this.checkBox_Duck = new CheckBox();
-		this.checkBox_Ground_Beef = new CheckBox();
-		this.checkBox_Fish = new CheckBox();
-		this.checkBox_Shrimp = new CheckBox();
-		this.checkBox_Ground_Pork = new CheckBox();
-		this.checkBox_Egg = new CheckBox();
+//		this.checkBox_Pork = new CheckBox();
+//		this.checkBox_Game = new CheckBox();
+//		this.checkBox_Rabbit = new CheckBox();
+//		this.checkBox_Beef = new CheckBox();
+//		this.checkBox_Duck = new CheckBox();
+//		this.checkBox_Ground_Beef = new CheckBox();
+//		this.checkBox_Fish = new CheckBox();
+//		this.checkBox_Shrimp = new CheckBox();
+//		this.checkBox_Ground_Pork = new CheckBox();
+//		this.checkBox_Egg = new CheckBox();
 
 	}
-
-	public void InitiateDairy() {
-		this.checkBox_Milk = new CheckBox();
-		this.checkBox_Cream = new CheckBox();
-		this.checkBox_Sour_Cream = new CheckBox();
-		this.checkBox_Creme_Fraiche = new CheckBox();
-		this.checkBox_Yogurt = new CheckBox();
-		this.checkBox_Hard_Cheese = new CheckBox();
-		this.checkBox_Soft_Cheese = new CheckBox();
-		this.checkBox_Cottage_Cheese = new CheckBox();
-		this.checkBox_Blue_Cheese = new CheckBox();
-		this.checkBox_Parmesan = new CheckBox();
-		this.checkBox_Butter = new CheckBox();
-
-	}
-
-	public void InitiateGrains() {
-		this.checkBox_Wheat = new CheckBox();
-		this.checkBox_Oats = new CheckBox();
-		this.checkBox_Barley = new CheckBox();
-		this.checkBox_CornMeal = new CheckBox();
-		this.checkBox_Rye = new CheckBox();
-		this.checkBox_Rice = new CheckBox();
-		this.checkBox_Bulgur = new CheckBox();
-		this.checkBox_Couscous = new CheckBox();
-		this.checkBox_Cracked_Wheat = new CheckBox();
-		this.checkBox_Bread = new CheckBox();
-		this.checkBox_Pasta = new CheckBox();
-
-	}
-
-	public void InitiateFruit() {
-		this.checkBox_Apple = new CheckBox();
-		this.checkBox_Pear = new CheckBox();
-		this.checkBox_Orange = new CheckBox();
-		this.checkBox_Mandarin = new CheckBox();
-		this.checkBox_Grapefruit = new CheckBox();
-		this.checkBox_Lemon = new CheckBox();
-		this.checkBox_Lime = new CheckBox();
-		this.checkBox_Banana = new CheckBox();
-		this.checkBox_Strawberry = new CheckBox();
-		this.checkBox_Blueberry = new CheckBox();
-		this.checkBox_Blackberry = new CheckBox();
-		this.checkBox_Cherry = new CheckBox();
-		this.checkBox_Pineapple = new CheckBox();
-		this.checkBox_Apricot = new CheckBox();
-		this.checkBox_Grapes = new CheckBox();
-		this.checkBox_Mango = new CheckBox();
-		this.checkBox_Papaya = new CheckBox();
-		this.checkBox_Kiwi = new CheckBox();
-
-	}
-
+//
+//	public void InitiateDairy() {
+//		this.checkBox_Milk = new CheckBox();
+//		this.checkBox_Cream = new CheckBox();
+//		this.checkBox_Sour_Cream = new CheckBox();
+//		this.checkBox_Creme_Fraiche = new CheckBox();
+//		this.checkBox_Yogurt = new CheckBox();
+//		this.checkBox_Hard_Cheese = new CheckBox();
+//		this.checkBox_Soft_Cheese = new CheckBox();
+//		this.checkBox_Cottage_Cheese = new CheckBox();
+//		this.checkBox_Blue_Cheese = new CheckBox();
+//		this.checkBox_Parmesan = new CheckBox();
+//		this.checkBox_Butter = new CheckBox();
+//
+//	}
+//
+//	public void InitiateGrains() {
+//		this.checkBox_Wheat = new CheckBox();
+//		this.checkBox_Oats = new CheckBox();
+//		this.checkBox_Barley = new CheckBox();
+//		this.checkBox_CornMeal = new CheckBox();
+//		this.checkBox_Rye = new CheckBox();
+//		this.checkBox_Rice = new CheckBox();
+//		this.checkBox_Bulgur = new CheckBox();
+//		this.checkBox_Couscous = new CheckBox();
+//		this.checkBox_Cracked_Wheat = new CheckBox();
+//		this.checkBox_Bread = new CheckBox();
+//		this.checkBox_Pasta = new CheckBox();
+//
+//	}
+//
+//	public void InitiateFruit() {
+//		this.checkBox_Apple = new CheckBox();
+//		this.checkBox_Pear = new CheckBox();
+//		this.checkBox_Orange = new CheckBox();
+//		this.checkBox_Mandarin = new CheckBox();
+//		this.checkBox_Grapefruit = new CheckBox();
+//		this.checkBox_Lemon = new CheckBox();
+//		this.checkBox_Lime = new CheckBox();
+//		this.checkBox_Banana = new CheckBox();
+//		this.checkBox_Strawberry = new CheckBox();
+//		this.checkBox_Blueberry = new CheckBox();
+//		this.checkBox_Blackberry = new CheckBox();
+//		this.checkBox_Cherry = new CheckBox();
+//		this.checkBox_Pineapple = new CheckBox();
+//		this.checkBox_Apricot = new CheckBox();
+//		this.checkBox_Grapes = new CheckBox();
+//		this.checkBox_Mango = new CheckBox();
+//		this.checkBox_Papaya = new CheckBox();
+//		this.checkBox_Kiwi = new CheckBox();
+//
+//	}
+//
 	public void InitiateVegetables() {
-		// this.checkBox_Tomato= new CheckBox();
-		this.checkBox_Cucumber = new CheckBox();
-		this.checkBox_Pepper = new CheckBox();
-		this.checkBox_Zucchini = new CheckBox();
-		this.checkBox_Aubergine = new CheckBox();
-		this.checkBox_Pumpkin = new CheckBox();
+//		this.checkBox_Tomato = new CheckBox();
+//		this.checkBox_Cucumber = new CheckBox();
+//		this.checkBox_Pepper = new CheckBox();
+//		this.checkBox_Zucchini = new CheckBox();
+//		this.checkBox_Aubergine = new CheckBox();
+//		this.checkBox_Pumpkin = new CheckBox();
 		this.checkBox_Avocado = new CheckBox();
-		this.checkBox_Onion = new CheckBox();
-		this.checkBox_Garlic = new CheckBox();
-		this.checkBox_Spring_Onion = new CheckBox();
-		this.checkBox_Leek = new CheckBox();
-		this.checkBox_Celery = new CheckBox();
-		this.checkBox_Aspargus = new CheckBox();
-		this.checkBox_Artichoke = new CheckBox();
-		this.checkBox_Potato = new CheckBox();
-		this.checkBox_Sweet_Potato = new CheckBox();
-		this.checkBox_Radish = new CheckBox();
-		this.checkBox_Parsnip = new CheckBox();
-		this.checkBox_Carrot = new CheckBox();
-		this.checkBox_Cabbage = new CheckBox();
-		this.checkBox_Cauliflower = new CheckBox();
-		this.checkBox_Lettuce = new CheckBox();
-		this.checkBox_Spinach = new CheckBox();
-		this.checkBox_Sweetcorn = new CheckBox();
-		this.checkBox_Greean_Peas = new CheckBox();
-		this.checkBox_Chick_Peas = new CheckBox();
-		this.checkBox_White_Bean = new CheckBox();
-		this.checkBox_Black_Bean = new CheckBox();
-		this.checkBox_Coriander = new CheckBox();
-		this.checkBox_Tarragon = new CheckBox();
-		this.checkBox_Parsley = new CheckBox();
-		this.checkBox_Dill = new CheckBox();
-		this.checkBox_Chili = new CheckBox();
-		this.checkBox_Lemongrass = new CheckBox();
+//		this.checkBox_Onion = new CheckBox();
+//		this.checkBox_Garlic = new CheckBox();
+//		this.checkBox_Spring_Onion = new CheckBox();
+//		this.checkBox_Leek = new CheckBox();
+//		this.checkBox_Celery = new CheckBox();
+//		this.checkBox_Aspargus = new CheckBox();
+//		this.checkBox_Artichoke = new CheckBox();
+//		this.checkBox_Potato = new CheckBox();
+//		this.checkBox_Sweet_Potato = new CheckBox();
+//		this.checkBox_Radish = new CheckBox();
+//		this.checkBox_Parsnip = new CheckBox();
+//		this.checkBox_Carrot = new CheckBox();
+//		this.checkBox_Cabbage = new CheckBox();
+//		this.checkBox_Cauliflower = new CheckBox();
+//		this.checkBox_Lettuce = new CheckBox();
+//		this.checkBox_Spinach = new CheckBox();
+//		this.checkBox_Sweetcorn = new CheckBox();
+//		this.checkBox_Green_Peas = new CheckBox();
+//		this.checkBox_Chick_Peas = new CheckBox();
+//		this.checkBox_White_Beans = new CheckBox();
+//		this.checkBox_Black_Beans = new CheckBox();
+//		this.checkBox_Coriander = new CheckBox();
+//		this.checkBox_Tarragon = new CheckBox();
+//		this.checkBox_Parsley = new CheckBox();
+//		this.checkBox_Dill = new CheckBox();
+//		this.checkBox_Chili = new CheckBox();
+//		this.checkBox_Lemongrass = new CheckBox();
 
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
-	}
 
 }

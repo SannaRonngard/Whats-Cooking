@@ -15,7 +15,7 @@ import javafx.scene.image.Image;
  */
 public class Recipe implements Serializable {
 	private ArrayList<String> recipeTitleList = new ArrayList<String>();
-	private ArrayList<String> ingredientList = new ArrayList<String>();
+	private static ArrayList<String> ingredientList = new ArrayList<String>();
 	private String title;
 	private String prepTime;
 	private String content;
@@ -86,19 +86,17 @@ public class Recipe implements Serializable {
 	}
 
 	// Setting ingredients to a recipe
-	public void setIngredientToList(String ingredient) {
-		if (!ingredientList.contains(ingredient)) {
+	public static void setIngredientToList(String ingredient) {
 		ingredientList.add(ingredient);
 	}
-	}
-	public void removeIngredientFromList(String ingredient) {
+	public static void removeIngredientFromList(String ingredient) {
 		if (ingredientList.contains(ingredient)) {
 			ingredientList.remove(ingredient);
 		}
 		
 	}
 	// Getting all ingredients assigned to the recipe. Returns av array of the ingredients
-	public String[] getIngredientArray() {
+	public static String[] getIngredientArray() {
 		String[] ingredientArray = new String[ingredientList.size()];
 		ingredientList.toArray(ingredientArray);
 		return ingredientArray;
