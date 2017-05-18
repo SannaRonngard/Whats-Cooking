@@ -518,7 +518,105 @@ public class ClientHandler implements Initializable {
 				listVeggies.remove("Sweetcorn");
 			}
 		}
+		if (checkBox_Green_Peas.isSelected() == true) {
+			if (!listVeggies.contains("Green Peas")) {
+				listVeggies.add("Green Peas");
+			}
+		}
 
+		if (checkBox_Green_Peas.isSelected() == false) {
+			if (listVeggies.contains("Green Peas")) {
+				listVeggies.remove("Green Peas");
+			}
+		}
+		if (checkBox_Chick_Peas.isSelected() == true) {
+			if (!listVeggies.contains("Chick Peas")) {
+				listVeggies.add("Chick Peas");
+			}
+		}
+
+		if (checkBox_Chick_Peas.isSelected() == false) {
+			if (listVeggies.contains("Chick Peas")) {
+				listVeggies.remove("Chick Peas");
+			}
+		}
+		if (checkBox_White_Beans.isSelected() == true) {
+			if (!listVeggies.contains("White Beans")) {
+				listVeggies.add("White Beans");
+			}
+		}
+
+		if (checkBox_White_Beans.isSelected() == false) {
+			if (listVeggies.contains("White Beans")) {
+				listVeggies.remove("White Beans");
+			}
+		}
+		if (checkBox_Black_Beans.isSelected() == true) {
+			if (!listVeggies.contains("Black Beans")) {
+				listVeggies.add("Black Beans");
+			}
+		}
+
+		if (checkBox_Black_Beans.isSelected() == false) {
+			if (listVeggies.contains("Black Beans")) {
+				listVeggies.remove("Black Beans");
+			}
+		}
+		if (checkBox_Coriander.isSelected() == true) {
+			if (!listVeggies.contains("Coriander")) {
+				listVeggies.add("Coriander");
+			}
+		}
+
+		if (checkBox_Coriander.isSelected() == false) {
+			if (listVeggies.contains("Coriander")) {
+				listVeggies.remove("Coriander");
+			}
+		}
+		if (checkBox_Tarragon.isSelected() == true) {
+			if (!listVeggies.contains("Tarragon")) {
+				listVeggies.add("Tarragon");
+			}
+		}
+
+		if (checkBox_Tarragon.isSelected() == false) {
+			if (listVeggies.contains("Tarragon")) {
+				listVeggies.remove("Tarragon");
+			}
+		}
+		if (checkBox_Dill.isSelected() == true) {
+			if (!listVeggies.contains("Dill")) {
+				listVeggies.add("Dill");
+			}
+		}
+
+		if (checkBox_Dill.isSelected() == false) {
+			if (listVeggies.contains("Dill")) {
+				listVeggies.remove("Dill");
+			}
+		}
+		if (checkBox_Chili.isSelected() == true) {
+			if (!listVeggies.contains("Chili")) {
+				listVeggies.add("Chili");
+			}
+		}
+
+		if (checkBox_Chili.isSelected() == false) {
+			if (listVeggies.contains("Chili")) {
+				listVeggies.remove("Chili");
+			}
+		}
+		if (checkBox_Lemongrass.isSelected() == true) {
+			if (!listVeggies.contains("Lemongrass")) {
+				listVeggies.add("Lemongrass");
+			}
+		}
+
+		if (checkBox_Lemongrass.isSelected() == false) {
+			if (listVeggies.contains("Lemongrass")) {
+				listVeggies.remove("Lemongrass");
+			}
+		}
 		returnBtn.setOnAction(e -> {
 			bigList.addAll(listVeggies);
 			System.out.println(bigList);
@@ -738,6 +836,105 @@ public class ClientHandler implements Initializable {
 				listGrains.remove("Oats");
 			}
 		}
+		if (checkBox_Barley.isSelected() == true) {
+			if (!listVeggies.contains("Barley")) {
+				listVeggies.add("Barley");
+			}
+		}
+
+		if (checkBox_Barley.isSelected() == false) {
+			if (listVeggies.contains("Barley")) {
+				listVeggies.remove("Barley");
+			}
+		}
+		if (checkBox_CornMeal.isSelected() == true) {
+			if (!listVeggies.contains("Cornmeal")) {
+				listVeggies.add("Cornmeal");
+			}
+		}
+
+		if (checkBox_CornMeal.isSelected() == false) {
+			if (listVeggies.contains("Cornmeal")) {
+				listVeggies.remove("Cornmeal");
+			}
+		}
+		if (checkBox_Rye.isSelected() == true) {
+			if (!listVeggies.contains("Rye")) {
+				listVeggies.add("Rye");
+			}
+		}
+
+		if (checkBox_Rye.isSelected() == false) {
+			if (listVeggies.contains("Rye")) {
+				listVeggies.remove("Rye");
+			}
+		}
+		if (checkBox_Rice.isSelected() == true) {
+			if (!listVeggies.contains("Rice")) {
+				listVeggies.add("Rice");
+			}
+		}
+
+		if (checkBox_Rice.isSelected() == false) {
+			if (listVeggies.contains("Rice")) {
+				listVeggies.remove("Rice");
+			}
+		}
+		if (checkBox_Bulgur.isSelected() == true) {
+			if (!listVeggies.contains("Bulgur")) {
+				listVeggies.add("Bulgur");
+			}
+		}
+
+		if (checkBox_Bulgur.isSelected() == false) {
+			if (listVeggies.contains("Bulgur")) {
+				listVeggies.remove("Bulgur");
+			}
+		}
+		if (checkBox_Couscous.isSelected() == true) {
+			if (!listVeggies.contains("Couscous")) {
+				listVeggies.add("Couscous");
+			}
+		}
+
+		if (checkBox_Couscous.isSelected() == false) {
+			if (listVeggies.contains("Couscous")) {
+				listVeggies.remove("Couscous");
+			}
+		}
+		if (checkBox_Cracked_Wheat.isSelected() == true) {
+			if (!listVeggies.contains("Cracked Wheat")) {
+				listVeggies.add("Cracked Wheat");
+			}
+		}
+
+		if (checkBox_Cracked_Wheat.isSelected() == false) {
+			if (listVeggies.contains("Cracked Wheat")) {
+				listVeggies.remove("Craked Wheat");
+			}
+		}
+		if (checkBox_Bread.isSelected() == true) {
+			if (!listVeggies.contains("Bread")) {
+				listVeggies.add("Bread");
+			}
+		}
+
+		if (checkBox_Bread.isSelected() == false) {
+			if (listVeggies.contains("Bread")) {
+				listVeggies.remove("Bread");
+			}
+		}
+		if (checkBox_Pasta.isSelected() == true) {
+			if (!listVeggies.contains("Pasta")) {
+				listVeggies.add("Pasta");
+			}
+		}
+
+		if (checkBox_Pasta.isSelected() == false) {
+			if (listVeggies.contains("Pasta")) {
+				listVeggies.remove("Pasta");
+			}
+		}
 		returnBtn.setOnAction(e -> {
 			bigList.addAll(listGrains);
 			System.out.println(bigList);
@@ -767,6 +964,105 @@ public class ClientHandler implements Initializable {
 				listDairy.remove("Cream");
 			}
 		}
+		if (checkBox_Sour_Cream.isSelected() == true) {
+			if (!listVeggies.contains("Sour Cream")) {
+				listVeggies.add("Sour Cream");
+			}
+		}
+
+		if (checkBox_Sour_Cream.isSelected() == false) {
+			if (listVeggies.contains("Sour Cream")) {
+				listVeggies.remove("Sour Cream");
+			}
+		}
+		if (checkBox_Creme_Fraiche.isSelected() == true) {
+			if (!listVeggies.contains("Creme Fraiche")) {
+				listVeggies.add("Creme Fraiche");
+			}
+		}
+
+		if (checkBox_Creme_Fraiche.isSelected() == false) {
+			if (listVeggies.contains("Creme Fraiche")) {
+				listVeggies.remove("Creme Fraiche");
+			}
+		}
+		if (checkBox_Yogurt.isSelected() == true) {
+			if (!listVeggies.contains("Yogurt")) {
+				listVeggies.add("Yogurt");
+			}
+		}
+
+		if (checkBox_Yogurt.isSelected() == false) {
+			if (listVeggies.contains("Yogurt")) {
+				listVeggies.remove("Yogurt");
+			}
+		}
+		if (checkBox_Hard_Cheese.isSelected() == true) {
+			if (!listVeggies.contains("Hard Cheese")) {
+				listVeggies.add("Hard Cheese");
+			}
+		}
+
+		if (checkBox_Hard_Cheese.isSelected() == false) {
+			if (listVeggies.contains("Hard Cheese")) {
+				listVeggies.remove("Hard Cheese");
+			}
+		}
+		if (checkBox_Soft_Cheese.isSelected() == true) {
+			if (!listVeggies.contains("Soft Cheese")) {
+				listVeggies.add("Soft Cheese");
+			}
+		}
+
+		if (checkBox_Soft_Cheese.isSelected() == false) {
+			if (listVeggies.contains("Soft Cheese")) {
+				listVeggies.remove("Soft Cheese");
+			}
+		}
+		if (checkBox_Cottage_Cheese.isSelected() == true) {
+			if (!listVeggies.contains("Cottage Cheese")) {
+				listVeggies.add("Cottage Cheese");
+			}
+		}
+
+		if (checkBox_Cottage_Cheese.isSelected() == false) {
+			if (listVeggies.contains("Cottage Cheese")) {
+				listVeggies.remove("Cottage Cheese");
+			}
+		}
+		if (checkBox_Blue_Cheese.isSelected() == true) {
+			if (!listVeggies.contains("Blue Cheese")) {
+				listVeggies.add("Blue Cheese");
+			}
+		}
+
+		if (checkBox_Blue_Cheese.isSelected() == false) {
+			if (listVeggies.contains("Blue Cheese")) {
+				listVeggies.remove("Blue Cheese");
+			}
+		}
+		if (checkBox_Parmesan.isSelected() == true) {
+			if (!listVeggies.contains("Parmesan")) {
+				listVeggies.add("Parmesan");
+			}
+		}
+
+		if (checkBox_Parmesan.isSelected() == false) {
+			if (listVeggies.contains("Parmesan")) {
+				listVeggies.remove("Parmesan");
+			}
+		}
+		if (checkBox_Butter.isSelected() == true) {
+			if (!listVeggies.contains("Butter")) {
+				listVeggies.add("Butter");
+			}
+		}
+
+		if (checkBox_Butter.isSelected() == false) {
+			if (listVeggies.contains("Butter")) {
+				listVeggies.remove("Butter");
+			}
+		}
 		returnBtn.setOnAction(e -> {
 			bigList.addAll(listDairy);
 			System.out.println(bigList);
@@ -776,7 +1072,6 @@ public class ClientHandler implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 
 	}
 
