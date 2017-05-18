@@ -241,6 +241,188 @@ public class ClientHandler implements Initializable {
 				listVeggies.remove("avocado");
 			}
 		}
+		if (checkBox_Tomato.isSelected() == true) {
+			if (!listVeggies.contains("Tomato")) {
+				listVeggies.add("Tomato");
+			}
+		}
+		if (checkBox_Tomato.isSelected() == false) {
+			if (listVeggies.contains("Tomato")) {
+				listVeggies.remove("Tomato");
+			}
+		}
+		if (checkBox_Cucumber.isSelected() == true) {
+			if (!listVeggies.contains("Cucumber")) {
+				listVeggies.add("Cucumber");
+			}
+		}
+		if (checkBox_Cucumber.isSelected() == false) {
+			if (listVeggies.contains("Cucumber")) {
+				listVeggies.remove("Cucumber");
+			}
+		}
+		if (checkBox_Pepper.isSelected() == true) {
+			if (!listVeggies.contains("Pepper")) {
+				listVeggies.add("Pepper");
+			}
+		}
+		if (checkBox_Pepper.isSelected() == false) {
+			if (listVeggies.contains("Pepper")) {
+				listVeggies.remove("Pepper");
+			}
+		}
+		if (checkBox_Zucchini.isSelected() == true) {
+			if (!listVeggies.contains("Zucchini")) {
+				listVeggies.add("Zucchini");
+			}
+		}
+		if (checkBox_Zucchini.isSelected() == false) {
+			if (listVeggies.contains("Zucchini")) {
+				listVeggies.remove("Zucchini");
+			}
+		}
+		if (checkBox_Aubergine.isSelected() == true) {
+			if (!listVeggies.contains("Aubergine")) {
+				listVeggies.add("Aubergine");
+			}
+		}
+		if (checkBox_Aubergine.isSelected() == false) {
+			if (listVeggies.contains("Aubergine")) {
+				listVeggies.remove("Aubergine");
+			}
+		}
+		if (checkBox_Pumpkin.isSelected() == true) {
+			if (!listVeggies.contains("Pumpkin")) {
+				listVeggies.add("Pumpkin");
+			}
+		}
+		if (checkBox_Pumpkin.isSelected() == false) {
+			if (listVeggies.contains("Pumpkin")) {
+				listVeggies.remove("Pumpkin");
+			}
+		}
+		if (checkBox_Onion.isSelected() == true) {
+			if (!listVeggies.contains("Onion")) {
+				listVeggies.add("Onion");
+			}
+		}
+		if (checkBox_Onion.isSelected() == false) {
+			if (listVeggies.contains("Onion")) {
+				listVeggies.remove("Onion");
+			}
+		}
+		if (checkBox_Garlic.isSelected() == true) {
+			if (!listVeggies.contains("Garlic")) {
+				listVeggies.add("Garlic");
+			}
+		}
+		if (checkBox_Garlic.isSelected() == false) {
+			if (listVeggies.contains("Garlic")) {
+				listVeggies.remove("Garlic");
+			}
+		}
+		if (checkBox_Spring_Onion.isSelected() == true) {
+			if (!listVeggies.contains("Spring_Onion")) {
+				listVeggies.add("Spring_Onion");
+			}
+		}
+		if (checkBox_Spring_Onion.isSelected() == false) {
+			if (listVeggies.contains("Spring_Onion")) {
+				listVeggies.remove("Spring_Onion");
+			}
+		}
+		if (checkBox_Leek.isSelected() == true) {
+			if (!listVeggies.contains("Leek")) {
+				listVeggies.add("Leek");
+			}
+		}
+		if (checkBox_Leek.isSelected() == false) {
+			if (listVeggies.contains("Leek")) {
+				listVeggies.remove("Leek");
+			}
+		}
+		if (checkBox_Celery.isSelected() == true) {
+			if (!listVeggies.contains("Celery")) {
+				listVeggies.add("Celery");
+			}
+		}
+		if (checkBox_Celery.isSelected() == false) {
+			if (listVeggies.contains("Celery")) {
+				listVeggies.remove("Celery");
+			}
+		}
+		if (checkBox_Aspargus.isSelected() == true) {
+			if (!listVeggies.contains("Aspargus")) {
+				listVeggies.add("Aspargus");
+			}
+		}
+		if (checkBox_Aspargus.isSelected() == false) {
+			if (listVeggies.contains("Aspargus")) {
+				listVeggies.remove("Aspargus");
+			}
+		}
+		if (checkBox_Artichoke.isSelected() == true) {
+			if (!listVeggies.contains("Artichoke")) {
+				listVeggies.add("Artichoke");
+			}
+		}
+		if (checkBox_Artichoke.isSelected() == false) {
+			if (listVeggies.contains("Artichoke")) {
+				listVeggies.remove("Artichoke");
+			}
+		}
+		if (checkBox_Potato.isSelected() == true) {
+			if (!listVeggies.contains("Potato")) {
+				listVeggies.add("Potato");
+			}
+		}
+		if (checkBox_Potato.isSelected() == false) {
+			if (listVeggies.contains("Potato")) {
+				listVeggies.remove("Potato");
+			}
+		}
+		if (checkBox_Sweet_Potato.isSelected() == true) {
+			if (!listVeggies.contains("Sweet_Potato")) {
+				listVeggies.add("Sweet_Potato");
+			}
+		}
+		if (checkBox_Sweet_Potato.isSelected() == false) {
+			if (listVeggies.contains("Sweet_Potato")) {
+				listVeggies.remove("Sweet_Potato");
+			}
+		}
+		if (checkBox_Radish.isSelected() == true) {
+			if (!listVeggies.contains("Radish")) {
+				listVeggies.add("Radish");
+			}
+		}
+		if (checkBox_Radish.isSelected() == false) {
+			if (listVeggies.contains("Radish")) {
+				listVeggies.remove("Radish");
+			}
+		}
+		if (checkBox_Parsnip.isSelected() == true) {
+			if (!listVeggies.contains("Parsnip")) {
+				listVeggies.add("Parsnip");
+			}
+		}
+		if (checkBox_Parsnip.isSelected() == false) {
+			if (listVeggies.contains("Parsnip")) {
+				listVeggies.remove("Parsnip");
+			}
+		}
+		if (checkBox_Parsnip.isSelected() == true) {
+			if (!listVeggies.contains("Parsnip")) {
+				listVeggies.add("Parsnip");
+			}
+		}
+		if (checkBox_Parsnip.isSelected() == false) {
+			if (listVeggies.contains("Parsnip")) {
+				listVeggies.remove("Parsnip");
+			}
+		}
+
+
 
 		returnBtn.setOnAction(e -> {
 			listVeggies.addAll(listMeat);
