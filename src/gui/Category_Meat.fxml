@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
@@ -7,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ClientHandler">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ClientHandler">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,15 +29,15 @@
             <CheckBox fx:id="checkBox_Chicken" layoutX="203.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Chicken" />
             <CheckBox fx:id="checkBox_Lamb" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Lamb" />
             <CheckBox fx:id="checkBox_Pork" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Pork" />
-            <CheckBox fx:id="checkBox_Game" layoutX="115.0" layoutY="11.0" mnemonicParsing="false" text="Game" />
-            <CheckBox fx:id="checkBox_Rabbit" layoutX="116.0" layoutY="41.0" mnemonicParsing="false" text="Rabbit" />
-            <CheckBox fx:id="checkBox_Beef" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" text="Beef" />
-            <CheckBox fx:id="checkBox_Duck" layoutX="203.0" layoutY="40.0" mnemonicParsing="false" text="Duck" />
-            <CheckBox fx:id="checkBox_Ground_Beef" layoutX="10.0" layoutY="99.0" mnemonicParsing="false" text="Ground beef" />
-            <CheckBox fx:id="checkBox_Fish" layoutX="298.0" layoutY="11.0" mnemonicParsing="false" text="Fish" />
-            <CheckBox fx:id="checkBox_Shrimp" layoutX="299.0" layoutY="41.0" mnemonicParsing="false" text="Shrimp" />
-            <CheckBox fx:id="checkBox_Ground_Pork" layoutX="11.0" layoutY="128.0" mnemonicParsing="false" text="Ground pork" />
-            <CheckBox fx:id="checkBox_Egg" layoutX="204.0" layoutY="68.0" mnemonicParsing="false" text="Egg" />
+            <CheckBox fx:id="checkBox_Game" layoutX="115.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Game" />
+            <CheckBox fx:id="checkBox_Rabbit" layoutX="116.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Rabbit" />
+            <CheckBox fx:id="checkBox_Beef" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Beef" />
+            <CheckBox fx:id="checkBox_Duck" layoutX="203.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Duck" />
+            <CheckBox fx:id="checkBox_Ground_Beef" layoutX="10.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Ground beef" />
+            <CheckBox fx:id="checkBox_Fish" layoutX="298.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Fish" />
+            <CheckBox fx:id="checkBox_Shrimp" layoutX="299.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Shrimp" />
+            <CheckBox fx:id="checkBox_Ground_Pork" layoutX="11.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Ground pork" />
+            <CheckBox fx:id="checkBox_Egg" layoutX="204.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Egg" />
          </children>
       </Pane>
       <Button fx:id="returnBtn" layoutX="396.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleCheckBoxActionMeat" text="Return">
