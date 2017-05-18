@@ -78,8 +78,8 @@ public class ClientHandler implements Initializable {
 
 	public ClientHandler() {
 		InitiateMeat();
-		 InitiateDairy();
-		 InitiateGrains();
+		InitiateDairy();
+		InitiateGrains();
 		InitiateFruit();
 		InitiateVegetables();
 		// this.recipe = new Recipe();
@@ -225,15 +225,13 @@ public class ClientHandler implements Initializable {
 			}
 		}
 
-			returnBtn.setOnAction(e -> {
-				listMeat.addAll(listVeggies);
-				listMeat.addAll(listFruit);
-				listMeat.addAll(listGrains);
-				System.out.println(listMeat);
-			});
-		}
-
-	
+		returnBtn.setOnAction(e -> {
+			listMeat.addAll(listVeggies);
+			listMeat.addAll(listFruit);
+			listMeat.addAll(listGrains);
+			System.out.println(listMeat);
+		});
+	}
 
 	@FXML
 	private void handleCheckBoxActionVeg(ActionEvent event) throws IOException {
@@ -418,14 +416,80 @@ public class ClientHandler implements Initializable {
 				listVeggies.remove("Parsnip");
 			}
 		}
-		if (checkBox_Parsnip.isSelected() == true) {
-			if (!listVeggies.contains("Parsnip")) {
-				listVeggies.add("Parsnip");
+		if (checkBox_Carrot.isSelected() == true) {
+			if (!listVeggies.contains("Carrot")) {
+				listVeggies.add("Carrot");
 			}
 		}
-		if (checkBox_Parsnip.isSelected() == false) {
-			if (listVeggies.contains("Parsnip")) {
-				listVeggies.remove("Parsnip");
+		if (checkBox_Carrot.isSelected() == false) {
+			if (listVeggies.contains("Carrot")) {
+				listVeggies.remove("Carrot");
+			}
+		}
+		if (checkBox_Cabbage.isSelected() == true) {
+			if (!listVeggies.contains("Cabbage")) {
+				listVeggies.add("Cabbage");
+			}
+		}
+
+		if (checkBox_Cabbage.isSelected() == false) {
+			if (listVeggies.contains("Cabbage")) {
+				listVeggies.remove("Cabbage");
+			}
+		}
+		if (checkBox_Cabbage.isSelected() == true) {
+			if (!listVeggies.contains("Cabbage")) {
+				listVeggies.add("Cabbage");
+			}
+		}
+
+		if (checkBox_Cabbage.isSelected() == false) {
+			if (listVeggies.contains("Cabbage")) {
+				listVeggies.remove("Cabbage");
+			}
+		}
+		if (checkBox_Cauliflower.isSelected() == true) {
+			if (!listVeggies.contains("Cauliflower")) {
+				listVeggies.add("Cauliflower");
+			}
+		}
+
+		if (checkBox_Cauliflower.isSelected() == false) {
+			if (listVeggies.contains("Cauliflower")) {
+				listVeggies.remove("Cauliflower");
+			}
+		}
+		if (checkBox_Lettuce.isSelected() == true) {
+			if (!listVeggies.contains("Lettuce")) {
+				listVeggies.add("Lettuce");
+			}
+		}
+
+		if (checkBox_Lettuce.isSelected() == false) {
+			if (listVeggies.contains("Lettuce")) {
+				listVeggies.remove("Lettuce");
+			}
+		}
+		if (checkBox_Spinach.isSelected() == true) {
+			if (!listVeggies.contains("Spinach")) {
+				listVeggies.add("Spinach");
+			}
+		}
+
+		if (checkBox_Spinach.isSelected() == false) {
+			if (listVeggies.contains("Spinach")) {
+				listVeggies.remove("Spinach");
+			}
+		}
+		if (checkBox_Sweetcorn.isSelected() == true) {
+			if (!listVeggies.contains("Sweetcorn")) {
+				listVeggies.add("Sweetcorn");
+			}
+		}
+
+		if (checkBox_Sweetcorn.isSelected() == false) {
+			if (listVeggies.contains("Sweetcorn")) {
+				listVeggies.remove("Sweetcorn");
 			}
 		}
 
@@ -628,11 +692,10 @@ public class ClientHandler implements Initializable {
 			System.out.println(listFruit);
 		});
 	}
-	
-	
+
 	@FXML
 	private void handleCheckBoxActionGrains(ActionEvent event) throws IOException {
-		
+
 		if (checkBox_Wheat.isSelected() == true) {
 			if (!listGrains.contains("Wheat")) {
 				listGrains.add("Wheat");
@@ -659,8 +722,9 @@ public class ClientHandler implements Initializable {
 			listGrains.addAll(listFruit);
 			System.out.println(listGrains);
 		});
-		
-		}
+
+	}
+
 	@FXML
 	private void handleCheckBoxActionDairy(ActionEvent event) throws IOException {
 		if (checkBox_Milk.isSelected() == true) {
@@ -690,10 +754,8 @@ public class ClientHandler implements Initializable {
 			listDairy.addAll(listGrains);
 			System.out.println(listDairy);
 		});
-		
+
 	}
-
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -722,37 +784,36 @@ public class ClientHandler implements Initializable {
 
 	}
 
-	
-	 public void InitiateDairy() {
-	 this.checkBox_Milk = new CheckBox();
-	 this.checkBox_Cream = new CheckBox();
-	 this.checkBox_Sour_Cream = new CheckBox();
-	 this.checkBox_Creme_Fraiche = new CheckBox();
-	 this.checkBox_Yogurt = new CheckBox();
-	 this.checkBox_Hard_Cheese = new CheckBox();
-	 this.checkBox_Soft_Cheese = new CheckBox();
-	 this.checkBox_Cottage_Cheese = new CheckBox();
-	 this.checkBox_Blue_Cheese = new CheckBox();
-	 this.checkBox_Parmesan = new CheckBox();
-	 this.checkBox_Butter = new CheckBox();
-	
-	 }
-	
-	 public void InitiateGrains() {
-	 this.checkBox_Wheat = new CheckBox();
-	 this.checkBox_Oats = new CheckBox();
-	 this.checkBox_Barley = new CheckBox();
-	 this.checkBox_CornMeal = new CheckBox();
-	 this.checkBox_Rye = new CheckBox();
-	 this.checkBox_Rice = new CheckBox();
-	 this.checkBox_Bulgur = new CheckBox();
-	 this.checkBox_Couscous = new CheckBox();
-	 this.checkBox_Cracked_Wheat = new CheckBox();
-	 this.checkBox_Bread = new CheckBox();
-	 this.checkBox_Pasta = new CheckBox();
-	
-	 }
-	
+	public void InitiateDairy() {
+		this.checkBox_Milk = new CheckBox();
+		this.checkBox_Cream = new CheckBox();
+		this.checkBox_Sour_Cream = new CheckBox();
+		this.checkBox_Creme_Fraiche = new CheckBox();
+		this.checkBox_Yogurt = new CheckBox();
+		this.checkBox_Hard_Cheese = new CheckBox();
+		this.checkBox_Soft_Cheese = new CheckBox();
+		this.checkBox_Cottage_Cheese = new CheckBox();
+		this.checkBox_Blue_Cheese = new CheckBox();
+		this.checkBox_Parmesan = new CheckBox();
+		this.checkBox_Butter = new CheckBox();
+
+	}
+
+	public void InitiateGrains() {
+		this.checkBox_Wheat = new CheckBox();
+		this.checkBox_Oats = new CheckBox();
+		this.checkBox_Barley = new CheckBox();
+		this.checkBox_CornMeal = new CheckBox();
+		this.checkBox_Rye = new CheckBox();
+		this.checkBox_Rice = new CheckBox();
+		this.checkBox_Bulgur = new CheckBox();
+		this.checkBox_Couscous = new CheckBox();
+		this.checkBox_Cracked_Wheat = new CheckBox();
+		this.checkBox_Bread = new CheckBox();
+		this.checkBox_Pasta = new CheckBox();
+
+	}
+
 	public void InitiateFruit() {
 		this.checkBox_Apple = new CheckBox();
 		this.checkBox_Pear = new CheckBox();
