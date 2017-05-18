@@ -67,13 +67,13 @@ public class ClientHandler implements Initializable {
 			checkBox_Dill, checkBox_Chili, checkBox_Lemongrass;
 	@FXML
 	private Button returnBtn;
-
+	static List<String> bigList = new ArrayList<String>();
 	static List<String> listVeggies = new ArrayList<String>();
 	static List<String> listMeat = new ArrayList<String>();
 	static List<String> listDairy = new ArrayList<String>();
 	static List<String> listFruit = new ArrayList<String>();
 	static List<String> listGrains = new ArrayList<String>();
-	protected static String secteditems = "";
+	protected static String selectedIngredients = "";
 	private Recipe recipe = new Recipe();
 
 	public ClientHandler() {
@@ -82,19 +82,40 @@ public class ClientHandler implements Initializable {
 		InitiateGrains();
 		InitiateFruit();
 		InitiateVegetables();
-		// this.recipe = new Recipe();
-
 	}
-
-	// @FXML
-	// private void handleButtonAction(ActionEvent event) throws IOException {
-	// // Handle Button event.
-	// returnBtn.setOnAction(e -> {
-	// System.out.println("Return button clicked");
-	//// System.out.println(itemList);
-	// System.out.println(Arrays.toString(Recipe.getIngredientArray()));
-	// });
-	// }
+	/**
+	 * Joins lists from each category into one list "bigList". 
+	 * Does not modify original lists
+	 */
+	public static void setbigList(){
+			bigList.addAll(listGrains);
+			bigList.addAll(listDairy);
+			bigList.addAll(listFruit);
+			bigList.addAll(listMeat);
+			bigList.addAll(listVeggies);
+	}
+	/**
+	 * Returns the joined lists
+	 * @return bigList
+	 */
+	public static List<String> getBigList(){
+		return bigList;
+	}
+	/**
+	 * Convert a List<String> in a String with 
+	 * all the values of the List comma separated
+	 */
+	public static void setListToString(){
+		selectedIngredients = String.join(",", bigList);
+	}
+	/**
+	 * Returns the selectet ingredients as 
+	 * a String with comma separeted values
+	 * @return selectedIngredients
+	 */
+	public static String getStringList(){
+		return selectedIngredients;
+	}
 	/**
 	 * Methods that saves checked item to a list or removes it from the list
 	 * whenever box is unchecked.
@@ -226,10 +247,8 @@ public class ClientHandler implements Initializable {
 		}
 
 		returnBtn.setOnAction(e -> {
-			listMeat.addAll(listVeggies);
-			listMeat.addAll(listFruit);
-			listMeat.addAll(listGrains);
-			System.out.println(listMeat);
+			bigList.addAll(listMeat);
+			System.out.println(bigList);
 		});
 	}
 
@@ -494,10 +513,8 @@ public class ClientHandler implements Initializable {
 		}
 
 		returnBtn.setOnAction(e -> {
-			listVeggies.addAll(listMeat);
-			listVeggies.addAll(listFruit);
-			listVeggies.addAll(listGrains);
-			System.out.println(listVeggies);
+			bigList.addAll(listVeggies);
+			System.out.println(bigList);
 		});
 
 	}
@@ -686,10 +703,8 @@ public class ClientHandler implements Initializable {
 			}
 		}
 		returnBtn.setOnAction(e -> {
-			listFruit.addAll(listMeat);
-			listFruit.addAll(listVeggies);
-			listFruit.addAll(listGrains);
-			System.out.println(listFruit);
+			bigList.addAll(listFruit);
+			System.out.println(bigList);
 		});
 	}
 
@@ -717,10 +732,8 @@ public class ClientHandler implements Initializable {
 			}
 		}
 		returnBtn.setOnAction(e -> {
-			listGrains.addAll(listMeat);
-			listGrains.addAll(listVeggies);
-			listGrains.addAll(listFruit);
-			System.out.println(listGrains);
+			bigList.addAll(listGrains);
+			System.out.println(bigList);
 		});
 
 	}
@@ -748,11 +761,8 @@ public class ClientHandler implements Initializable {
 			}
 		}
 		returnBtn.setOnAction(e -> {
-			listDairy.addAll(listMeat);
-			listDairy.addAll(listVeggies);
-			listDairy.addAll(listFruit);
-			listDairy.addAll(listGrains);
-			System.out.println(listDairy);
+			bigList.addAll(listDairy);
+			System.out.println(bigList);
 		});
 
 	}
