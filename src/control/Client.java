@@ -45,25 +45,38 @@ public class Client {
 	private static int questionMarkWidth = 45;
 	private static int questionMarkLayoutX = 100;
 	private static int questionMarkLayoutY = 20;
+	
+	private static int closeIconLayoutX;
+	private static int closeIconLayoutY;
+	private static int minimizeIconLayoutX;
+	private static int minimizeIconLayoutY;
 
 	public static final String IMAGE_SOURCE_DIRECTORY = "";
 	private static Scene userLoginScene;
-	private static Pane root = new Pane();
-	private static Pane mainWheelPane = new Pane();
+	
 	private static HashMap<MealType, String> mealTypes = new HashMap<>();
-	private static Pane questionMarkPane = new Pane();
 	private static HashMap<MenuTools, String> menuTools = new HashMap<>();
 
+	private static ImageView backgroundImage;
 	private static ImageView tools = new ImageView();
+	private static ImageView wheel = new ImageView();
+	
+	private static Pane questionMarkPane = new Pane();
+	private static Pane closePane = new Pane(); 
+	private static Pane minimizePane = new Pane(); 
+	private static Pane root = new Pane();
+	private static Pane mainWheelPane = new Pane();
 	private Pane dairyPane = new Pane();
 	private Pane meatPane = new Pane();
 	private Pane fruitPane = new Pane();
 	private Pane spannPane = new Pane();
 	private Pane vegetablePane = new Pane();
+	
 	private static boolean transitioning = false;
-	private static ImageView wheel = new ImageView();
-	private static ImageView backgroundImage; 
+
 	private ClientHandler clientHandler;
+	private ApplicationInformation applicationInformation;
+	
 	Stage window = new Stage();
 
 	/*
@@ -79,16 +92,21 @@ public class Client {
 		mainWheelPane.getChildren().add(wheel);
 		setMealTypes();
 		addWheel(wheel);
+		
 		questionMarkPane.getChildren().add(tools);
 		setToolIcons();
 		addMenuTools(tools);
+		
 		createBoundingBoxes(MealType.MEAT, mainWheelPane, 400, 103, 163, 180);
 		createBoundingBoxes(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
 		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
 		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
 		createBoundingBoxes(MealType.SPANN, mainWheelPane, 500, 457, 185, 140);
+		
 		createBoundingBoxes2(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
-
+		createBoundingBoxes2(MenuTools.CLOSE, closePane, closeIconLayoutX, closeIconLayoutY, 100, 100);
+		createBoundingBoxes2(MenuTools.MINIMIZE, closePane, minimizeIconLayoutX, minimizeIconLayoutY, 100, 100);
+		
 		Button closeBtn = new Button("Stäng ner detta skit");
 		closeBtn.setLayoutX(1070);
 		closeBtn.setLayoutY(50);
@@ -147,7 +165,7 @@ public class Client {
 	 */
 	
 	public static enum MenuTools{
-		QUESTIONMARK;
+		QUESTIONMARK, CLOSE, MINIMIZE;
 	}
 
 	/**
@@ -164,6 +182,8 @@ public class Client {
 
 	public static void setToolIcons(){
 		menuTools.put(MenuTools.QUESTIONMARK, "questionMark.png");
+		menuTools.put(MenuTools.CLOSE, "Close.png"); 
+		menuTools.put(MenuTools.MINIMIZE, "Minimize.png");
 	}
 	
 	/**
@@ -203,6 +223,21 @@ public class Client {
 		menuToolImages.setLayoutY(questionMarkLayoutY);
 		menuToolImages.setFitHeight(questionMarkHeight);
 		menuToolImages.setFitWidth(questionMarkWidth);
+	
+	}
+	
+	public static void addCloseButton(ImageView closeButtonImage){
+		closeButtonImage.setImage(new Image("1494174280_Close.png"));
+		closeButtonImage.setPreserveRatio(true);
+		closeButtonImage.setLayoutX(1100);
+		closeButtonImage.setLayoutY(20);
+	}
+	
+	public static void addMinimizeButton(ImageView menuToolImages){
+		menuToolImages.setImage(new Image("1494174365_minus.png"));
+		menuToolImages.setPreserveRatio(true);
+		menuToolImages.setLayoutX(1080);
+		menuToolImages.setLayoutY(20);
 
 	}
 
@@ -299,7 +334,7 @@ public class Client {
 		Rectangle infoBox = new Rectangle(500, 700);  
 		infoBox.setFill(Color.BLACK);
 		infoBox.setOpacity(0.5);
-		stackPane.getChildren().add(infoBox);
+		stackPane.getChildren().addAll(infoBox);
 		StackPane.setAlignment(infoBox, Pos.CENTER);
 		
 		pane.getChildren().add(stackPane);
