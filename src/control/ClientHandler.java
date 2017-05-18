@@ -117,6 +117,13 @@ public class ClientHandler implements Initializable {
 		return selectedIngredients;
 	}
 	/**
+	 * Clears the list that is passed by the parameter
+	 * @param list
+	 */
+	public static void clearList(List<String> list){
+		list.clear();
+	}
+	/**
 	 * Methods that saves checked item to a list or removes it from the list
 	 * whenever box is unchecked.
 	 */
