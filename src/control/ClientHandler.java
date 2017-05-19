@@ -70,14 +70,17 @@ public class ClientHandler implements Initializable {
 
 	static List<String> listVeggies = new ArrayList<String>();
 	static List<String> listMeat = new ArrayList<String>();
+	static List<String> listDairy = new ArrayList<String>();
+	static List<String> listFruit = new ArrayList<String>();
+	static List<String> listGrains = new ArrayList<String>();
 	protected static String secteditems = "";
 	private Recipe recipe = new Recipe();
 
 	public ClientHandler() {
 		InitiateMeat();
-		// InitiateDairy();
-		// InitiateGrains();
-		// InitiateFruit();
+		InitiateDairy();
+		InitiateGrains();
+		InitiateFruit();
 		InitiateVegetables();
 		// this.recipe = new Recipe();
 
@@ -220,12 +223,14 @@ public class ClientHandler implements Initializable {
 			if (listMeat.contains("Egg")) {
 				listMeat.remove("Egg");
 			}
-
-			returnBtn.setOnAction(e -> {
-				System.out.println(listMeat);
-			});
 		}
 
+		returnBtn.setOnAction(e -> {
+			listMeat.addAll(listVeggies);
+			listMeat.addAll(listFruit);
+			listMeat.addAll(listGrains);
+			System.out.println(listMeat);
+		});
 	}
 
 	@FXML
@@ -411,22 +416,343 @@ public class ClientHandler implements Initializable {
 				listVeggies.remove("Parsnip");
 			}
 		}
-		if (checkBox_Parsnip.isSelected() == true) {
-			if (!listVeggies.contains("Parsnip")) {
-				listVeggies.add("Parsnip");
+		if (checkBox_Carrot.isSelected() == true) {
+			if (!listVeggies.contains("Carrot")) {
+				listVeggies.add("Carrot");
 			}
 		}
-		if (checkBox_Parsnip.isSelected() == false) {
-			if (listVeggies.contains("Parsnip")) {
-				listVeggies.remove("Parsnip");
+		if (checkBox_Carrot.isSelected() == false) {
+			if (listVeggies.contains("Carrot")) {
+				listVeggies.remove("Carrot");
+			}
+		}
+		if (checkBox_Cabbage.isSelected() == true) {
+			if (!listVeggies.contains("Cabbage")) {
+				listVeggies.add("Cabbage");
 			}
 		}
 
+		if (checkBox_Cabbage.isSelected() == false) {
+			if (listVeggies.contains("Cabbage")) {
+				listVeggies.remove("Cabbage");
+			}
+		}
+		if (checkBox_Cabbage.isSelected() == true) {
+			if (!listVeggies.contains("Cabbage")) {
+				listVeggies.add("Cabbage");
+			}
+		}
 
+		if (checkBox_Cabbage.isSelected() == false) {
+			if (listVeggies.contains("Cabbage")) {
+				listVeggies.remove("Cabbage");
+			}
+		}
+		if (checkBox_Cauliflower.isSelected() == true) {
+			if (!listVeggies.contains("Cauliflower")) {
+				listVeggies.add("Cauliflower");
+			}
+		}
+
+		if (checkBox_Cauliflower.isSelected() == false) {
+			if (listVeggies.contains("Cauliflower")) {
+				listVeggies.remove("Cauliflower");
+			}
+		}
+		if (checkBox_Lettuce.isSelected() == true) {
+			if (!listVeggies.contains("Lettuce")) {
+				listVeggies.add("Lettuce");
+			}
+		}
+
+		if (checkBox_Lettuce.isSelected() == false) {
+			if (listVeggies.contains("Lettuce")) {
+				listVeggies.remove("Lettuce");
+			}
+		}
+		if (checkBox_Spinach.isSelected() == true) {
+			if (!listVeggies.contains("Spinach")) {
+				listVeggies.add("Spinach");
+			}
+		}
+
+		if (checkBox_Spinach.isSelected() == false) {
+			if (listVeggies.contains("Spinach")) {
+				listVeggies.remove("Spinach");
+			}
+		}
+		if (checkBox_Sweetcorn.isSelected() == true) {
+			if (!listVeggies.contains("Sweetcorn")) {
+				listVeggies.add("Sweetcorn");
+			}
+		}
+
+		if (checkBox_Sweetcorn.isSelected() == false) {
+			if (listVeggies.contains("Sweetcorn")) {
+				listVeggies.remove("Sweetcorn");
+			}
+		}
 
 		returnBtn.setOnAction(e -> {
 			listVeggies.addAll(listMeat);
+			listVeggies.addAll(listFruit);
+			listVeggies.addAll(listGrains);
 			System.out.println(listVeggies);
+		});
+
+	}
+
+	@FXML
+	private void handleCheckBoxActionFruit(ActionEvent event) throws IOException {
+
+		if (checkBox_Apple.isSelected() == true) {
+			if (!listFruit.contains("Apple")) {
+				listFruit.add("Apple");
+			}
+		}
+		if (checkBox_Apple.isSelected() == false) {
+			if (listFruit.contains("Apple")) {
+				listFruit.remove("Apple");
+			}
+		}
+		if (checkBox_Pear.isSelected() == true) {
+			if (!listFruit.contains("Pear")) {
+				listFruit.add("Pear");
+			}
+		}
+		if (checkBox_Pear.isSelected() == false) {
+			if (listFruit.contains("Pear")) {
+				listFruit.remove("Pear");
+			}
+		}
+		if (checkBox_Orange.isSelected() == true) {
+			if (!listFruit.contains("Orange")) {
+				listFruit.add("Orange");
+			}
+		}
+		if (checkBox_Orange.isSelected() == false) {
+			if (listFruit.contains("Orange")) {
+				listFruit.remove("Orange");
+			}
+		}
+		if (checkBox_Mandarin.isSelected() == true) {
+			if (!listFruit.contains("Mandarin")) {
+				listFruit.add("Mandarin");
+			}
+		}
+		if (checkBox_Mandarin.isSelected() == false) {
+			if (listFruit.contains("Mandarin")) {
+				listFruit.remove("Mandarin");
+			}
+		}
+		if (checkBox_Grapefruit.isSelected() == true) {
+			if (!listFruit.contains("Grapefruit")) {
+				listFruit.add("Grapefruit");
+			}
+		}
+		if (checkBox_Grapefruit.isSelected() == false) {
+			if (listFruit.contains("Grapefruit")) {
+				listFruit.remove("Grapefruit");
+			}
+		}
+		if (checkBox_Lemon.isSelected() == true) {
+			if (!listFruit.contains("Lemon")) {
+				listFruit.add("Lemon");
+			}
+		}
+		if (checkBox_Lemon.isSelected() == false) {
+			if (listFruit.contains("Lemon")) {
+				listFruit.remove("Lemon");
+			}
+		}
+		if (checkBox_Lime.isSelected() == true) {
+			if (!listFruit.contains("Lime")) {
+				listFruit.add("Lime");
+			}
+		}
+		if (checkBox_Lime.isSelected() == false) {
+			if (listFruit.contains("Lime")) {
+				listFruit.remove("Lime");
+			}
+		}
+		if (checkBox_Banana.isSelected() == true) {
+			if (!listFruit.contains("Banana")) {
+				listFruit.add("Banana");
+			}
+		}
+		if (checkBox_Banana.isSelected() == false) {
+			if (listFruit.contains("Banana")) {
+				listFruit.remove("Banana");
+			}
+		}
+		if (checkBox_Strawberry.isSelected() == true) {
+			if (!listFruit.contains("Strawberry")) {
+				listFruit.add("Strawberry");
+			}
+		}
+		if (checkBox_Strawberry.isSelected() == false) {
+			if (listFruit.contains("Strawberry")) {
+				listFruit.remove("Strawberry");
+			}
+		}
+		if (checkBox_Blueberry.isSelected() == true) {
+			if (!listFruit.contains("Blueberry")) {
+				listFruit.add("Blueberry");
+			}
+		}
+		if (checkBox_Blueberry.isSelected() == false) {
+			if (listFruit.contains("Blueberry")) {
+				listFruit.remove("Blueberry");
+			}
+		}
+		if (checkBox_Blackberry.isSelected() == true) {
+			if (!listFruit.contains("Blackberry")) {
+				listFruit.add("Blackberry");
+			}
+		}
+		if (checkBox_Blackberry.isSelected() == false) {
+			if (listFruit.contains("Blackberry")) {
+				listFruit.remove("Blackberry");
+			}
+		}
+		if (checkBox_Cherry.isSelected() == true) {
+			if (!listFruit.contains("Cherry")) {
+				listFruit.add("Cherry");
+			}
+		}
+		if (checkBox_Cherry.isSelected() == false) {
+			if (listFruit.contains("Cherry")) {
+				listFruit.remove("Cherry");
+			}
+		}
+		if (checkBox_Pineapple.isSelected() == true) {
+			if (!listFruit.contains("Pineapple")) {
+				listFruit.add("Pineapple");
+			}
+		}
+		if (checkBox_Pineapple.isSelected() == false) {
+			if (listFruit.contains("Pineapple")) {
+				listFruit.remove("Pineapple");
+			}
+		}
+		if (checkBox_Apricot.isSelected() == true) {
+			if (!listFruit.contains("Apricot")) {
+				listFruit.add("Apricot");
+			}
+		}
+		if (checkBox_Apricot.isSelected() == false) {
+			if (listFruit.contains("Apricot")) {
+				listFruit.remove("Apricot");
+			}
+		}
+		if (checkBox_Grapes.isSelected() == true) {
+			if (!listFruit.contains("Grapes")) {
+				listFruit.add("Grapes");
+			}
+		}
+		if (checkBox_Grapes.isSelected() == false) {
+			if (listFruit.contains("Grapes")) {
+				listFruit.remove("Grapes");
+			}
+		}
+		if (checkBox_Mango.isSelected() == true) {
+			if (!listFruit.contains("Mango")) {
+				listFruit.add("Mango");
+			}
+		}
+		if (checkBox_Mango.isSelected() == false) {
+			if (listFruit.contains("Mango")) {
+				listFruit.remove("Mango");
+			}
+		}
+		if (checkBox_Papaya.isSelected() == true) {
+			if (!listFruit.contains("Papaya")) {
+				listFruit.add("Papaya");
+			}
+		}
+		if (checkBox_Papaya.isSelected() == false) {
+			if (listFruit.contains("Papaya")) {
+				listFruit.remove("Papaya");
+			}
+		}
+		if (checkBox_Kiwi.isSelected() == true) {
+			if (!listFruit.contains("Kiwi")) {
+				listFruit.add("Kiwi");
+			}
+		}
+		if (checkBox_Kiwi.isSelected() == false) {
+			if (listFruit.contains("Kiwi")) {
+				listFruit.remove("Kiwi");
+			}
+		}
+		returnBtn.setOnAction(e -> {
+			listFruit.addAll(listMeat);
+			listFruit.addAll(listVeggies);
+			listFruit.addAll(listGrains);
+			System.out.println(listFruit);
+		});
+	}
+
+	@FXML
+	private void handleCheckBoxActionGrains(ActionEvent event) throws IOException {
+
+		if (checkBox_Wheat.isSelected() == true) {
+			if (!listGrains.contains("Wheat")) {
+				listGrains.add("Wheat");
+			}
+		}
+		if (checkBox_Wheat.isSelected() == false) {
+			if (listGrains.contains("Wheat")) {
+				listGrains.remove("Wheat");
+			}
+		}
+		if (checkBox_Oats.isSelected() == true) {
+			if (!listGrains.contains("Oats")) {
+				listGrains.add("Oats");
+			}
+		}
+		if (checkBox_Oats.isSelected() == false) {
+			if (listGrains.contains("Oats")) {
+				listGrains.remove("Oats");
+			}
+		}
+		returnBtn.setOnAction(e -> {
+			listGrains.addAll(listMeat);
+			listGrains.addAll(listVeggies);
+			listGrains.addAll(listFruit);
+			System.out.println(listGrains);
+		});
+
+	}
+
+	@FXML
+	private void handleCheckBoxActionDairy(ActionEvent event) throws IOException {
+		if (checkBox_Milk.isSelected() == true) {
+			if (!listDairy.contains("Milk")) {
+				listDairy.add("Milk");
+			}
+		}
+		if (checkBox_Milk.isSelected() == false) {
+			if (listDairy.contains("Milk")) {
+				listDairy.remove("Milk");
+			}
+		}
+		if (checkBox_Cream.isSelected() == true) {
+			if (!listDairy.contains("Cream")) {
+				listDairy.add("Cream");
+			}
+		}
+		if (checkBox_Milk.isSelected() == false) {
+			if (listDairy.contains("Cream")) {
+				listDairy.remove("Cream");
+			}
+		}
+		returnBtn.setOnAction(e -> {
+			listDairy.addAll(listMeat);
+			listDairy.addAll(listVeggies);
+			listDairy.addAll(listFruit);
+			listDairy.addAll(listGrains);
+			System.out.println(listDairy);
 		});
 
 	}
@@ -445,107 +771,106 @@ public class ClientHandler implements Initializable {
 	public void InitiateMeat() {
 		this.checkBox_Chicken = new CheckBox();
 		this.checkBox_Lamb = new CheckBox();
-		 this.checkBox_Pork = new CheckBox();
-		 this.checkBox_Game = new CheckBox();
-		 this.checkBox_Rabbit = new CheckBox();
-		 this.checkBox_Beef = new CheckBox();
-		 this.checkBox_Duck = new CheckBox();
-		 this.checkBox_Ground_Beef = new CheckBox();
-		 this.checkBox_Fish = new CheckBox();
-		 this.checkBox_Shrimp = new CheckBox();
-		 this.checkBox_Ground_Pork = new CheckBox();
-		 this.checkBox_Egg = new CheckBox();
+		this.checkBox_Pork = new CheckBox();
+		this.checkBox_Game = new CheckBox();
+		this.checkBox_Rabbit = new CheckBox();
+		this.checkBox_Beef = new CheckBox();
+		this.checkBox_Duck = new CheckBox();
+		this.checkBox_Ground_Beef = new CheckBox();
+		this.checkBox_Fish = new CheckBox();
+		this.checkBox_Shrimp = new CheckBox();
+		this.checkBox_Ground_Pork = new CheckBox();
+		this.checkBox_Egg = new CheckBox();
 
 	}
 
-	//
-	// public void InitiateDairy() {
-	// this.checkBox_Milk = new CheckBox();
-	// this.checkBox_Cream = new CheckBox();
-	// this.checkBox_Sour_Cream = new CheckBox();
-	// this.checkBox_Creme_Fraiche = new CheckBox();
-	// this.checkBox_Yogurt = new CheckBox();
-	// this.checkBox_Hard_Cheese = new CheckBox();
-	// this.checkBox_Soft_Cheese = new CheckBox();
-	// this.checkBox_Cottage_Cheese = new CheckBox();
-	// this.checkBox_Blue_Cheese = new CheckBox();
-	// this.checkBox_Parmesan = new CheckBox();
-	// this.checkBox_Butter = new CheckBox();
-	//
-	// }
-	//
-	// public void InitiateGrains() {
-	// this.checkBox_Wheat = new CheckBox();
-	// this.checkBox_Oats = new CheckBox();
-	// this.checkBox_Barley = new CheckBox();
-	// this.checkBox_CornMeal = new CheckBox();
-	// this.checkBox_Rye = new CheckBox();
-	// this.checkBox_Rice = new CheckBox();
-	// this.checkBox_Bulgur = new CheckBox();
-	// this.checkBox_Couscous = new CheckBox();
-	// this.checkBox_Cracked_Wheat = new CheckBox();
-	// this.checkBox_Bread = new CheckBox();
-	// this.checkBox_Pasta = new CheckBox();
-	//
-	// }
-	//
-	// public void InitiateFruit() {
-	// this.checkBox_Apple = new CheckBox();
-	// this.checkBox_Pear = new CheckBox();
-	// this.checkBox_Orange = new CheckBox();
-	// this.checkBox_Mandarin = new CheckBox();
-	// this.checkBox_Grapefruit = new CheckBox();
-	// this.checkBox_Lemon = new CheckBox();
-	// this.checkBox_Lime = new CheckBox();
-	// this.checkBox_Banana = new CheckBox();
-	// this.checkBox_Strawberry = new CheckBox();
-	// this.checkBox_Blueberry = new CheckBox();
-	// this.checkBox_Blackberry = new CheckBox();
-	// this.checkBox_Cherry = new CheckBox();
-	// this.checkBox_Pineapple = new CheckBox();
-	// this.checkBox_Apricot = new CheckBox();
-	// this.checkBox_Grapes = new CheckBox();
-	// this.checkBox_Mango = new CheckBox();
-	// this.checkBox_Papaya = new CheckBox();
-	// this.checkBox_Kiwi = new CheckBox();
-	//
-	// }
-	//
+	public void InitiateDairy() {
+		this.checkBox_Milk = new CheckBox();
+		this.checkBox_Cream = new CheckBox();
+		this.checkBox_Sour_Cream = new CheckBox();
+		this.checkBox_Creme_Fraiche = new CheckBox();
+		this.checkBox_Yogurt = new CheckBox();
+		this.checkBox_Hard_Cheese = new CheckBox();
+		this.checkBox_Soft_Cheese = new CheckBox();
+		this.checkBox_Cottage_Cheese = new CheckBox();
+		this.checkBox_Blue_Cheese = new CheckBox();
+		this.checkBox_Parmesan = new CheckBox();
+		this.checkBox_Butter = new CheckBox();
+
+	}
+
+	public void InitiateGrains() {
+		this.checkBox_Wheat = new CheckBox();
+		this.checkBox_Oats = new CheckBox();
+		this.checkBox_Barley = new CheckBox();
+		this.checkBox_CornMeal = new CheckBox();
+		this.checkBox_Rye = new CheckBox();
+		this.checkBox_Rice = new CheckBox();
+		this.checkBox_Bulgur = new CheckBox();
+		this.checkBox_Couscous = new CheckBox();
+		this.checkBox_Cracked_Wheat = new CheckBox();
+		this.checkBox_Bread = new CheckBox();
+		this.checkBox_Pasta = new CheckBox();
+
+	}
+
+	public void InitiateFruit() {
+		this.checkBox_Apple = new CheckBox();
+		this.checkBox_Pear = new CheckBox();
+		this.checkBox_Orange = new CheckBox();
+		this.checkBox_Mandarin = new CheckBox();
+		this.checkBox_Grapefruit = new CheckBox();
+		this.checkBox_Lemon = new CheckBox();
+		this.checkBox_Lime = new CheckBox();
+		this.checkBox_Banana = new CheckBox();
+		this.checkBox_Strawberry = new CheckBox();
+		this.checkBox_Blueberry = new CheckBox();
+		this.checkBox_Blackberry = new CheckBox();
+		this.checkBox_Cherry = new CheckBox();
+		this.checkBox_Pineapple = new CheckBox();
+		this.checkBox_Apricot = new CheckBox();
+		this.checkBox_Grapes = new CheckBox();
+		this.checkBox_Mango = new CheckBox();
+		this.checkBox_Papaya = new CheckBox();
+		this.checkBox_Kiwi = new CheckBox();
+
+	}
+
 	public void InitiateVegetables() {
-		// this.checkBox_Tomato = new CheckBox();
-		// this.checkBox_Cucumber = new CheckBox();
-		// this.checkBox_Pepper = new CheckBox();
-		// this.checkBox_Zucchini = new CheckBox();
-		// this.checkBox_Aubergine = new CheckBox();
-		// this.checkBox_Pumpkin = new CheckBox();
+		this.checkBox_Tomato = new CheckBox();
+		this.checkBox_Cucumber = new CheckBox();
+		this.checkBox_Pepper = new CheckBox();
+		this.checkBox_Zucchini = new CheckBox();
+		this.checkBox_Aubergine = new CheckBox();
+		this.checkBox_Pumpkin = new CheckBox();
 		this.checkBox_Avocado = new CheckBox();
-		// this.checkBox_Onion = new CheckBox();
-		// this.checkBox_Garlic = new CheckBox();
-		// this.checkBox_Spring_Onion = new CheckBox();
-		// this.checkBox_Leek = new CheckBox();
-		// this.checkBox_Celery = new CheckBox();
-		// this.checkBox_Aspargus = new CheckBox();
-		// this.checkBox_Artichoke = new CheckBox();
-		// this.checkBox_Potato = new CheckBox();
-		// this.checkBox_Sweet_Potato = new CheckBox();
-		// this.checkBox_Radish = new CheckBox();
-		// this.checkBox_Parsnip = new CheckBox();
-		// this.checkBox_Carrot = new CheckBox();
-		// this.checkBox_Cabbage = new CheckBox();
-		// this.checkBox_Cauliflower = new CheckBox();
-		// this.checkBox_Lettuce = new CheckBox();
-		// this.checkBox_Spinach = new CheckBox();
-		// this.checkBox_Sweetcorn = new CheckBox();
-		// this.checkBox_Green_Peas = new CheckBox();
-		// this.checkBox_Chick_Peas = new CheckBox();
-		// this.checkBox_White_Beans = new CheckBox();
-		// this.checkBox_Black_Beans = new CheckBox();
-		// this.checkBox_Coriander = new CheckBox();
-		// this.checkBox_Tarragon = new CheckBox();
-		// this.checkBox_Parsley = new CheckBox();
-		// this.checkBox_Dill = new CheckBox();
-		// this.checkBox_Chili = new CheckBox();
-		// this.checkBox_Lemongrass = new CheckBox();
+		this.checkBox_Onion = new CheckBox();
+		this.checkBox_Garlic = new CheckBox();
+		this.checkBox_Spring_Onion = new CheckBox();
+		this.checkBox_Leek = new CheckBox();
+		this.checkBox_Celery = new CheckBox();
+		this.checkBox_Aspargus = new CheckBox();
+		this.checkBox_Artichoke = new CheckBox();
+		this.checkBox_Potato = new CheckBox();
+		this.checkBox_Sweet_Potato = new CheckBox();
+		this.checkBox_Radish = new CheckBox();
+		this.checkBox_Parsnip = new CheckBox();
+		this.checkBox_Carrot = new CheckBox();
+		this.checkBox_Cabbage = new CheckBox();
+		this.checkBox_Cauliflower = new CheckBox();
+		this.checkBox_Lettuce = new CheckBox();
+		this.checkBox_Spinach = new CheckBox();
+		this.checkBox_Sweetcorn = new CheckBox();
+		this.checkBox_Green_Peas = new CheckBox();
+		this.checkBox_Chick_Peas = new CheckBox();
+		this.checkBox_White_Beans = new CheckBox();
+		this.checkBox_Black_Beans = new CheckBox();
+		this.checkBox_Coriander = new CheckBox();
+		this.checkBox_Tarragon = new CheckBox();
+		this.checkBox_Parsley = new CheckBox();
+		this.checkBox_Dill = new CheckBox();
+		this.checkBox_Chili = new CheckBox();
+		this.checkBox_Lemongrass = new CheckBox();
 
 	}
 
