@@ -43,6 +43,9 @@ public class ClientHandler implements Initializable {
 	static List<String> listDairy = new ArrayList<String>();
 	static List<String> listFruit = new ArrayList<String>();
 	static List<String> listGrains = new ArrayList<String>();
+	protected static String selectedIngredients = "";
+	private Recipe recipe = new Recipe();
+
 
 	/**
 	 * Joins lists from each category into one list "bigList". 
@@ -59,6 +62,36 @@ public class ClientHandler implements Initializable {
 	 * Returns the joined lists
 	 * @return bigList
 	 */
+	public static List<String> getBigList(){
+		return bigList;
+	}
+	/**
+	 * Convert a List<String> in a String with 
+	 * all the values of the List comma separated
+	 */
+	public static void setListToString(){
+		selectedIngredients = String.join(",", bigList);
+	}
+	/**
+	 * Returns the selectet ingredients as 
+	 * a String with comma separeted values
+	 * @return selectedIngredients
+	 */
+	public static String getStringList(){
+		return selectedIngredients;
+	}
+	/**
+	 * Clears the list that is passed by the parameter
+	 * @param list
+	 */
+	public static void clearList(List<String> list){
+		list.clear();
+	}
+
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+
 	}
 
 	
