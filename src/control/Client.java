@@ -389,7 +389,7 @@ public class Client {
 
 		switch(type){
 		case DAIRY:
-			System.out.println("knapptest DIARY");
+			//System.out.println("knapptest DIARY");
 			if(transitioning)
 				return;
 
@@ -412,6 +412,8 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
 						root.getChildren().add(mainWheelPane);
+						ClientHandler.setbigList();
+						System.out.println(ClientHandler.getBigList());
 						transitionToHome(1000);
 					});
 				}
@@ -445,6 +447,8 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(fruitPane);
 						root.getChildren().add(mainWheelPane);
+						ClientHandler.setbigList();
+						System.out.println(ClientHandler.getBigList());
 						transitionToHome(1000);
 					});
 				}
@@ -476,6 +480,8 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
 						root.getChildren().add(mainWheelPane);
+						ClientHandler.setbigList();
+						System.out.println(ClientHandler.getBigList());
 						transitionToHome(1000);
 					});
 				}
@@ -507,6 +513,8 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
 						root.getChildren().add(mainWheelPane);
+						ClientHandler.setbigList();
+						System.out.println(ClientHandler.getBigList());
 						transitionToHome(1000);
 					});
 				}
@@ -539,6 +547,8 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
 						root.getChildren().add(mainWheelPane);
+						ClientHandler.setbigList();
+						System.out.println(ClientHandler.getBigList());
 						transitionToHome(1000);
 					});
 				}
