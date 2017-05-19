@@ -54,36 +54,46 @@ public class DBController {
 	 * Gets a list of recipes and shows it in user interface.
 	 * @param ingredientArray - list of chosen ingredients
 	 */
+
 	public void showRecipeList(String[] ingredientArray) {
 		PreparedStatement stmt;
 		ResultSet rs;
-		String ingredient = "";
+		String sql = "select recipe.title from recipe join "
+				+ "recipe_ingredients on recipe.recipeid = recipe_ingredients.recipeid join "
+				+ "ingredients on recipe_ingredients.ingredientsid = ingredients.ingredientsid where ingredients.name like ?";
 		try {
-			for(int i = 0; i < ingredientArray.length; i++ ) {
-				ingredient = ingredientArray[i];
-		
-			}
-			stmt = dbc.getConnection().prepareStatement("SELECT title FROM recipe WHERE recipe.ingredients LIKE '%" + ingredient +"%'");
-			rs = stmt.executeQuery();
-				while (rs.next()) {
-					System.out.println(rs.getString("title"));
+			for(int i = 0; i < ingredientArray.length; i++) {
+				if(i > 0) {
+					sql += " AND ";
 				}
-			
+				sql = " ingredients.name like ? ";
+			}
+
+			stmt = dbc.getConnection().prepareStatement(sql);
+
+			for(int i = 0; i < ingredientArray.length; i++) {
+				stmt.setString(i+1, ingredientArray[i]);
+			}
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString("title"));
+			}
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Gets recipes from chosen ingredients
-	 * @param ingredientArray - list of chosen ingredients
+	 * Gets chosen recipe
+	 * @param recipeTitle - title of recipe
 	 */
-	public void getChosenRecipe(String[] ingredientArray) {
+	public void getChosenRecipe(String recipeTitle) {
 		try { 
-			PreparedStatement stmt = dbc.getConnection().prepareStatement("SELECT recipe.title FROM recipe.ingredients WHERE content LIKE" + ingredientArray);
+			PreparedStatement stmt = dbc.getConnection().prepareStatement("SELECT * FROM recipe WHERE recipe.title = ?");
+			stmt.setString(1, recipeTitle);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs.getString(4));
+				System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -93,7 +103,7 @@ public class DBController {
 	//testmetod för querys
 	public static void main(String[] args) {
 		DBController dbc = new DBController();
-		String[] ingredientArray = {"salt"};
+		String[] ingredientArray = {"pasta, salt"};
 		dbc.showRecipeList(ingredientArray);
 	}
 }
