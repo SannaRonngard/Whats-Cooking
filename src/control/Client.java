@@ -396,9 +396,7 @@ public class Client {
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button goBackBtn = new Button("<---");
-					goBackBtn.setLayoutY(500);
-					goBackBtn.setLayoutX(10);
+					Button goBackBtn = new Button("Go back");;
 					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
