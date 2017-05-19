@@ -21,7 +21,7 @@ import javafx.scene.control.CheckBox;
 
 public class CheckBoxes implements Initializable {
 
-	private ClientHandler ClientHandler;
+	
 	@FXML Button returnBtn;
 
 	/* Checkboxes - Category Meat */
@@ -168,7 +168,7 @@ public class CheckBoxes implements Initializable {
 		}
 		if (checkBox_Shrimp.isSelected() == false) {
 			if (ClientHandler.listMeat.contains("Shrimp")) {
-				ClientHandler.listMeat.remove("Shrimp");
+				control.ClientHandler.listMeat.remove("Shrimp");
 			}
 		}
 		if (checkBox_Ground_Pork.isSelected() == true) {
