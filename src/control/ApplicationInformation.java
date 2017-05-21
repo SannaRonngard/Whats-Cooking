@@ -1,7 +1,9 @@
 package control;
 
 import javafx.scene.control.Label;
-
+/**
+ * @author Olle Olsson
+ */
 public class ApplicationInformation {
 	
 	public String words() {
