@@ -142,13 +142,13 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Ground_Beef.isSelected() == true) {
-			if (!ClientHandler.listMeat.contains("Ground_Beef")) {
-				ClientHandler.listMeat.add("Ground_Beef");
+			if (!ClientHandler.listMeat.contains("Ground Beef")) {
+				ClientHandler.listMeat.add("Ground Beef");
 			}
 		}
 		if (checkBox_Ground_Beef.isSelected() == false) {
-			if (ClientHandler.listMeat.contains("Ground_Beef")) {
-				ClientHandler.listMeat.remove("Ground_Beef");
+			if (ClientHandler.listMeat.contains("Ground Beef")) {
+				ClientHandler.listMeat.remove("Ground Beef");
 			}
 		}
 		if (checkBox_Fish.isSelected() == true) {
@@ -172,13 +172,13 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Ground_Pork.isSelected() == true) {
-			if (!ClientHandler.listMeat.contains("Ground_Pork")) {
-				ClientHandler.listMeat.add("Ground_Pork");
+			if (!ClientHandler.listMeat.contains("Ground Pork")) {
+				ClientHandler.listMeat.add("Ground Pork");
 			}
 		}
 		if (checkBox_Ground_Pork.isSelected() == false) {
-			if (ClientHandler.listMeat.contains("Ground_Pork")) {
-				ClientHandler.listMeat.remove("Ground_Pork");
+			if (ClientHandler.listMeat.contains("Ground Pork")) {
+				ClientHandler.listMeat.remove("Ground Pork");
 			}
 		}
 		if (checkBox_Egg.isSelected() == true) {
@@ -292,13 +292,13 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Spring_Onion.isSelected() == true) {
-			if (!ClientHandler.listVeggies.contains("Spring_Onion")) {
-				ClientHandler.listVeggies.add("Spring_Onion");
+			if (!ClientHandler.listVeggies.contains("Spring Onion")) {
+				ClientHandler.listVeggies.add("Spring Onion");
 			}
 		}
 		if (checkBox_Spring_Onion.isSelected() == false) {
-			if (ClientHandler.listVeggies.contains("Spring_Onion")) {
-				ClientHandler.listVeggies.remove("Spring_Onion");
+			if (ClientHandler.listVeggies.contains("Spring Onion")) {
+				ClientHandler.listVeggies.remove("Spring Onion");
 			}
 		}
 		if (checkBox_Leek.isSelected() == true) {
