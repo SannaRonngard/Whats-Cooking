@@ -36,7 +36,7 @@ public class DBConnection {
 //		this.username = "postgres";
 //		this.password = "bigheadteam";
 	}
-	/*Getters and setters to use in other classes*/
+	/*Getters and setters*/
 	public String getDriver(){
 		return this.driver;
 	}

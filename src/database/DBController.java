@@ -99,12 +99,12 @@ public class DBController {
 			e.printStackTrace();
 		}
 	}
-
+	
 	//testmetod för querys
 	public static void main(String[] args) {
 		DBController dbc = new DBController();
 		String[] ingredientArray = {"pasta, salt"};
-		dbc.showRecipeList(ingredientArray);
+//		dbc.showRecipeList(ingredientArray);
 		dbc.getRecipeByName("Guacamole");
 	}
 }
