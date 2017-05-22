@@ -3,7 +3,7 @@ package control;
 import java.io.IOException;
 import java.util.HashMap;
 import javafx.application.Application;
-
+import javafx.collections.ObservableList;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import sun.net.www.content.text.plain;
 
 /**
  * Client that shows the window when the 'Get Recipe' button in the
@@ -70,6 +72,8 @@ public class Client {
 	private static ImageView minimize = new ImageView(); 
 	private static ImageView wheel = new ImageView();
 	
+	private static ListView<String> selectedIngredients = new ListView<String>(); 
+	
 	private static Pane questionMarkPane = new Pane();
 	private static Pane closePane = new Pane(); 
 	private static Pane minimizePane = new Pane(); 
@@ -79,7 +83,7 @@ public class Client {
 	private Pane meatPane = new Pane();
 	private Pane fruitPane = new Pane();
 	private Pane spannPane = new Pane();
-	private Pane vegetablePane = new Pane();
+	private Pane vegetablePane = new Pane(); 
 	
 	private static boolean transitioning = false;
 
@@ -91,6 +95,7 @@ public class Client {
 	/*
 	 * Making a new stage where scene and root components are placed.
 	 */
+	
 	public void clientGui() {
 		userLoginScene = new Scene(root,1200,750);
 		backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
@@ -105,6 +110,10 @@ public class Client {
 		closePane.getChildren().add(close);
 		minimizePane.getChildren().add(minimize);
 		questionMarkPane.getChildren().add(tools);
+		
+		addIngredientstList(selectedIngredients);
+		root.getChildren().add(selectedIngredients);
+		
 		setToolIcons();
 		addMenuTools(tools);
 		addCloseButton(close);
@@ -120,7 +129,7 @@ public class Client {
 		createBoundingBoxesClose(MenuTools.CLOSE, closePane, closeIconLayoutX, closeIconLayoutY, closeIconWidth, closeIconHeight);
 		createBoundingBoxesMin(MenuTools.MINIMIZE, minimizePane, minimizeIconLayoutX, minimizeIconLayoutY, minimizeIconWidth, minimizeIconHeight); 
 
-		window.initModality(Modality.APPLICATION_MODAL); // Block any user interraction until window is closed
+		window.initModality(Modality.APPLICATION_MODAL); 
 		window.initStyle(StageStyle.TRANSPARENT);
 		window.setTitle("What's Cooking");
 		window.setResizable(false);
@@ -163,6 +172,13 @@ public class Client {
 		fade.setFromValue(0);
 		fade.setToValue(1);
 		fade.play();
+	}
+	
+	public void addIngredientstList(ListView<String> selectedIngredients) {
+		selectedIngredients.setLayoutX(900);
+		selectedIngredients.setLayoutY(150);
+		selectedIngredients.setMaxSize(300, 650);
+		
 	}
 
 	/**
@@ -474,7 +490,7 @@ public class Client {
 	 * @param box -
 	 * @param mealType -
 	 */
-
+	
 	private void addHoverActionWheel(Rectangle box, MealType mealType){
 		box.setOnMouseClicked(e -> {
 			changeScene(mealType);
@@ -517,7 +533,6 @@ public class Client {
 
 		switch(type){
 		case DAIRY:
-			//System.out.println("knapptest DIARY");
 			if(transitioning)
 				return;
 
@@ -530,16 +545,17 @@ public class Client {
 					root.getChildren().add(dairyPane);
 					
 					try {
+						
 						Pane fxmlDairyPane = FXMLLoader.load(getClass().getResource("/gui/Category_Dairy.fxml"));
 						dairyPane.getChildren().add(fxmlDairyPane);
 						fxmlDairyPane.getChildren().addAll(goBackBtn);
+						
 					} catch (IOException e) { e.printStackTrace(); }
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
-						root.getChildren().add(mainWheelPane);
-						ClientHandler.setbigList();
-						System.out.println(ClientHandler.getBigList());
+						root.getChildren().add(mainWheelPane);				
+						selectedIngredients.getItems().addAll(ClientHandler.getBigList()); 				
 						transitionToHome(1000);
 					});
 				}
@@ -557,13 +573,14 @@ public class Client {
 					Button goBackBtn = new Button("Go back");
 					fruitPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
-					root.getChildren().add(fruitPane);
+					root.getChildren().add(fruitPane);			
 
 					try {
 
 						Pane fxmlFruitPane = FXMLLoader.load(getClass().getResource("/gui/Category_Fruit.fxml"));
 						fruitPane.getChildren().add(fxmlFruitPane);
 						fxmlFruitPane.getChildren().addAll(goBackBtn);
+						
 
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -573,8 +590,11 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(fruitPane);
 						root.getChildren().add(mainWheelPane);
-						ClientHandler.setbigList();
-						System.out.println(ClientHandler.getBigList());
+						
+						selectedIngredients.getItems().clear(); 
+						ClientHandler.setbigList(); 
+						selectedIngredients.getItems().addAll(ClientHandler.getBigList()); 	
+						
 						transitionToHome(1000);
 					});
 				}
@@ -606,8 +626,6 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
 						root.getChildren().add(mainWheelPane);
-						ClientHandler.setbigList();
-						System.out.println(ClientHandler.getBigList());
 						transitionToHome(1000);
 					});
 				}
@@ -639,8 +657,6 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
 						root.getChildren().add(mainWheelPane);
-						ClientHandler.setbigList();
-						System.out.println(ClientHandler.getBigList());
 						transitionToHome(1000);
 					});
 				}
@@ -659,6 +675,7 @@ public class Client {
 					vegetablePane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(vegetablePane);
+					
 					try {
 
 						Pane fxmlVegetablesPane = FXMLLoader.load(getClass().getResource("/gui/Category_Vegetables.fxml"));
@@ -673,8 +690,7 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
 						root.getChildren().add(mainWheelPane);
-						ClientHandler.setbigList();
-						System.out.println(ClientHandler.getBigList());
+
 						transitionToHome(1000);
 					});
 				}
