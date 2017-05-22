@@ -87,9 +87,9 @@ public class DBController {
 	 * Gets chosen recipe
 	 * @param recipeTitle - title of recipe
 	 */
-	public void getChosenRecipe(String recipeTitle) {
+	public void getRecipeByName(String recipeTitle) {
 		try { 
-			PreparedStatement stmt = dbc.getConnection().prepareStatement("SELECT * FROM recipe WHERE recipe.title = ?");
+			PreparedStatement stmt = dbc.getConnection().prepareStatement("SELECT * FROM recipe WHERE recipe.name = ?");
 			stmt.setString(1, recipeTitle);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -105,5 +105,6 @@ public class DBController {
 		DBController dbc = new DBController();
 		String[] ingredientArray = {"pasta, salt"};
 		dbc.showRecipeList(ingredientArray);
+		dbc.getRecipeByName("Guacamole");
 	}
 }

@@ -23,9 +23,6 @@ import javafx.stage.Stage;
 /**
  * Controller class for GUI. 
  * @author Sofia Larsson
- * @author Linus Forsberg
- * @author Olle Olsson
- * @author Sanna Rönngård
  */
 public class GUIController implements Initializable {
 		//Start
