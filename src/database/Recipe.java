@@ -10,8 +10,9 @@ import javafx.scene.image.Image;
  * Class has a constructor that sets all om the recipe variables, 
  * one that set them all exept the image. 
  * Class also contains separete getters and setters for all variables. 
+ * 
  * @author Sofia Larsson 
- * @author Sanna Rönngård 2017
+ * @author Sanna Rönngård 
  */
 public class Recipe implements Serializable {
 	private ArrayList<String> recipeTitleList = new ArrayList<String>();

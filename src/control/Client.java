@@ -29,7 +29,10 @@ import javafx.util.Duration;
 /**
  * Client that shows the window when the 'Get Recipe' button in the
  * application is clicked.
- * @author OlleOlsson
+ * @author Olle Olsson
+ * @author Sofia Larsson
+ * @author Sanna Rönngård
+ * @author Linus Forsberg
  *
  */
 
