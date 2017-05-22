@@ -1,4 +1,8 @@
 -- psql path: C:\Users\sofya\Documents\pgsql\bin
+-- login:            psql -U ah1867 -d ah1867 -h 104.199.20.214
+-- User: ah1867 Password: 6duag1oi
+-- run the script:   source C:\Users\sofya\Documents\LocalWorkSpace\Whats-Cooking\whatscooking.sql
+-- psql path: C:\Users\sofya\Documents\pgsql\bin
 
 drop database if exists whatscooking;
 
