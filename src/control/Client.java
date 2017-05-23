@@ -1,7 +1,10 @@
 package control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.animation.FadeTransition;
@@ -555,7 +558,11 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
 						root.getChildren().add(mainWheelPane);				
-						selectedIngredients.getItems().addAll(ClientHandler.getBigList()); 				
+						
+						CheckBoxes.setbigListDairy();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList); 
+						
 						transitionToHome(1000);
 					});
 				}
@@ -591,10 +598,10 @@ public class Client {
 						root.getChildren().remove(fruitPane);
 						root.getChildren().add(mainWheelPane);
 						
-						selectedIngredients.getItems().clear(); 
-						ClientHandler.setbigList(); 
-						selectedIngredients.getItems().addAll(ClientHandler.getBigList()); 	
-						
+						CheckBoxes.setbigListFruit();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
+ 	
 						transitionToHome(1000);
 					});
 				}
@@ -626,6 +633,11 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(meatPane);
 						root.getChildren().add(mainWheelPane);
+						
+						CheckBoxes.setbigListMeat();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
+						
 						transitionToHome(1000);
 					});
 				}
@@ -657,6 +669,11 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(spannPane);
 						root.getChildren().add(mainWheelPane);
+						
+						CheckBoxes.setbigListGrains();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
+						
 						transitionToHome(1000);
 					});
 				}
@@ -690,6 +707,10 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
 						root.getChildren().add(mainWheelPane);
+						
+						CheckBoxes.setbigListVeg();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
 
 						transitionToHome(1000);
 					});

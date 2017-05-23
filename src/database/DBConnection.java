@@ -5,7 +5,6 @@ import java.sql.*;
 /**
  * Class that gets the database driver and user credentials. 
  * @author Sofia Larsson
- * @author Linus Forsberg
  *
  */
 public class DBConnection {
@@ -22,7 +21,7 @@ public class DBConnection {
 		this.driver = "org.postgresql.Driver";
 
 		/*Database on MAH-server (EXTERN)*/
-		this.url = "jdbc:postgresql://104.199.20.214/ah1867";
+		this.url = "jdbc:postgresql://104.199.20.214/whatscooking";
 		this.username = "ah1867";
 		this.password = "6duag1oi";
 		

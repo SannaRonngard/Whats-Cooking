@@ -58,7 +58,26 @@ public class CheckBoxes implements Initializable {
 		InitiateVegetables();
 		
 	}
-
+	public static void setbigListDairy(){
+		ClientHandler.bigList.addAll(ClientHandler.listDairy);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListFruit(){
+		ClientHandler.bigList.addAll(ClientHandler.listFruit);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListMeat(){
+		ClientHandler.bigList.addAll(ClientHandler.listMeat);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListVeg(){
+		ClientHandler.bigList.addAll(ClientHandler.listVeggies);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListGrains(){
+		ClientHandler.bigList.addAll(ClientHandler.listGrains);
+		System.out.println(ClientHandler.bigList);
+	}
 	/**
 	 * Methods that saves checked item to a list or removes it from the list
 	 * whenever box is unchecked.
@@ -190,12 +209,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listMeat.remove("Egg");
 			}
 		}
-
-			returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listMeat);
-			ClientHandler.bigListDB.addAll(ClientHandler.listMeatDB);
-			System.out.println(ClientHandler.bigList);
-		});
 	}
 
 	@FXML
@@ -569,11 +582,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listVeggies.remove("Lemongrass");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listVeggies);
-			ClientHandler.bigListDB.addAll(ClientHandler.listVeggiesDB);
-			System.out.println(ClientHandler.bigList);
-		});
 
 	}
 
@@ -762,11 +770,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listFruit.remove("Kiwi");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listFruit);
-			ClientHandler.bigListDB.addAll(ClientHandler.listFruitDB);
-			System.out.println(ClientHandler.bigList);
-		});
 	}
 
 	@FXML
@@ -893,11 +896,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listGrains.remove("Pasta");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listGrains);
-			ClientHandler.bigListDB.addAll(ClientHandler.listGrainsDB);
-			System.out.println(ClientHandler.bigList);
-		});
 
 	}
 
@@ -1026,11 +1024,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listDairy.remove("Butter");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listDairy);
-			ClientHandler.bigListDB.addAll(ClientHandler.listDairyDB);
-			System.out.println(ClientHandler.bigList);
-		});
 
 	}
 
