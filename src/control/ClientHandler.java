@@ -31,8 +31,6 @@ import javafx.scene.control.CheckBox;
  * 
  * @author Sanna Rönngård
  * @author Sofia Larsson
- * @author Olle Olsson
- * @author Linus Forsberg
  */
 
 public class ClientHandler implements Initializable {
