@@ -20,20 +20,23 @@ public class DBConnection {
 	public DBConnection(){
 		
 		this.driver = "org.postgresql.Driver";
+
+		/*Database on MAH-server (EXTERN)*/
+		this.url = "jdbc:postgresql://104.199.20.214/ah1867";
+		this.username = "ah1867";
+		this.password = "6duag1oi";
 		
-		//lokal db
-		this.url = "jdbc:postgresql://localhost:5432/whats_cooking";
+		/*Database on MAH-server (INTERN)*/
+//				this.url = "jdbc:postgresql://pgserver.mah.se/ae7689";
+//				this.username = "ae7689";
+//				this.password = "s05q21rc";
 		
-		//db på mah's server
-//		this.url = "jdbc:postgresql://pgserver.mah.se/ae7689";
-//		this.username = "ae7689";
-//		this.password = "s05q21rc";
-		
-		//db på google cloud
+		/* Database cloud-server Google Cloud (costs with each use)*/
 //		this.url = "jdbc:postgresql://104.155.0.136/whatscooking";
 //		this.username = "postgres";
 //		this.password = "bigheadteam";
 	}
+	/*Getters and setters*/
 	public String getDriver(){
 		return this.driver;
 	}
@@ -49,7 +52,10 @@ public class DBConnection {
 	public Connection getConnection(){
 		return this.connection;
 	}
-
+	/**
+	 * Method that establishes a connection to the database server. 
+	 * Trying for driver and connection with details. 
+	 */
 	public void initiate() {
 		// Try for Driver
 		try {

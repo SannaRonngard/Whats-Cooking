@@ -3,7 +3,7 @@ package control;
 import java.io.IOException;
 import java.util.HashMap;
 import javafx.application.Application;
-
+import javafx.collections.ObservableList;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,11 +26,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import sun.net.www.content.text.plain;
 
 /**
  * Client that shows the window when the 'Get Recipe' button in the
  * application is clicked.
- * @author OlleOlsson
+ * @author Olle Olsson
+ * @author Sofia Larsson
+ * @author Sanna Rönngård
+ * @author Linus Forsberg
  *
  */
 
@@ -40,16 +45,20 @@ public class Client {
 	private static int wheelLayoutX = 368;
 	private static int wheelLayoutY = 104;
 
-
-	private static int questionMarkHeight = 30;
-	private static int questionMarkWidth = 45;
-	private static int questionMarkLayoutX = 100;
-	private static int questionMarkLayoutY = 20;
+	private static int questionMarkLayoutX = 1110;
+	private static int questionMarkLayoutY = 12;
+	private static int questionMarkHeight = 24;
+	private static int questionMarkWidth = 24;
 	
-	private static int closeIconLayoutX;
-	private static int closeIconLayoutY;
-	private static int minimizeIconLayoutX;
-	private static int minimizeIconLayoutY;
+	private static int closeIconLayoutX = 1170;
+	private static int closeIconLayoutY = 10;
+	private static int closeIconHeight = 24;
+	private static int closeIconWidth = 24;
+	
+	private static int minimizeIconLayoutX = 1140;
+	private static int minimizeIconLayoutY = 10;
+	private static int minimizeIconWidth = 24;
+	private static int minimizeIconHeight = 24; 
 
 	public static final String IMAGE_SOURCE_DIRECTORY = "";
 	private static Scene userLoginScene;
@@ -59,7 +68,11 @@ public class Client {
 
 	private static ImageView backgroundImage;
 	private static ImageView tools = new ImageView();
+	private static ImageView close = new ImageView(); 
+	private static ImageView minimize = new ImageView(); 
 	private static ImageView wheel = new ImageView();
+	
+	private static ListView<String> selectedIngredients = new ListView<String>(); 
 	
 	private static Pane questionMarkPane = new Pane();
 	private static Pane closePane = new Pane(); 
@@ -70,7 +83,7 @@ public class Client {
 	private Pane meatPane = new Pane();
 	private Pane fruitPane = new Pane();
 	private Pane spannPane = new Pane();
-	private Pane vegetablePane = new Pane();
+	private Pane vegetablePane = new Pane(); 
 	
 	private static boolean transitioning = false;
 
@@ -82,40 +95,41 @@ public class Client {
 	/*
 	 * Making a new stage where scene and root components are placed.
 	 */
+	
 	public void clientGui() {
 		userLoginScene = new Scene(root,1200,750);
 		backgroundImage = new ImageView(new Image(loadResource("Whats-Cooking-Background.png")));
 		backgroundImage.setPreserveRatio(false);
 		backgroundImage.fitWidthProperty().bind(root.widthProperty());
 		backgroundImage.fitHeightProperty().bind(root.heightProperty());
-		root.getChildren().addAll(backgroundImage,mainWheelPane,questionMarkPane);
+		root.getChildren().addAll(backgroundImage,mainWheelPane,questionMarkPane, closePane, minimizePane);
 		mainWheelPane.getChildren().add(wheel);
 		setMealTypes();
 		addWheel(wheel);
 		
+		closePane.getChildren().add(close);
+		minimizePane.getChildren().add(minimize);
 		questionMarkPane.getChildren().add(tools);
+		
+		addIngredientstList(selectedIngredients);
+		root.getChildren().add(selectedIngredients);
+		
 		setToolIcons();
 		addMenuTools(tools);
+		addCloseButton(close);
+		addMinimizeButton(minimize);
 		
-		createBoundingBoxes(MealType.MEAT, mainWheelPane, 400, 103, 163, 180);
-		createBoundingBoxes(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
-		createBoundingBoxes(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
-		createBoundingBoxes(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
-		createBoundingBoxes(MealType.SPANN, mainWheelPane, 500, 457, 185, 140);
+		createBoundingBoxesMeal(MealType.MEAT, mainWheelPane, 400, 103, 163, 180);
+		createBoundingBoxesMeal(MealType.VEGETABLES, mainWheelPane, 623, 103, 163, 180);
+		createBoundingBoxesMeal(MealType.FRUITS, mainWheelPane, 685, 300, 170, 150);
+		createBoundingBoxesMeal(MealType.DAIRY, mainWheelPane, 335, 300, 170, 150);
+		createBoundingBoxesMeal(MealType.SPANN, mainWheelPane, 500, 457, 185, 140);
 		
-		createBoundingBoxes2(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
-		createBoundingBoxes2(MenuTools.CLOSE, closePane, closeIconLayoutX, closeIconLayoutY, 100, 100);
-		createBoundingBoxes2(MenuTools.MINIMIZE, closePane, minimizeIconLayoutX, minimizeIconLayoutY, 100, 100);
-		
-		Button closeBtn = new Button("Stäng ner detta skit");
-		closeBtn.setLayoutX(1070);
-		closeBtn.setLayoutY(50);
-		closeBtn.setOnAction( e -> window.close() );
-		root.getChildren().add(closeBtn);
-		
-		//kommer lägga till nodes för då man klickar på frågetecken. 
+		createBoundingBoxesQm(MenuTools.QUESTIONMARK, questionMarkPane, questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
+		createBoundingBoxesClose(MenuTools.CLOSE, closePane, closeIconLayoutX, closeIconLayoutY, closeIconWidth, closeIconHeight);
+		createBoundingBoxesMin(MenuTools.MINIMIZE, minimizePane, minimizeIconLayoutX, minimizeIconLayoutY, minimizeIconWidth, minimizeIconHeight); 
 
-		window.initModality(Modality.APPLICATION_MODAL); // Block any user interraction until window is closed
+		window.initModality(Modality.APPLICATION_MODAL); 
 		window.initStyle(StageStyle.TRANSPARENT);
 		window.setTitle("What's Cooking");
 		window.setResizable(false);
@@ -159,6 +173,13 @@ public class Client {
 		fade.setToValue(1);
 		fade.play();
 	}
+	
+	public void addIngredientstList(ListView<String> selectedIngredients) {
+		selectedIngredients.setLayoutX(900);
+		selectedIngredients.setLayoutY(150);
+		selectedIngredients.setMaxSize(300, 650);
+		
+	}
 
 	/**
 	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
@@ -181,7 +202,7 @@ public class Client {
 	 */
 
 	public static void setToolIcons(){
-		menuTools.put(MenuTools.QUESTIONMARK, "questionMark.png");
+		menuTools.put(MenuTools.QUESTIONMARK, "questionMark1.png");
 		menuTools.put(MenuTools.CLOSE, "Close.png"); 
 		menuTools.put(MenuTools.MINIMIZE, "Minimize.png");
 	}
@@ -217,7 +238,7 @@ public class Client {
 	 */
 
 	public static void addMenuTools(ImageView menuToolImages){
-		menuToolImages.setImage(new Image("questionMark.png"));
+		menuToolImages.setImage(new Image("questionMark1.png"));
 		menuToolImages.setPreserveRatio(true);
 		menuToolImages.setLayoutX(questionMarkLayoutX);
 		menuToolImages.setLayoutY(questionMarkLayoutY);
@@ -226,18 +247,32 @@ public class Client {
 	
 	}
 	
+	/**
+	 * Method that takes an image of the 'MenuTools' and puts it in the given position. 
+	 * @param menuToolImages
+	 */
+	
 	public static void addCloseButton(ImageView closeButtonImage){
 		closeButtonImage.setImage(new Image("1494174280_Close.png"));
 		closeButtonImage.setPreserveRatio(true);
-		closeButtonImage.setLayoutX(1100);
-		closeButtonImage.setLayoutY(20);
+		closeButtonImage.setLayoutX(closeIconLayoutX);
+		closeButtonImage.setLayoutY(closeIconLayoutY);
+		closeButtonImage.setFitHeight(closeIconHeight);
+		closeButtonImage.setFitWidth(closeIconWidth);
 	}
 	
-	public static void addMinimizeButton(ImageView menuToolImages){
-		menuToolImages.setImage(new Image("1494174365_minus.png"));
-		menuToolImages.setPreserveRatio(true);
-		menuToolImages.setLayoutX(1080);
-		menuToolImages.setLayoutY(20);
+	/**
+	 * Method that takes an image of the 'MenuTools' and puts it in the given position. 
+	 * @param menuToolImages
+	 */
+	
+	public static void addMinimizeButton(ImageView minimizeButtonImage){
+		minimizeButtonImage.setImage(new Image("1494174365_minus.png"));
+		minimizeButtonImage.setPreserveRatio(true);
+		minimizeButtonImage.setLayoutX(minimizeIconLayoutX);
+		minimizeButtonImage.setLayoutY(minimizeIconLayoutY);
+		minimizeButtonImage.setFitWidth(minimizeIconWidth);
+		minimizeButtonImage.setFitHeight(minimizeIconHeight);
 
 	}
 
@@ -277,16 +312,38 @@ public class Client {
 	 * (To see Bounding boxes, add "boundingBox.setStroke(Color.BLACK);"
 	 */
 	
-	public void createBoundingBoxes(MealType mealType, Pane pane, int x, int y, int width, int height){
+	public void createBoundingBoxesMeal(MealType mealType, Pane pane, int x, int y, int width, int height){
 		Rectangle boundingBox = new Rectangle(x,y,width,height);
 		boundingBox.setFill(Color.TRANSPARENT);
 		pane.getChildren().add(boundingBox);
 		addHoverActionWheel(boundingBox,mealType); 
 
 	}
-
+	
 	/**
 	 * 
+	 * @param pane - Base class for layout panes which need to expose the children list as public so that users of the subclass can freely add/remove children
+	 * @param x - positiokn on x-axis 
+	 * @param y - position on y-axis
+	 * @param width - width of bar 
+	 * @param height - height of bar 
+	 */
+
+	
+	public void createWindowBar(Pane pane) {
+		Rectangle windowBar = new Rectangle();
+		windowBar.setX(0);
+		windowBar.setY(0);
+		windowBar.setWidth(1200);
+		windowBar.setHeight(24);
+		windowBar.setFill(Color.WHITE);
+		windowBar.setOpacity(0.3);
+		pane.getChildren().add(windowBar); 
+		
+	}
+	
+	/**
+	 * Method that creates BoundingBoxes over the questionMarkIcon to allow the user to recieve information aobut the application
 	 * @param menuTools - takes an Enum type (given MenuTool)
 	 * @param pane - Base class for layout panes which need to expose the children list as public so that users of the subclass can freely add/remove children
 	 * @param questionMarkLayoutX - position on x-axis 
@@ -296,15 +353,95 @@ public class Client {
 	 * (To see Bounding boxes, add "boundingBox.setStroke(Color.BLACK);" 
 	 */
 
-	public void createBoundingBoxes2(MenuTools menuTools, Pane pane, int questionMarkLayoutX, int questionMarkLayoutY, int questionMarkWidth, int questionMarkHeight) {
+	public void createBoundingBoxesQm(MenuTools menuTools, Pane pane, int questionMarkLayoutX, int questionMarkLayoutY, int questionMarkWidth, int questionMarkHeight) {
 		Rectangle boundingBox = new Rectangle(questionMarkLayoutX, questionMarkLayoutY, questionMarkWidth, questionMarkHeight);
 		boundingBox.setFill(Color.TRANSPARENT);
-		//		boundingBox.setStroke(Color.BLACK);
+//		boundingBox.setStroke(Color.BLACK);
 		pane.getChildren().add(boundingBox);
 		addHoverActionMenuTools(boundingBox, pane, menuTools);
 
 	}
 	
+	/**
+	 * Method that creates BoundingBoxes over the closeIcon to allow the user to Close the window 
+	 * @param menutools - takes an Enum type (given menuTool) 
+	 * @param pane - Base class for layout panes which need to expose the children list as public so that users of the subclass can freely add/remove children
+	 * @param closeIconLayoutX - posotion on x-axis
+	 * @param closeIconLayoutY - position on y-axis
+	 * @param closeIconWidth - width of boundingBox
+	 * @param closeIconHeight - height of boundingBox 
+	 */
+	
+	public void createBoundingBoxesClose(MenuTools menuTools, Pane pane, int closeIconLayoutX, int closeIconLayoutY, int closeIconWidth, int closeIconHeight) { 
+		Rectangle boundingBox = new Rectangle(closeIconLayoutX, closeIconLayoutY, closeIconWidth, closeIconHeight); 
+		boundingBox.setFill(Color.TRANSPARENT);
+		pane.getChildren().add(boundingBox);
+		closeWindow(boundingBox, pane, menuTools); 
+		
+	}
+	
+	/**
+	 * Method that creates BoundingBoxes over the minimizeIcon to allow the user to Close the window 
+	 * @param menutools - takes an Enum type (given menuTool) 
+	 * @param pane - Base class for layout panes which need to expose the children list as public so that users of the subclass can freely add/remove children
+	 * @param minimizeIconLayoutX - posotion on x-axis
+	 * @param minimizeIconLayoutY - position on y-axis
+	 * @param minimizeIconWidth - width of boundingBox
+	 * @param minimizeIconHeight - height of boundingBox 
+	 */
+	
+	public void createBoundingBoxesMin(MenuTools menuTools, Pane pane, int minimizeIconLayoutX, int minimizeIconLayoutY, int minimizeIconWidth, int minimizeIconHeight) {
+		Rectangle boundingBox = new Rectangle(minimizeIconLayoutX, minimizeIconLayoutY, minimizeIconWidth, minimizeIconHeight);
+		boundingBox.setFill(Color.TRANSPARENT);
+		pane.getChildren().add(boundingBox);
+		minimizeWindow(boundingBox, pane, menuTools); 
+	}
+	
+	/**
+	 * Method that closes the window 
+	 * @param box - boundingBox that reacts to a mouseEntered 
+	 * @param menuTools - reference for the menutools 
+	 */
+	
+	private void closeWindow(Rectangle box, Pane pane, MenuTools menuTools) {
+		box.setOnMouseEntered(e -> {
+			close.setScaleX(1.2);
+			close.setScaleY(1.2);
+		});
+		
+		box.setOnMouseExited(e -> {
+			close.setScaleX(1);
+			close.setScaleY(1);
+		});
+		
+		box.setOnMouseClicked(e -> {
+			window.close();
+		});
+	}
+	
+	/**
+	 * method that minimizes the window 
+	 * @param box - boundingBox that reacts to a mouseEntered 
+	 * @param menuTools - reference for the menuTools 
+	 */
+	
+	private void minimizeWindow(Rectangle box, Pane pane, MenuTools menuTools) {
+		box.setOnMouseEntered(e -> {
+			minimize.setScaleX(1.2);
+			minimize.setScaleY(1.2);
+		});
+		
+		box.setOnMouseExited(e -> {
+			minimize.setScaleX(1);
+			minimize.setScaleY(1);
+		});
+		
+		box.setOnMouseClicked(e -> {
+			window.setIconified(true);
+		});
+		
+	}
+
 	/**
 	 * Method that makes the MenuTools interactive 
 	 * @param box - area which triggers the menutools to size up 
@@ -313,8 +450,8 @@ public class Client {
 
 	private void addHoverActionMenuTools(Rectangle box, Pane pane, MenuTools menuTools) {
 		box.setOnMouseEntered(e -> {
-			tools.setScaleX(1.5);
-			tools.setScaleY(1.5);
+			tools.setScaleX(1.2);
+			tools.setScaleY(1.2);
 		});
 
 		box.setOnMouseExited(e -> {
@@ -323,11 +460,18 @@ public class Client {
 		});
 
 		box.setOnMouseClicked(e -> {
-			showHelpInformation(box, pane, menuTools); 
+			showHelpInformation(box, pane); 
 		});
+		
 	}
 	
-	private void showHelpInformation(Rectangle box, Pane pane, MenuTools menuTools) {
+	/**
+	 * 
+	 * @param box - information box where information about the program is supposed to be 
+	 * @param pane
+	 */
+	
+	private void showHelpInformation(Rectangle box, Pane pane) {
 		
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize(1200, 750);
@@ -346,7 +490,7 @@ public class Client {
 	 * @param box -
 	 * @param mealType -
 	 */
-
+	
 	private void addHoverActionWheel(Rectangle box, MealType mealType){
 		box.setOnMouseClicked(e -> {
 			changeScene(mealType);
@@ -389,29 +533,29 @@ public class Client {
 
 		switch(type){
 		case DAIRY:
-			System.out.println("knapptest DIARY");
 			if(transitioning)
 				return;
 
 			createTransition(1000,new Runnable(){
 				@Override
 				public void run() {
-					Button goBackBtn = new Button("<---");
-					goBackBtn.setLayoutY(500);
-					goBackBtn.setLayoutX(10);
+					Button goBackBtn = new Button("Go back");;
 					dairyPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(dairyPane);
 					
 					try {
+						
 						Pane fxmlDairyPane = FXMLLoader.load(getClass().getResource("/gui/Category_Dairy.fxml"));
 						dairyPane.getChildren().add(fxmlDairyPane);
 						fxmlDairyPane.getChildren().addAll(goBackBtn);
+						
 					} catch (IOException e) { e.printStackTrace(); }
 
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(dairyPane);
-						root.getChildren().add(mainWheelPane);
+						root.getChildren().add(mainWheelPane);				
+						selectedIngredients.getItems().addAll(ClientHandler.getBigList()); 				
 						transitionToHome(1000);
 					});
 				}
@@ -429,13 +573,14 @@ public class Client {
 					Button goBackBtn = new Button("Go back");
 					fruitPane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
-					root.getChildren().add(fruitPane);
+					root.getChildren().add(fruitPane);			
 
 					try {
 
 						Pane fxmlFruitPane = FXMLLoader.load(getClass().getResource("/gui/Category_Fruit.fxml"));
 						fruitPane.getChildren().add(fxmlFruitPane);
 						fxmlFruitPane.getChildren().addAll(goBackBtn);
+						
 
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -445,6 +590,11 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(fruitPane);
 						root.getChildren().add(mainWheelPane);
+						
+						selectedIngredients.getItems().clear(); 
+						ClientHandler.setbigList(); 
+						selectedIngredients.getItems().addAll(ClientHandler.getBigList()); 	
+						
 						transitionToHome(1000);
 					});
 				}
@@ -525,6 +675,7 @@ public class Client {
 					vegetablePane.getChildren().addAll(goBackBtn);
 					root.getChildren().remove(mainWheelPane);
 					root.getChildren().add(vegetablePane);
+					
 					try {
 
 						Pane fxmlVegetablesPane = FXMLLoader.load(getClass().getResource("/gui/Category_Vegetables.fxml"));
@@ -539,6 +690,7 @@ public class Client {
 					goBackBtn.setOnMouseClicked(e -> {
 						root.getChildren().remove(vegetablePane);
 						root.getChildren().add(mainWheelPane);
+
 						transitionToHome(1000);
 					});
 				}
