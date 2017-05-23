@@ -1,6 +1,9 @@
 package database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Querys for database 
@@ -8,13 +11,14 @@ import java.sql.*;
  * @author Linus Forsberg
  */
 public class DBController {
-	private DBConnection dbc;
+	private DBConnection c;
 	private Recipe recipe;
 
 	public DBController() {
-		this.dbc = new DBConnection();
+		this.c = new DBConnection();
 		this.recipe = recipe;
-		dbc.initiate();
+		
+		c.initiate();
 	}
 	/******************************
 	 * Store a recipe in database *
@@ -22,9 +26,9 @@ public class DBController {
 	 ******************************/
 	public void newRecipe(Recipe recipe) {
 		try {
-			dbc.getConnection().setAutoCommit(false);
-			Statement st = dbc.getConnection().createStatement();
-			Statement idSt = dbc.getConnection().createStatement();
+			c.getConnection().setAutoCommit(false);
+			Statement st = c.getConnection().createStatement();
+			Statement idSt = c.getConnection().createStatement();
 			ResultSet rs = idSt.executeQuery("SELECT (SELECT COUNT(*) FROM recipe) AS recipeCounter,"
 					+"(SELECT COUNT(*) FROM ingredient) AS ingredientCounter;");
 			rs.next();
@@ -45,66 +49,103 @@ public class DBController {
 			}
 			st.executeUpdate(sql);
 			st.close();
-			dbc.getConnection().commit();
-			dbc.getConnection().close();
+			c.getConnection().commit();
+			c.getConnection().close();
 		} catch (SQLException e) {}	
 	}
-
 	/**
-	 * Gets a list of recipes and shows it in user interface.
-	 * @param ingredientArray - list of chosen ingredients
-	 */
-
-	public void showRecipeList(String[] ingredientArray) {
-		PreparedStatement stmt;
-		ResultSet rs;
-		String sql = "select recipe.title from recipe join "
-				+ "recipe_ingredients on recipe.recipeid = recipe_ingredients.recipeid join "
-				+ "ingredients on recipe_ingredients.ingredientsid = ingredients.ingredientsid where ingredients.name like ?";
-		try {
-			for(int i = 0; i < ingredientArray.length; i++) {
-				if(i > 0) {
-					sql += " AND ";
-				}
-				sql = " ingredients.name like ? ";
-			}
-
-			stmt = dbc.getConnection().prepareStatement(sql);
-
-			for(int i = 0; i < ingredientArray.length; i++) {
-				stmt.setString(i+1, ingredientArray[i]);
-			}
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				System.out.println(rs.getString("title"));
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Gets chosen recipe
+	 * Returns a recipe
 	 * @param recipeTitle - title of recipe
 	 */
-	public void getRecipeByName(String recipeTitle) {
-		try { 
-			PreparedStatement stmt = dbc.getConnection().prepareStatement("SELECT * FROM recipe WHERE recipe.name = ?");
-			stmt.setString(1, recipeTitle);
-			ResultSet rs = stmt.executeQuery();
+	public Recipe[] getTitleSearch(String title) {
+		
+		ArrayList<Recipe> result = new ArrayList<Recipe>();
+		Statement stmt;
+		try {
+			stmt = c.getConnection().createStatement();
+			String sql = "SELECT name, prep_time, measure, instructions FROM recipe WHERE recipe.name ='" + title + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+
 			while (rs.next()) {
-				System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+				Recipe recipe = new Recipe();
+	
+				recipe.setTitle(rs.getString("name"));
+				recipe.setPrepTime(rs.getString("prep_time"));
+				recipe.setMeasure(rs.getString("measure"));
+				recipe.setContent(rs.getString("instructions"));
+				result.add(recipe);
+
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		Recipe[] rArray = new Recipe[result.size()];
+		result.toArray(rArray);
+		return rArray;
+	}
+	/**
+	 * Ingredients format must be: (1,2,3)!!!
+	 * @param ingredients
+	 * @return
+	 */
+	public Recipe[] getRecipeByIngredients(String ingredients) {
+		
+		ArrayList<Recipe> result = new ArrayList<Recipe>();
+		Statement stmt;
+		try {
+			stmt = c.getConnection().createStatement();
+			String sql1 = "SELECT recipe_id, count(*) AS cnt" +
+			"FROM Recipe_Ingredient WHERE ingredient_id IN " + ingredients + 
+					"GROUP BY recipe_id;";
+			String sql2 = "SELECT r.id as Recipeid, r.name " +
+			"FROM Recipe r JOIN cte cON r.id = c.recipe_id ORDER BY c.cnt DESC;";
+			
+			ResultSet rs1 = stmt.executeQuery(sql1);
+			
+			while(rs1.next())
+                System.out.println(rs1.getString("ingredient_id"));
+			
+			ResultSet rs2 = stmt.executeQuery(sql2);
+
+			while (rs1.next()) {
+				Recipe recipe = new Recipe();
+	
+				recipe.setTitle(rs1.getString("name"));
+				result.add(recipe);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		Recipe[] rArray = new Recipe[result.size()];
+		result.toArray(rArray);
+		return rArray;
 	}
 	
-	//testmetod för querys
+	
 	public static void main(String[] args) {
 		DBController dbc = new DBController();
-		String[] ingredientArray = {"pasta, salt"};
-//		dbc.showRecipeList(ingredientArray);
-		dbc.getRecipeByName("Guacamole");
-	}
+		String[] ingredientArray = {"1, 8"};
+		/* Test titleSearch() */
+		Recipe[] titleSearch = dbc.getTitleSearch("Guacamole");
+		for (Recipe i : titleSearch) {
+			
+			System.out.println(i.getTitle());
+			System.out.println(i.getPrepTime());
+			System.out.println("---------------------------");
+			System.out.println(i.getMeasure());
+			System.out.println(i.getContent());
+		}
+		
+		/* Test ingredientSearch() */
+		Recipe[] ingredientSearch = dbc.getRecipeByIngredients("(1,8)");
+
+		for (Recipe i : ingredientSearch) {
+			
+			System.out.println(i.getTitle());
+		}
+		
+		}
 }

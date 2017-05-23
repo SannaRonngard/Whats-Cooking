@@ -58,7 +58,26 @@ public class CheckBoxes implements Initializable {
 		InitiateVegetables();
 		
 	}
-
+	public static void setbigListDairy(){
+		ClientHandler.bigList.addAll(ClientHandler.listDairy);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListFruit(){
+		ClientHandler.bigList.addAll(ClientHandler.listFruit);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListMeat(){
+		ClientHandler.bigList.addAll(ClientHandler.listMeat);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListVeg(){
+		ClientHandler.bigList.addAll(ClientHandler.listVeggies);
+		System.out.println(ClientHandler.bigList);
+	}
+	public static void setbigListGrains(){
+		ClientHandler.bigList.addAll(ClientHandler.listGrains);
+		System.out.println(ClientHandler.bigList);
+	}
 	/**
 	 * Methods that saves checked item to a list or removes it from the list
 	 * whenever box is unchecked.
@@ -1028,6 +1047,7 @@ public class CheckBoxes implements Initializable {
 		}
 		returnBtn.setOnAction(e -> {
 			ClientHandler.bigList.addAll(ClientHandler.listDairy);
+			
 			ClientHandler.bigListDB.addAll(ClientHandler.listDairyDB);
 			System.out.println(ClientHandler.bigList);
 		});

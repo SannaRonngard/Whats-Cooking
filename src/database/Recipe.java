@@ -20,6 +20,7 @@ public class Recipe implements Serializable {
 	private String title;
 	private String prepTime;
 	private String content;
+	private String measure;
 	private Image recipeImage;
 	/**
 	 * A recipe that has no image. 
@@ -62,6 +63,12 @@ public class Recipe implements Serializable {
 	}
 	public String getPrepTime(){
 		return this.prepTime;
+	}
+	public void setMeasure(String measure){
+		this.measure = measure;
+	}
+	public String getMeasure(){
+		return this.measure;
 	}
 	public void setContent(String content){
 		this.content = content;
