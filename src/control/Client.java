@@ -560,6 +560,7 @@ public class Client {
 						root.getChildren().add(mainWheelPane);				
 						
 						CheckBoxes.setbigListDairy();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList); 
 						
 						transitionToHome(1000);
 					});
@@ -597,6 +598,8 @@ public class Client {
 						root.getChildren().add(mainWheelPane);
 						
 						CheckBoxes.setbigListFruit();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
  	
 						transitionToHome(1000);
 					});
@@ -631,6 +634,8 @@ public class Client {
 						root.getChildren().add(mainWheelPane);
 						
 						CheckBoxes.setbigListMeat();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
 						
 						transitionToHome(1000);
 					});
@@ -665,6 +670,8 @@ public class Client {
 						root.getChildren().add(mainWheelPane);
 						
 						CheckBoxes.setbigListGrains();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
 						
 						transitionToHome(1000);
 					});
@@ -701,6 +708,8 @@ public class Client {
 						root.getChildren().add(mainWheelPane);
 						
 						CheckBoxes.setbigListVeg();
+						selectedIngredients.getItems().clear();
+						selectedIngredients.getItems().addAll(ClientHandler.bigList);
 
 						transitionToHome(1000);
 					});
