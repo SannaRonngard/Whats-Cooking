@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -112,7 +113,7 @@ public class Client {
 		
 		closePane.getChildren().add(close);
 		minimizePane.getChildren().add(minimize);
-		questionMarkPane.getChildren().add(tools);
+		questionMarkPane.getChildren().add(tools); 
 		
 		addIngredientstList(selectedIngredients);
 		root.getChildren().add(selectedIngredients);
@@ -138,6 +139,19 @@ public class Client {
 		window.setResizable(false);
 		window.setScene(userLoginScene);
 		window.show();
+		
+		Button clearAll = new Button("Clear All"); 
+		clearAll.setLayoutX(900);
+		clearAll.setLayoutY(555);
+		root.getChildren().addAll(clearAll); 
+		clearAll.setOnAction(e -> clearList()); 
+		
+	}
+	
+	private void clearList() {
+		ClientHandler.clearList(ClientHandler.bigList);
+		selectedIngredients.getItems().clear();
+		
 	}
 
 	/**
@@ -177,12 +191,6 @@ public class Client {
 		fade.play();
 	}
 	
-	public void addIngredientstList(ListView<String> selectedIngredients) {
-		selectedIngredients.setLayoutX(900);
-		selectedIngredients.setLayoutY(150);
-		selectedIngredients.setMaxSize(300, 650);
-		
-	}
 
 	/**
 	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
@@ -233,6 +241,13 @@ public class Client {
 	public static String loadResource(String image) {
 		String url = IMAGE_SOURCE_DIRECTORY + image;
 		return url;
+	}
+	
+	public void addIngredientstList(ListView<String> selectedIngredients) {
+		selectedIngredients.setLayoutX(900);
+		selectedIngredients.setLayoutY(150);
+		selectedIngredients.setMaxSize(300, 650);
+		
 	}
 	
 	/**
@@ -560,6 +575,7 @@ public class Client {
 						root.getChildren().add(mainWheelPane);				
 						
 						CheckBoxes.setbigListDairy();
+						selectedIngredients.getItems().clear();
 						selectedIngredients.getItems().addAll(ClientHandler.bigList); 
 						
 						transitionToHome(1000);
