@@ -209,12 +209,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listMeat.remove("Egg");
 			}
 		}
-
-			returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listMeat);
-			ClientHandler.bigListDB.addAll(ClientHandler.listMeatDB);
-			System.out.println(ClientHandler.bigList);
-		});
 	}
 
 	@FXML
@@ -588,11 +582,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listVeggies.remove("Lemongrass");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listVeggies);
-			ClientHandler.bigListDB.addAll(ClientHandler.listVeggiesDB);
-			System.out.println(ClientHandler.bigList);
-		});
 
 	}
 
@@ -781,11 +770,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listFruit.remove("Kiwi");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listFruit);
-			ClientHandler.bigListDB.addAll(ClientHandler.listFruitDB);
-			System.out.println(ClientHandler.bigList);
-		});
 	}
 
 	@FXML
@@ -912,11 +896,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listGrains.remove("Pasta");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listGrains);
-			ClientHandler.bigListDB.addAll(ClientHandler.listGrainsDB);
-			System.out.println(ClientHandler.bigList);
-		});
 
 	}
 
@@ -1045,12 +1024,6 @@ public class CheckBoxes implements Initializable {
 				ClientHandler.listDairy.remove("Butter");
 			}
 		}
-		returnBtn.setOnAction(e -> {
-			ClientHandler.bigList.addAll(ClientHandler.listDairy);
-			
-			ClientHandler.bigListDB.addAll(ClientHandler.listDairyDB);
-			System.out.println(ClientHandler.bigList);
-		});
 
 	}
 
