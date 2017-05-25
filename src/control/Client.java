@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -33,6 +34,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -49,6 +52,9 @@ import javafx.util.Duration;
  */
 
 public class Client {
+	@FXML TextArea textArea;
+	@FXML Label lblTitle, lblMeasures;
+	
 	private static MealType currentMealType = MealType.ALL;
 	private static int wheelHeight = 580;
 	private static int wheelWidth = 464;
@@ -71,6 +77,7 @@ public class Client {
 	private static int minimizeIconHeight = 24; 
 
 	public static final String IMAGE_SOURCE_DIRECTORY = "";
+	TextField tfSearchRecipe = new TextField("");
 	private static Scene userLoginScene;
 	
 	private static HashMap<MealType, String> mealTypes = new HashMap<>();
@@ -84,7 +91,6 @@ public class Client {
 	
 	private static ListView<String> selectedIngredients = new ListView<String>(); 
 	private static ListView<String> showRecipes = new ListView<String>();
-	private static ListView<String> manualSearch = new ListView<String>(); 
 	
 	private static Pane questionMarkPane = new Pane();
 	private static Pane closePane = new Pane(); 
@@ -96,6 +102,7 @@ public class Client {
 	private Pane fruitPane = new Pane();
 	private Pane spannPane = new Pane();
 	private Pane vegetablePane = new Pane(); 
+	
 	
 	private static boolean transitioning = false;
 
@@ -168,11 +175,13 @@ public class Client {
 		Button search = new Button("Search"); 
 		search.setLayoutX(562);
 		search.setLayoutY(620);
-		TextField searchRecipe = new TextField("");
-		searchRecipe.setLayoutX(515);
-		searchRecipe.setLayoutY(590);
-		root.getChildren().addAll(search, searchRecipe); 
-		search.setOnAction(e -> searchRecipesManually());
+		tfSearchRecipe.setLayoutX(515);
+		tfSearchRecipe.setLayoutY(590);
+		root.getChildren().addAll(search, tfSearchRecipe); 
+		search.setOnAction(e -> {	
+		searchRecipesManually();
+		
+		});
 		
 	}
 
@@ -238,9 +247,31 @@ public class Client {
 	}
 	
 	public void searchRecipesManually() {
+		dbc = new DBController();
+		Recipe r = new Recipe();
+		String name = tfSearchRecipe.getText();
+		dbc.TitleSearch(name);
 		
-	}
-	
+		Button goBackBtn = new Button("Go back");;
+		dairyPane.getChildren().addAll(goBackBtn);
+		root.getChildren().remove(mainWheelPane);
+		root.getChildren().add(dairyPane);
+		
+		try {
+			
+			Pane Recipe = FXMLLoader.load(getClass().getResource("/gui/Recipe.fxml"));
+			dairyPane.getChildren().add(Recipe);
+			Recipe.getChildren().addAll(goBackBtn);
+			
+		} catch (IOException e) { e.printStackTrace(); }
+		String title = r.getTitle();
+		lblTitle.setText(title);
+		String text = r.getInstructions();
+        textArea.setText(text);
+		goBackBtn.setOnMouseClicked(e -> {
+			root.getChildren().remove(dairyPane);
+			root.getChildren().add(mainWheelPane);	});			
+	}	
 	public void generateRecipes() {
 		Label recipes = new Label("Generated Recipes");
 		recipes.setFont(Font.font("Impact", FontWeight.BOLD, 24));
@@ -255,7 +286,6 @@ public class Client {
 		
 		showRecipeList(showRecipes);
 		root.getChildren().addAll(showRecipes, recipes, showRecipe);
-		root.getChildren().remove(manualSearch);
 		
 	}
 	
@@ -319,12 +349,6 @@ public class Client {
 		selectedIngredients.setLayoutY(150);
 		selectedIngredients.setMaxSize(300, 650);
 	
-	}
-	
-	public void showSearchedRecipes(ListView<String> manualSearch) {
-		manualSearch.setLayoutX(50);
-		manualSearch.setLayoutY(150);
-		manualSearch.setMaxSize(300, 650);
 	}
 	
 	/**

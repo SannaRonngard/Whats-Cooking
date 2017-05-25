@@ -21,10 +21,10 @@ public class DBController {
 	/**
 	 * Returns a recipe
 	 * @param recipeTitle - title of recipe
+	 * @return 
 	 */
-	public Recipe[] getTitleSearch(String title) {
+	public void TitleSearch(String title) {
 		
-		ArrayList<Recipe> result = new ArrayList<Recipe>();
 		Statement stmt;
 		try {
 			stmt = c.getConnection().createStatement();
@@ -38,16 +38,11 @@ public class DBController {
 				recipe.setPrepTime(rs.getString("prep_time"));
 				recipe.setMeasure(rs.getString("measure"));
 				recipe.setInstructions(rs.getString("instructions"));
-				result.add(recipe);
 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		Recipe[] rArray = new Recipe[result.size()];
-		result.toArray(rArray);
-		return rArray;
 	}
 	/**
 	 * Ingredients format must be: (1,2,3)!!!
@@ -91,16 +86,17 @@ public String[] getRecipeByIngredients(String ingredients) {
 		
 		/* Test titleSearch() */
 		
-		Recipe[] titleSearch = dbc.getTitleSearch("Guacamole");
+		dbc.TitleSearch("Guacamole");
+		System.out.println(Recipe.title);
 		
-		for (Recipe i : titleSearch) {
-			
-			System.out.println(i.getTitle());
-			System.out.println(i.getPrepTime());
-			System.out.println("---------------------------");
-			System.out.println(i.getMeasure());
-			System.out.println(i.getInstructions());
-		}
+//		for (String i : titleSearch) {
+//			
+//			System.out.println(i );
+//			System.out.println(i + r.getPrepTime());
+//			System.out.println("---------------------------");
+//			System.out.println(i + r.getMeasure());
+//			System.out.println(i + r.getInstructions());
+//		}
 		
 		/* Test ingredientSearch() */
 		
