@@ -89,32 +89,32 @@ public class DBController {
 	 * @param ingredients
 	 * @return
 	 */
-	public String[] getRecipeByIngredients(String ingredients) {
-		
-		ArrayList<Recipe> result = new ArrayList<Recipe>();
-		Statement stmt;
-		try {
-			stmt = c.getConnection().createStatement();
-			String sql1 = "WITH cte AS (SELECT recipe_id, count(*) AS cnt "+
-			"FROM Recipe_Ingredient WHERE ingredient_id IN " + "(" + ingredients + ") " + 
-					" GROUP BY recipe_id) SELECT r.id as Recipeid, "+ 
-			"r.name, c.cnt FROM Recipe r JOIN cte c "+
-					" ON r.id = c.recipe_id ORDER BY c.cnt DESC";
-		
-			ResultSet rs = stmt.executeQuery(sql1);
-			
-			while(rs.next())
-                System.out.println(rs.getString("name"));
-
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		String[] rArray = new Recipe[result.size()];
-		result.toArray(rArray);
-		return rArray;
-	}
+//	public String[] getRecipeByIngredients(String ingredients) {
+//		
+//		ArrayList<Recipe> result = new ArrayList<Recipe>();
+//		Statement stmt;
+//		try {
+//			stmt = c.getConnection().createStatement();
+//			String sql1 = "WITH cte AS (SELECT recipe_id, count(*) AS cnt "+
+//			"FROM Recipe_Ingredient WHERE ingredient_id IN " + "(" + ingredients + ") " + 
+//					" GROUP BY recipe_id) SELECT r.id as Recipeid, "+ 
+//			"r.name, c.cnt FROM Recipe r JOIN cte c "+
+//					" ON r.id = c.recipe_id ORDER BY c.cnt DESC";
+//		
+//			ResultSet rs = stmt.executeQuery(sql1);
+//			
+//			while(rs.next())
+//                System.out.println(rs.getString("name"));
+//
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		String[] rArray = new Recipe[result.size()];
+//		result.toArray(rArray);
+//		return rArray;
+//	}
 	
 	
 	public static void main(String[] args) {
@@ -137,14 +137,14 @@ public class DBController {
 		
 		/* Test ingredientSearch() */
 		
-		String ingredientString = "1,8";
-		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
-		
-		for (Recipe i : ingredientSearch) {
-			
-			System.out.println(i.getTitle());
-			System.out.println(i.getMatchInt());
-		}
+//		String ingredientString = "1,8";
+//		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
+//		
+//		for (Recipe i : ingredientSearch) {
+//			
+//			System.out.println(i.getTitle());
+//			System.out.println(i.getMatchInt());
+//		}
 		
 		}
 }
