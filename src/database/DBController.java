@@ -40,7 +40,7 @@ public class DBController {
 
 			String sql = "INSERT INTO recipe (recipeid,title,prepTime,content) " + "VALUES ('"
 					+ recipeId + "','" + recipe.getTitle() + "','" + recipe.getPrepTime()
-					+ "','" + recipe.getContent() + "','" + "');";
+					+ "','" + recipe.getInstructions() + "','" + "');";
 			String[] ingredientArray = recipe.getIngredientArray();
 			for (int i = 0; i < ingredientArray.length; i++) {
 				sql += "\nINSERT INTO ingredient(ingredientid,recipeid,name) VALUES (" + ingredientId + "," + recipeId
@@ -72,7 +72,7 @@ public class DBController {
 				recipe.setTitle(rs.getString("name"));
 				recipe.setPrepTime(rs.getString("prep_time"));
 				recipe.setMeasure(rs.getString("measure"));
-				recipe.setContent(rs.getString("instructions"));
+				recipe.setInstructions(rs.getString("instructions"));
 				result.add(recipe);
 
 			}
@@ -95,26 +95,18 @@ public class DBController {
 		Statement stmt;
 		try {
 			stmt = c.getConnection().createStatement();
-			String sql1 = "SELECT recipe_id, count(*) AS cnt" +
+			String sql1 = "WITH cte AS (SELECT recipe_id, count(*) AS cnt "+
 			"FROM Recipe_Ingredient WHERE ingredient_id IN " + ingredients + 
-					"GROUP BY recipe_id;";
-			String sql2 = "SELECT r.id as Recipeid, r.name " +
-			"FROM Recipe r JOIN cte cON r.id = c.recipe_id ORDER BY c.cnt DESC;";
+					" GROUP BY recipe_id) SELECT r.id as Recipeid, "+ 
+			"r.name, c.cnt FROM Recipe r JOIN cte c "+
+					" ON r.id = c.recipe_id ORDER BY c.cnt DESC";
+		
+			ResultSet rs = stmt.executeQuery(sql1);
 			
-			ResultSet rs1 = stmt.executeQuery(sql1);
-			
-			while(rs1.next())
-                System.out.println(rs1.getString("ingredient_id"));
-			
-			ResultSet rs2 = stmt.executeQuery(sql2);
+			while(rs.next())
+                System.out.println(rs.getString("name"));
 
-			while (rs1.next()) {
-				Recipe recipe = new Recipe();
-	
-				recipe.setTitle(rs1.getString("name"));
-				result.add(recipe);
-
-			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -126,25 +118,32 @@ public class DBController {
 	
 	
 	public static void main(String[] args) {
+		
 		DBController dbc = new DBController();
-		String[] ingredientArray = {"1, 8"};
+
+		
 		/* Test titleSearch() */
+		
 		Recipe[] titleSearch = dbc.getTitleSearch("Guacamole");
+		
 		for (Recipe i : titleSearch) {
 			
 			System.out.println(i.getTitle());
 			System.out.println(i.getPrepTime());
 			System.out.println("---------------------------");
 			System.out.println(i.getMeasure());
-			System.out.println(i.getContent());
+			System.out.println(i.getInstructions());
 		}
 		
 		/* Test ingredientSearch() */
-		Recipe[] ingredientSearch = dbc.getRecipeByIngredients("(1,8)");
-
+		
+		String ingredientString = "(1,8)";
+		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
+		
 		for (Recipe i : ingredientSearch) {
 			
 			System.out.println(i.getTitle());
+			System.out.println(i.getMatchInt());
 		}
 		
 		}

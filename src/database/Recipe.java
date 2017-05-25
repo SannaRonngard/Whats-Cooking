@@ -15,12 +15,10 @@ import javafx.scene.image.Image;
  * @author Sanna Rönngård 
  */
 public class Recipe implements Serializable {
-	private ArrayList<String> recipeTitleList = new ArrayList<String>();
+	private ArrayList<String> recipeNameList = new ArrayList<String>();
 	private static ArrayList<String> ingredientList = new ArrayList<String>();
-	private String title;
-	private String prepTime;
-	private String content;
-	private String measure;
+	private String title, prepTime, instructions, measure;
+	private int matchInt;
 	private Image recipeImage;
 	/**
 	 * A recipe that has no image. 
@@ -31,10 +29,10 @@ public class Recipe implements Serializable {
 	public Recipe(){
 		
 	}
-	public Recipe(String title, String prepTime, String content){
+	public Recipe(String title, String prepTime, String instructions){
 		this.title = title;
 		this.prepTime = prepTime;
-		this.content = content;
+		this.instructions = instructions;
 	}
 	/**
 	 * A recipe that contains all varibles.
@@ -43,10 +41,10 @@ public class Recipe implements Serializable {
 	 * @param picture
 	 * @param serverTime
 	 */
-	public Recipe(String title, String prepTime, String content, Image recipeImage){
+	public Recipe(String title, String prepTime, String instructions, Image recipeImage){
 		this.title = title;
 		this.prepTime = prepTime;
-		this.content = content;
+		this.instructions = instructions;
 		this.recipeImage = recipeImage;
 	}
 	/*********************************/
@@ -70,11 +68,14 @@ public class Recipe implements Serializable {
 	public String getMeasure(){
 		return this.measure;
 	}
-	public void setContent(String content){
-		this.content = content;
+	public void setInstructions(String instructions){
+		this.instructions = instructions;
 	}
-	public String getContent(){
-		return this.content;
+	public String getInstructions(){
+		return this.instructions;
+	}
+	public int getMatchInt() {
+		return this.matchInt;
 	}
 	public void setRecipeImage(Image recipeImage){
 		this.recipeImage = recipeImage;
@@ -83,14 +84,14 @@ public class Recipe implements Serializable {
 		return recipeImage;
 	}
 	// Setting recipe titles to list
-	public void setRecipeTitleToList(String title) {
-		recipeTitleList.add(title);
+	public void setRecipeNameToList(String name) {
+		recipeNameList.add(name);
 	}
 	// Getting all ingredients assigned to the recipe. Returns av array of the ingredients
-	public String[] getRecipeTitleList() {
-		String[] titleArray = new String[recipeTitleList.size()];
-		recipeTitleList.toArray(titleArray);
-		return titleArray;
+	public String[] getRecipeNameList() {
+		String[] nameArray = new String[recipeNameList.size()];
+		recipeNameList.toArray(nameArray);
+		return nameArray;
 	}
 
 	// Setting ingredients to a recipe
