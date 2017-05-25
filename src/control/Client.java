@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import database.DBController;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.animation.FadeTransition;
@@ -17,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -92,7 +94,7 @@ public class Client {
 
 	private ClientHandler clientHandler;
 	private ApplicationInformation applicationInformation;
-	
+	private DBController dbc;
 	Stage window = new Stage();
 
 	/*
@@ -112,7 +114,7 @@ public class Client {
 		
 		closePane.getChildren().add(close);
 		minimizePane.getChildren().add(minimize);
-		questionMarkPane.getChildren().add(tools);
+		questionMarkPane.getChildren().add(tools); 
 		
 		addIngredientstList(selectedIngredients);
 		root.getChildren().add(selectedIngredients);
@@ -138,6 +140,28 @@ public class Client {
 		window.setResizable(false);
 		window.setScene(userLoginScene);
 		window.show();
+		
+		Button clearAll = new Button("Clear All"); 
+		clearAll.setLayoutX(1075);
+		clearAll.setLayoutY(555);
+		root.getChildren().addAll(clearAll); 
+		clearAll.setOnAction(e -> clearList());
+		
+		Button showRecipes = new Button("Show Recipes"); 
+		showRecipes.setLayoutX(900);
+		showRecipes.setLayoutY(555);
+		root.getChildren().addAll(showRecipes); 
+		showRecipes.setOnAction(e -> showRecipes());
+	}
+	
+	/**
+	 * Method that clears the list from selected ingredients
+	 */
+	
+	private void clearList() {
+		ClientHandler.clearList(ClientHandler.bigList);
+		selectedIngredients.getItems().clear();
+		
 	}
 
 	/**
@@ -177,12 +201,6 @@ public class Client {
 		fade.play();
 	}
 	
-	public void addIngredientstList(ListView<String> selectedIngredients) {
-		selectedIngredients.setLayoutX(900);
-		selectedIngredients.setLayoutY(150);
-		selectedIngredients.setMaxSize(300, 650);
-		
-	}
 
 	/**
 	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
@@ -233,6 +251,13 @@ public class Client {
 	public static String loadResource(String image) {
 		String url = IMAGE_SOURCE_DIRECTORY + image;
 		return url;
+	}
+	
+	public void addIngredientstList(ListView<String> selectedIngredients) {
+		selectedIngredients.setLayoutX(900);
+		selectedIngredients.setLayoutY(150);
+		selectedIngredients.setMaxSize(300, 650);
+	
 	}
 	
 	/**
@@ -721,6 +746,10 @@ public class Client {
 		default:
 			break;
 		}
+	}
+	
+	public void showRecipes() {
+		dbc.getRecipeByIngredients(selectedIngredients);
 	}
 	
 	/**
