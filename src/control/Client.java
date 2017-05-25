@@ -37,7 +37,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import sun.net.www.content.text.plain;
 
 /**
  * Client that shows the window when the 'Get Recipe' button in the

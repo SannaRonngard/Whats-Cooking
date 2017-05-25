@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
  * @author Sofia Larsson 
  * @author Sanna Rönngård 
  */
+
 public class Recipe implements Serializable {
 	public static ArrayList<String> recipeNameList = new ArrayList<String>();
 	private static ArrayList<String> ingredientList = new ArrayList<String>();

@@ -14,7 +14,6 @@ import javafx.scene.control.CheckBox;
  * ingredients.
  * 
  * @author Sanna Rönngård
- * @author Sofia Larsson
  */
 public class CheckBoxes implements Initializable {
 
