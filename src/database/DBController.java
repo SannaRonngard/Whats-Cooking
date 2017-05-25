@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.scene.control.ListView;
+
 /**
  * Querys for database 
  * @author Sofia Larsson
@@ -86,17 +88,17 @@ public class DBController {
 	}
 	/**
 	 * Ingredients format must be: (1,2,3)!!!
-	 * @param ingredients
+	 * @param selectedIngredients
 	 * @return
 	 */
-	public Recipe[] getRecipeByIngredients(String ingredients) {
+	public Recipe[] getRecipeByIngredients(ListView<String> selectedIngredients) {
 		
 		ArrayList<Recipe> result = new ArrayList<Recipe>();
 		Statement stmt;
 		try {
 			stmt = c.getConnection().createStatement();
 			String sql1 = "SELECT recipe_id, count(*) AS cnt" +
-			"FROM Recipe_Ingredient WHERE ingredient_id IN " + ingredients + 
+			"FROM Recipe_Ingredient WHERE ingredient_id IN " + selectedIngredients + 
 					"GROUP BY recipe_id;";
 			String sql2 = "SELECT r.id as Recipeid, r.name " +
 			"FROM Recipe r JOIN cte cON r.id = c.recipe_id ORDER BY c.cnt DESC;";
@@ -140,12 +142,12 @@ public class DBController {
 		}
 		
 		/* Test ingredientSearch() */
-		Recipe[] ingredientSearch = dbc.getRecipeByIngredients("(1,8)");
-
-		for (Recipe i : ingredientSearch) {
-			
-			System.out.println(i.getTitle());
-		}
+//		Recipe[] ingredientSearch = dbc.getRecipeByIngredients("(1,8)");
+//
+//		for (Recipe i : ingredientSearch) {
+//			
+//			System.out.println(i.getTitle());
+//		}
 		
 		}
 }
