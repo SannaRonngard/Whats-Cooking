@@ -36,7 +36,8 @@ import javafx.scene.control.CheckBox;
 public class ClientHandler implements Initializable {
 
 	static List<String> bigList = new ArrayList<String>();
-	static List <String>bigListDB =bigList = new ArrayList<String>();
+	static List <String>bigListDB = new ArrayList<String>();
+	
 	static List<String> listVeggies = new ArrayList<String>();
 	static List<String> listMeat = new ArrayList<String>();
 	static List<String> listDairy = new ArrayList<String>();
@@ -47,6 +48,7 @@ public class ClientHandler implements Initializable {
 	static List<String> listDairyDB = new ArrayList<String>();
 	static List<String> listFruitDB = new ArrayList<String>();
 	static List<String> listGrainsDB = new ArrayList<String>();
+	
 	protected static String selectedIngredients = "";
 	protected static String selectedIngredientsDB = "";
 	private Recipe recipe = new Recipe();
@@ -91,7 +93,7 @@ public class ClientHandler implements Initializable {
 	
 	public static void setListToStringDB(){
 		selectedIngredientsDB = String.join(",", bigListDB);
-		System.out.println(selectedIngredients);
+		
 	}
 	/**
 	 * Returns the selectet ingredients as 

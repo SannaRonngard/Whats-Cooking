@@ -78,6 +78,27 @@ public class CheckBoxes implements Initializable {
 		ClientHandler.bigList.addAll(ClientHandler.listGrains);
 		System.out.println(ClientHandler.bigList);
 	}
+	///////////////////////////////////////////////////////////////
+	public static void setbigListDairyDB(){
+		ClientHandler.bigListDB.addAll(ClientHandler.listDairyDB);
+		System.out.println(ClientHandler.bigListDB);
+	}
+	public static void setbigListFruitDB(){
+		ClientHandler.bigListDB.addAll(ClientHandler.listFruitDB);
+		System.out.println(ClientHandler.bigListDB);
+	}
+	public static void setbigListMeatDB(){
+		ClientHandler.bigListDB.addAll(ClientHandler.listMeatDB);
+		System.out.println(ClientHandler.bigListDB);
+	}
+	public static void setbigListVegDB(){
+		ClientHandler.bigListDB.addAll(ClientHandler.listVeggiesDB);
+		System.out.println(ClientHandler.bigListDB);
+	}
+	public static void setbigListGrainsDB(){
+		ClientHandler.bigListDB.addAll(ClientHandler.listGrainsDB);
+		System.out.println(ClientHandler.bigListDB);
+	}
 	/**
 	 * Methods that saves checked item to a list or removes it from the list
 	 * whenever box is unchecked.
@@ -215,13 +236,15 @@ public class CheckBoxes implements Initializable {
 	private void handleCheckBoxActionVeg(ActionEvent event) throws IOException {
 
 		if (checkBox_Avocado.isSelected() == true) {
-			if (!ClientHandler.listVeggies.contains("avocado")&&!ClientHandler.listVeggiesDB.contains("1")) {
+			if (!ClientHandler.listVeggies.contains("avocado")
+					&& !ClientHandler.listVeggiesDB.contains("1")) {
 				ClientHandler.listVeggies.add("avocado");
 				ClientHandler.listVeggiesDB.add("1");
 			}
 		}
 		if (checkBox_Avocado.isSelected() == false) {
-			if (ClientHandler.listVeggies.contains("avocado")&&!ClientHandler.listVeggiesDB.contains("1")) {
+			if (ClientHandler.listVeggies.contains("avocado")
+					&& ClientHandler.listVeggiesDB.contains("1")) {
 				ClientHandler.listVeggies.remove("avocado");
 				ClientHandler.listVeggiesDB.remove("1");
 			}

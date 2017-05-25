@@ -246,19 +246,27 @@ public class Client {
 	
 	private void getRecipeFromDatabase() {
 		dbc = new DBController();
-		System.out.print(ClientHandler.getBigListDB());
-		Recipe[] ingredientSearch = dbc.getRecipeByIngredients("1,8");
-		for (Recipe i : ingredientSearch) {
-			
-			System.out.println(i.getTitle());
-		}
+		CheckBoxes.setbigListDairyDB();
+		CheckBoxes.setbigListFruitDB();
+		CheckBoxes.setbigListGrainsDB();
+		CheckBoxes.setbigListMeatDB();
+		CheckBoxes.setbigListVegDB();
+		ClientHandler.setListToStringDB();
+		String bigListDBString = ClientHandler.getStringListDB();
+		
+		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(bigListDBString);
+		for (Recipe i : ingredientSearch){
+			System.out.println( i.getTitle() );
+			}
 		
 		List<Recipe> toList = Arrays.asList(ingredientSearch);
+		System.out.println(toList);
 		
 		List<String> recipeList = new ArrayList<>(toList.size());
 		for (Recipe object : toList) {
 		    recipeList.add(Objects.toString(object, null));
 		}
+		    System.out.println(recipeList);
 		
 		String formattedString = ingredientSearch.toString()
 			    .replace("[", "")  //remove the right bracket
