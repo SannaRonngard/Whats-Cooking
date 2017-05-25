@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import database.DBController;
+import database.Recipe;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.animation.FadeTransition;
@@ -161,74 +162,6 @@ public class Client {
 		root.getChildren().addAll(generateRecipes); 
 		generateRecipes.setOnAction(e -> generateRecipes());
 	}
-	
-	/**
-	 * Method that clears the list from selected ingredients
-	 */
-	
-	private void clearList() {
-		ClientHandler.clearList(ClientHandler.bigList);
-		selectedIngredients.getItems().clear();
-		
-	}
-	
-	public void generateRecipes() {
-		Label recipes = new Label("Generated Recipes");
-		recipes.setFont(Font.font("Impact", FontWeight.BOLD, 24));
-		recipes.setTextFill(Color.WHITE);
-		recipes.setLayoutX(50);
-		recipes.setLayoutY(120);
-		Button showRecipe = new Button("Show Recipe");
-		showRecipe.setLayoutX(50);
-		showRecipe.setLayoutY(555);
-		showRecipe.setOnAction(e -> getRecipeFromDatabase());
-		showRecipeList(showRecipes);
-		root.getChildren().addAll(showRecipes, recipes, showRecipe);
-		
-	}
-
-	
-	private void getRecipeFromDatabase() {
-		
-	}
-	
-	/**
-	 * Method that creates a transition between the scenes
-	 * @param duration - duration of the transition
-	 * @param script - if the script is not null the transition runs.
-	 */
-	
-	private void createTransition(int duration, Runnable script){
-		transitioning = true;
-
-		FadeTransition fade = new FadeTransition();
-		fade.setDuration(Duration.millis(duration));
-		fade.setNode(wheel);
-		fade.setFromValue(1);
-		fade.setToValue(0);
-		fade.setOnFinished(e -> {
-			if(script!=null){
-				script.run();
-			}
-			transitioning = false;
-		});
-		fade.play();
-	}
-
-	/**
-	 * Creates a transition to the original startup view.
-	 * @param duration - duration of the transition
-	 */
-	
-	private static void transitionToHome(int duration){
-		FadeTransition fade = new FadeTransition();
-		fade.setDuration(Duration.millis(duration));
-		fade.setNode(wheel);
-		fade.setFromValue(0);
-		fade.setToValue(1);
-		fade.play();
-	}
-	
 
 	/**
 	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
@@ -282,6 +215,83 @@ public class Client {
 	}
 	
 	/**
+	 * Method that clears the list from selected ingredients
+	 */
+	
+	private void clearList() {
+		ClientHandler.clearList(ClientHandler.bigList);
+		selectedIngredients.getItems().clear();
+		
+	}
+	
+	public void generateRecipes() {
+		Label recipes = new Label("Generated Recipes");
+		recipes.setFont(Font.font("Impact", FontWeight.BOLD, 24));
+		recipes.setTextFill(Color.WHITE);
+		recipes.setLayoutX(50);
+		recipes.setLayoutY(120);
+		Button showRecipe = new Button("Show Recipe");
+		showRecipe.setLayoutX(50);
+		showRecipe.setLayoutY(555);
+		showRecipe.setOnAction(e -> getRecipeFromDatabase());
+		showRecipeList(showRecipes);
+		root.getChildren().addAll(showRecipes, recipes, showRecipe);
+		
+	}
+
+	
+	private void getRecipeFromDatabase() {
+		ClientHandler.setListToStringDB();
+		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ClientHandler.getStringListDB());
+		for (Recipe i : ingredientSearch) {
+			
+			System.out.println(i.getTitle());
+		}
+		String formattedString = ingredientSearch.toString()
+			    .replace("[", "")  //remove the right bracket
+			    .replace("]", "")  //remove the left bracket
+			    .trim();           //remove trailing spaces from partially initialized arrays
+		showRecipes.getItems().addAll(formattedString);
+	}
+	
+	/**
+	 * Method that creates a transition between the scenes
+	 * @param duration - duration of the transition
+	 * @param script - if the script is not null the transition runs.
+	 */
+	
+	private void createTransition(int duration, Runnable script){
+		transitioning = true;
+
+		FadeTransition fade = new FadeTransition();
+		fade.setDuration(Duration.millis(duration));
+		fade.setNode(wheel);
+		fade.setFromValue(1);
+		fade.setToValue(0);
+		fade.setOnFinished(e -> {
+			if(script!=null){
+				script.run();
+			}
+			transitioning = false;
+		});
+		fade.play();
+	}
+
+	/**
+	 * Creates a transition to the original startup view.
+	 * @param duration - duration of the transition
+	 */
+	
+	private static void transitionToHome(int duration){
+		FadeTransition fade = new FadeTransition();
+		fade.setDuration(Duration.millis(duration));
+		fade.setNode(wheel);
+		fade.setFromValue(0);
+		fade.setToValue(1);
+		fade.play();
+	}
+	
+	/**
 	 * Method that takes the selectedIngredients list and places it in given x and y position 
 	 * @param selectedIngredients
 	 */
@@ -302,6 +312,7 @@ public class Client {
 		showRecipes.setLayoutX(50);
 		showRecipes.setLayoutY(150);
 		showRecipes.setMaxSize(300, 650);
+		
 	}
 	
 	/**
