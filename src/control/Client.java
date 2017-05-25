@@ -148,6 +148,10 @@ public class Client {
 		
 	}
 	
+	/**
+	 * Method that clears the list from selected ingredients
+	 */
+	
 	private void clearList() {
 		ClientHandler.clearList(ClientHandler.bigList);
 		selectedIngredients.getItems().clear();
