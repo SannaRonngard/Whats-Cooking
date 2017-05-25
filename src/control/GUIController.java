@@ -108,7 +108,6 @@ public class GUIController implements Initializable {
 					});
 			}
 			if(event.getSource() == btnUser) {
-				System.out.println("knapptest");
 				client.clientGui();
 			}
 					if(event.getSource() == btnLogin) {

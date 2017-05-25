@@ -58,47 +58,18 @@ public class CheckBoxes implements Initializable {
 		InitiateVegetables();
 		
 	}
-	public static void setbigListDairy(){
-		ClientHandler.bigList.addAll(ClientHandler.listDairy);
-		System.out.println(ClientHandler.bigList);
-	}
-	public static void setbigListFruit(){
-		ClientHandler.bigList.addAll(ClientHandler.listFruit);
-		System.out.println(ClientHandler.bigList);
-	}
-	public static void setbigListMeat(){
-		ClientHandler.bigList.addAll(ClientHandler.listMeat);
-		System.out.println(ClientHandler.bigList);
-	}
-	public static void setbigListVeg(){
-		ClientHandler.bigList.addAll(ClientHandler.listVeggies);
-		System.out.println(ClientHandler.bigList);
-	}
-	public static void setbigListGrains(){
-		ClientHandler.bigList.addAll(ClientHandler.listGrains);
-		System.out.println(ClientHandler.bigList);
-	}
-	///////////////////////////////////////////////////////////////
-	public static void setbigListDairyDB(){
-		ClientHandler.bigListDB.addAll(ClientHandler.listDairyDB);
-		System.out.println(ClientHandler.bigListDB);
-	}
-	public static void setbigListFruitDB(){
-		ClientHandler.bigListDB.addAll(ClientHandler.listFruitDB);
-		System.out.println(ClientHandler.bigListDB);
-	}
-	public static void setbigListMeatDB(){
-		ClientHandler.bigListDB.addAll(ClientHandler.listMeatDB);
-		System.out.println(ClientHandler.bigListDB);
-	}
-	public static void setbigListVegDB(){
-		ClientHandler.bigListDB.addAll(ClientHandler.listVeggiesDB);
-		System.out.println(ClientHandler.bigListDB);
-	}
-	public static void setbigListGrainsDB(){
-		ClientHandler.bigListDB.addAll(ClientHandler.listGrainsDB);
-		System.out.println(ClientHandler.bigListDB);
-	}
+	/*///////////////BigList till ListView//////////////////////////////////////////////*/
+	public static void setbigListDairy(){ ClientHandler.bigList.addAll(ClientHandler.listDairy); }
+	public static void setbigListFruit(){ ClientHandler.bigList.addAll(ClientHandler.listFruit); }
+	public static void setbigListMeat(){ ClientHandler.bigList.addAll(ClientHandler.listMeat); }
+	public static void setbigListVeg(){ ClientHandler.bigList.addAll(ClientHandler.listVeggies); }
+	public static void setbigListGrains(){ ClientHandler.bigList.addAll(ClientHandler.listGrains); }
+	/*/////////////////////////////////////////////////////////////*/
+	public static void setbigListDairyDB(){ ClientHandler.bigListDB.addAll(ClientHandler.listDairyDB); }
+	public static void setbigListFruitDB(){ ClientHandler.bigListDB.addAll(ClientHandler.listFruitDB);}
+	public static void setbigListMeatDB(){ ClientHandler.bigListDB.addAll(ClientHandler.listMeatDB); }
+	public static void setbigListVegDB(){ ClientHandler.bigListDB.addAll(ClientHandler.listVeggiesDB); }
+	public static void setbigListGrainsDB(){ ClientHandler.bigListDB.addAll(ClientHandler.listGrainsDB);}
 	/**
 	 * Methods that saves checked item to a list or removes it from the list
 	 * whenever box is unchecked.

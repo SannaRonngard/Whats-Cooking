@@ -268,29 +268,11 @@ public class Client {
 		CheckBoxes.setbigListMeatDB();
 		CheckBoxes.setbigListVegDB();
 		ClientHandler.setListToStringDB();
-//		String bigListDBString = ClientHandler.getStringListDB();
+		String ingredientNumbers = ClientHandler.getStringListDB();
 		
-//		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(bigListDBString);
-//		for (Recipe i : ingredientSearch){
-//			System.out.println( i.getTitle() );
-//			}
-//		
-//		List<Recipe> toList = Arrays.asList(ingredientSearch);
-//		System.out.println(toList);
-//		
-//		List<String> recipeList = new ArrayList<>(toList.size());
-//		for (Recipe object : toList) {
-//		    recipeList.add(Objects.toString(object, null));
-//		}
-//		    System.out.println(recipeList);
-//		
-//		String formattedString = ingredientSearch.toString()
-//			    .replace("[", "")  //remove the right bracket
-//			    .replace("]", "")  //remove the left bracket
-//			    .trim();           //remove trailing spaces from partially initialized arrays
-//		showRecipes.getItems().addAll(recipeList);
+		dbc.getRecipeByIngredients(ingredientNumbers);
+		showRecipes.getItems().addAll( Recipe.recipeNameList );
 	}
-	
 	/**
 	 * Method that creates a transition between the scenes
 	 * @param duration - duration of the transition
