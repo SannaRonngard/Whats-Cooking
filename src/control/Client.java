@@ -161,6 +161,57 @@ public class Client {
 		root.getChildren().addAll(generateRecipes); 
 		generateRecipes.setOnAction(e -> generateRecipes());
 	}
+
+	/**
+	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
+	 */
+	
+	public static enum MenuTools{
+		QUESTIONMARK, CLOSE, MINIMIZE;
+	}
+
+	/**
+	 * Enum types of different food categories (a special data type that enables for a variable to be a set of predefined constants)
+	 */
+	
+	public static enum MealType{
+		MEAT,VEGETABLES,FRUITS,SPANN,DAIRY,ALL;
+	}
+	
+	/**
+	 * Calls the given image from the sourcefolder
+	 */
+
+	public static void setToolIcons(){
+		menuTools.put(MenuTools.QUESTIONMARK, "questionMark1.png");
+		menuTools.put(MenuTools.CLOSE, "Close.png"); 
+		menuTools.put(MenuTools.MINIMIZE, "Minimize.png");
+	}
+	
+	/**
+	 * Calls the given image from the sourcefolder 
+	 */
+
+	public static void setMealTypes(){
+		mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
+		mealTypes.put(MealType.DAIRY, "WhatsCooking_Dairy.png");
+		mealTypes.put(MealType.FRUITS, "WhatsCooking_Fruit.png");
+		mealTypes.put(MealType.MEAT, "WhatsCooking_Meat.png");
+		mealTypes.put(MealType.SPANN, "WhatsCooking_Spann.png");
+		mealTypes.put(MealType.VEGETABLES, "WhatsCooking_Vegetables.png");
+
+	}
+	
+	/**
+	 * Method that loads the different images form the source folder
+	 * @param image - images from the source directory
+	 * @return - returns the url for the images
+	 */
+	
+	public static String loadResource(String image) {
+		String url = IMAGE_SOURCE_DIRECTORY + image;
+		return url;
+	}
 	
 	/**
 	 * Method that clears the list from selected ingredients
@@ -229,58 +280,6 @@ public class Client {
 		fade.play();
 	}
 	
-
-	/**
-	 * Enum types of different menutools (a special data type that enables for a variable to be a set of predefined constants)
-	 */
-	
-	public static enum MenuTools{
-		QUESTIONMARK, CLOSE, MINIMIZE;
-	}
-
-	/**
-	 * Enum types of different food categories (a special data type that enables for a variable to be a set of predefined constants)
-	 */
-	
-	public static enum MealType{
-		MEAT,VEGETABLES,FRUITS,SPANN,DAIRY,ALL;
-	}
-	
-	/**
-	 * Calls the given image from the sourcefolder
-	 */
-
-	public static void setToolIcons(){
-		menuTools.put(MenuTools.QUESTIONMARK, "questionMark1.png");
-		menuTools.put(MenuTools.CLOSE, "Close.png"); 
-		menuTools.put(MenuTools.MINIMIZE, "Minimize.png");
-	}
-	
-	/**
-	 * Calls the given image from the sourcefolder 
-	 */
-
-	public static void setMealTypes(){
-		mealTypes.put(MealType.ALL, "WhatsCooking_All_Grey.png");
-		mealTypes.put(MealType.DAIRY, "WhatsCooking_Dairy.png");
-		mealTypes.put(MealType.FRUITS, "WhatsCooking_Fruit.png");
-		mealTypes.put(MealType.MEAT, "WhatsCooking_Meat.png");
-		mealTypes.put(MealType.SPANN, "WhatsCooking_Spann.png");
-		mealTypes.put(MealType.VEGETABLES, "WhatsCooking_Vegetables.png");
-
-	}
-	
-	/**
-	 * Method that loads the different images form the source folder
-	 * @param image - images from the source directory
-	 * @return - returns the url for the images
-	 */
-	
-	public static String loadResource(String image) {
-		String url = IMAGE_SOURCE_DIRECTORY + image;
-		return url;
-	}
-	
 	/**
 	 * Method that takes the selectedIngredients list and places it in given x and y position 
 	 * @param selectedIngredients
@@ -302,6 +301,7 @@ public class Client {
 		showRecipes.setLayoutX(50);
 		showRecipes.setLayoutY(150);
 		showRecipes.setMaxSize(300, 650);
+		
 	}
 	
 	/**
