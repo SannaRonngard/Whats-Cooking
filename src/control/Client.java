@@ -2,8 +2,10 @@ package control;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import database.DBController;
 import database.Recipe;
@@ -233,7 +235,9 @@ public class Client {
 		Button showRecipe = new Button("Show Recipe");
 		showRecipe.setLayoutX(50);
 		showRecipe.setLayoutY(555);
-		showRecipe.setOnAction(e -> getRecipeFromDatabase());
+		
+		getRecipeFromDatabase();
+		
 		showRecipeList(showRecipes);
 		root.getChildren().addAll(showRecipes, recipes, showRecipe);
 		
@@ -241,17 +245,34 @@ public class Client {
 
 	
 	private void getRecipeFromDatabase() {
+		dbc = new DBController();
+		CheckBoxes.setbigListDairyDB();
+		CheckBoxes.setbigListFruitDB();
+		CheckBoxes.setbigListGrainsDB();
+		CheckBoxes.setbigListMeatDB();
+		CheckBoxes.setbigListVegDB();
 		ClientHandler.setListToStringDB();
-		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ClientHandler.getStringListDB());
-		for (Recipe i : ingredientSearch) {
-			
-			System.out.println(i.getTitle());
+		String bigListDBString = ClientHandler.getStringListDB();
+		
+		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(bigListDBString);
+		for (Recipe i : ingredientSearch){
+			System.out.println( i.getTitle() );
+			}
+		
+		List<Recipe> toList = Arrays.asList(ingredientSearch);
+		System.out.println(toList);
+		
+		List<String> recipeList = new ArrayList<>(toList.size());
+		for (Recipe object : toList) {
+		    recipeList.add(Objects.toString(object, null));
 		}
+		    System.out.println(recipeList);
+		
 		String formattedString = ingredientSearch.toString()
 			    .replace("[", "")  //remove the right bracket
 			    .replace("]", "")  //remove the left bracket
 			    .trim();           //remove trailing spaces from partially initialized arrays
-		showRecipes.getItems().addAll(formattedString);
+		showRecipes.getItems().addAll(recipeList);
 	}
 	
 	/**

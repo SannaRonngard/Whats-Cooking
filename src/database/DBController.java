@@ -89,7 +89,7 @@ public class DBController {
 	 * @param ingredients
 	 * @return
 	 */
-	public Recipe[] getRecipeByIngredients(String ingredients) {
+	public String[] getRecipeByIngredients(String ingredients) {
 		
 		ArrayList<Recipe> result = new ArrayList<Recipe>();
 		Statement stmt;
@@ -111,7 +111,7 @@ public class DBController {
 			e.printStackTrace();
 		}
 
-		Recipe[] rArray = new Recipe[result.size()];
+		String[] rArray = new Recipe[result.size()];
 		result.toArray(rArray);
 		return rArray;
 	}
