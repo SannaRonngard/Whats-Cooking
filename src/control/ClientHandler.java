@@ -93,6 +93,7 @@ public class ClientHandler implements Initializable {
 	
 	public static void setListToStringDB(){
 		selectedIngredientsDB = String.join(",", bigListDB);
+		System.out.println(selectedIngredients);
 	}
 	/**
 	 * Returns the selectet ingredients as 
