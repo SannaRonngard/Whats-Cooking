@@ -96,7 +96,7 @@ public class DBController {
 		try {
 			stmt = c.getConnection().createStatement();
 			String sql1 = "WITH cte AS (SELECT recipe_id, count(*) AS cnt "+
-			"FROM Recipe_Ingredient WHERE ingredient_id IN " + ingredients + 
+			"FROM Recipe_Ingredient WHERE ingredient_id IN " + "(" + ingredients + ") " + 
 					" GROUP BY recipe_id) SELECT r.id as Recipeid, "+ 
 			"r.name, c.cnt FROM Recipe r JOIN cte c "+
 					" ON r.id = c.recipe_id ORDER BY c.cnt DESC";
@@ -137,7 +137,7 @@ public class DBController {
 		
 		/* Test ingredientSearch() */
 		
-		String ingredientString = "(1,8)";
+		String ingredientString = "1,8";
 		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
 		
 		for (Recipe i : ingredientSearch) {
