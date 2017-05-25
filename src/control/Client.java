@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import database.DBController;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.animation.FadeTransition;
@@ -93,7 +94,7 @@ public class Client {
 
 	private ClientHandler clientHandler;
 	private ApplicationInformation applicationInformation;
-	
+	private DBController dbc;
 	Stage window = new Stage();
 
 	/*
@@ -141,11 +142,16 @@ public class Client {
 		window.show();
 		
 		Button clearAll = new Button("Clear All"); 
-		clearAll.setLayoutX(900);
+		clearAll.setLayoutX(1075);
 		clearAll.setLayoutY(555);
 		root.getChildren().addAll(clearAll); 
-		clearAll.setOnAction(e -> clearList()); 
+		clearAll.setOnAction(e -> clearList());
 		
+		Button showRecipes = new Button("Show Recipes"); 
+		showRecipes.setLayoutX(900);
+		showRecipes.setLayoutY(555);
+		root.getChildren().addAll(showRecipes); 
+		showRecipes.setOnAction(e -> showRecipes());
 	}
 	
 	private void clearList() {
@@ -247,7 +253,7 @@ public class Client {
 		selectedIngredients.setLayoutX(900);
 		selectedIngredients.setLayoutY(150);
 		selectedIngredients.setMaxSize(300, 650);
-		
+	
 	}
 	
 	/**
@@ -736,6 +742,10 @@ public class Client {
 		default:
 			break;
 		}
+	}
+	
+	public void showRecipes() {
+		dbc.getRecipeByIngredients(selectedIngredients);
 	}
 	
 	/**
