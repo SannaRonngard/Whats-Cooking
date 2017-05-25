@@ -155,11 +155,19 @@ public class Client {
 		root.getChildren().addAll(clearAll); 
 		clearAll.setOnAction(e -> clearList());
 		
+
 		Button generateRecipes = new Button("Generate Recipes"); 
 		generateRecipes.setLayoutX(900);
 		generateRecipes.setLayoutY(555);
 		root.getChildren().addAll(generateRecipes); 
 		generateRecipes.setOnAction(e -> generateRecipes());
+
+		Button showRecipes = new Button("Show Recipes"); 
+		showRecipes.setLayoutX(900);
+		showRecipes.setLayoutY(555);
+		root.getChildren().addAll(showRecipes); 
+		showRecipes.setOnAction(e -> showRecipes());
+
 	}
 	
 	/**
@@ -296,6 +304,7 @@ public class Client {
 		showRecipes.setLayoutX(50);
 		showRecipes.setLayoutY(150);
 		showRecipes.setMaxSize(300, 650);
+
 	}
 	
 	/**
@@ -784,6 +793,10 @@ public class Client {
 		default:
 			break;
 		}
+	}
+	
+	public void showRecipes() {
+		dbc.getRecipeByIngredients(selectedIngredients);
 	}
 	
 	/**
