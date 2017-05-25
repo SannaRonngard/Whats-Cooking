@@ -89,9 +89,10 @@ public class DBController {
 	 * @param ingredients
 	 * @return
 	 */
-	public String[] getRecipeByIngredients(String ingredients) {
+public String[] getRecipeByIngredients(String ingredients) {
 		
-		ArrayList<Recipe> result = new ArrayList<Recipe>();
+		ArrayList<String> result = new ArrayList<String>();
+		Recipe recipe = new Recipe();
 		Statement stmt;
 		try {
 			stmt = c.getConnection().createStatement();
@@ -104,17 +105,44 @@ public class DBController {
 			ResultSet rs = stmt.executeQuery(sql1);
 			
 			while(rs.next())
-                System.out.println(rs.getString("name"));
+//                System.out.println(rs.getString("name"));
+			recipe.setRecipeNameToList(rs.getString("name"));
 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		String[] rArray = new Recipe[result.size()];
+		String[] rArray = new String[result.size()];
 		result.toArray(rArray);
 		return rArray;
 	}
+//	public Recipe[] getRecipeByIngredients(String ingredients) {
+//		
+//		ArrayList<Recipe> result = new ArrayList<Recipe>();
+//		Statement stmt;
+//		try {
+//			stmt = c.getConnection().createStatement();
+//			String sql1 = "WITH cte AS (SELECT recipe_id, count(*) AS cnt "+
+//			"FROM Recipe_Ingredient WHERE ingredient_id IN " + "(" + ingredients + ") " + 
+//					" GROUP BY recipe_id) SELECT r.id as Recipeid, "+ 
+//			"r.name, c.cnt FROM Recipe r JOIN cte c "+
+//					" ON r.id = c.recipe_id ORDER BY c.cnt DESC";
+//		
+//			ResultSet rs = stmt.executeQuery(sql1);
+//			
+//			while(rs.next())
+//                System.out.println(rs.getString("name"));
+//
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		Recipe[] rArray = new Recipe[result.size()];
+//		result.toArray(rArray);
+//		return rArray;
+//	}
 	
 	
 	public static void main(String[] args) {
@@ -124,27 +152,35 @@ public class DBController {
 		
 		/* Test titleSearch() */
 		
-		Recipe[] titleSearch = dbc.getTitleSearch("Guacamole");
-		
-		for (Recipe i : titleSearch) {
-			
-			System.out.println(i.getTitle());
-			System.out.println(i.getPrepTime());
-			System.out.println("---------------------------");
-			System.out.println(i.getMeasure());
-			System.out.println(i.getInstructions());
-		}
-		
+//		Recipe[] titleSearch = dbc.getTitleSearch("Guacamole");
+//		
+//		for (Recipe i : titleSearch) {
+//			
+//			System.out.println(i.getTitle());
+//			System.out.println(i.getPrepTime());
+//			System.out.println("---------------------------");
+//			System.out.println(i.getMeasure());
+//			System.out.println(i.getInstructions());
+//		}
+//		
 		/* Test ingredientSearch() */
 		
 		String ingredientString = "1,8";
-		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
+		String[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
 		
-		for (Recipe i : ingredientSearch) {
+		for (String i : ingredientSearch) {
 			
-			System.out.println(i.getTitle());
-			System.out.println(i.getMatchInt());
+			System.out.println(i);
 		}
+		
+//		String ingredientString = "1,8";
+//		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
+//		
+//		for (Recipe i : ingredientSearch) {
+//			
+//			System.out.println(i.getTitle());
+//			System.out.println(i.getMatchInt());
+//		}
 		
 		}
 }
