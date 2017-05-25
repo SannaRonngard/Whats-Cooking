@@ -21,7 +21,7 @@ public class DBConnection {
 		this.driver = "org.postgresql.Driver";
 
 		/*Database on MAH-server (EXTERN)*/
-		this.url = "jdbc:postgresql://104.199.20.214/whatscooking";
+		this.url = "jdbc:postgresql://104.199.20.214/whatscooking?useUnicode=true&characterEncoding=utf-8";
 		this.username = "ah1867";
 		this.password = "6duag1oi";
 		
