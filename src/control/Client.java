@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import database.DBController;
+import database.Recipe;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.animation.FadeTransition;
@@ -240,7 +241,17 @@ public class Client {
 
 	
 	private void getRecipeFromDatabase() {
-		
+		ClientHandler.setListToStringDB();
+		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ClientHandler.getStringListDB());
+		for (Recipe i : ingredientSearch) {
+			
+			System.out.println(i.getTitle());
+		}
+		String formattedString = ingredientSearch.toString()
+			    .replace("[", "")  //remove the right bracket
+			    .replace("]", "")  //remove the left bracket
+			    .trim();           //remove trailing spaces from partially initialized arrays
+		showRecipes.getItems().addAll(formattedString);
 	}
 	
 	/**
