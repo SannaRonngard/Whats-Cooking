@@ -27,6 +27,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -78,6 +80,7 @@ public class Client {
 	private static ImageView wheel = new ImageView();
 	
 	private static ListView<String> selectedIngredients = new ListView<String>(); 
+	private static ListView<String> showRecipes = new ListView<String>(); 
 	
 	private static Pane questionMarkPane = new Pane();
 	private static Pane closePane = new Pane(); 
@@ -114,10 +117,7 @@ public class Client {
 		
 		closePane.getChildren().add(close);
 		minimizePane.getChildren().add(minimize);
-		questionMarkPane.getChildren().add(tools); 
-		
-		addIngredientstList(selectedIngredients);
-		root.getChildren().add(selectedIngredients);
+		questionMarkPane.getChildren().add(tools);
 		
 		setToolIcons();
 		addMenuTools(tools);
@@ -141,17 +141,25 @@ public class Client {
 		window.setScene(userLoginScene);
 		window.show();
 		
+		Label ingredients = new Label("Selected Ingredients");
+		ingredients.setFont(Font.font("Impact", FontWeight.BOLD, 24));
+		ingredients.setTextFill(Color.WHITE);
+		ingredients.setLayoutX(900);
+		ingredients.setLayoutY(120);
+		addIngredientstList(selectedIngredients);
+		root.getChildren().addAll(selectedIngredients, ingredients);
+		
 		Button clearAll = new Button("Clear All"); 
 		clearAll.setLayoutX(1075);
 		clearAll.setLayoutY(555);
 		root.getChildren().addAll(clearAll); 
 		clearAll.setOnAction(e -> clearList());
 		
-		Button showRecipes = new Button("Show Recipes"); 
-		showRecipes.setLayoutX(900);
-		showRecipes.setLayoutY(555);
-		root.getChildren().addAll(showRecipes); 
-		showRecipes.setOnAction(e -> showRecipes());
+		Button generateRecipes = new Button("Generate Recipes"); 
+		generateRecipes.setLayoutX(900);
+		generateRecipes.setLayoutY(555);
+		root.getChildren().addAll(generateRecipes); 
+		generateRecipes.setOnAction(e -> generateRecipes());
 	}
 	
 	/**
@@ -162,6 +170,20 @@ public class Client {
 		ClientHandler.clearList(ClientHandler.bigList);
 		selectedIngredients.getItems().clear();
 		
+	}
+	
+	public void generateRecipes() {
+		Label recipes = new Label("Generated Recipes");
+		recipes.setFont(Font.font("Impact", FontWeight.BOLD, 24));
+		recipes.setTextFill(Color.WHITE);
+		recipes.setLayoutX(50);
+		recipes.setLayoutY(120);
+		Button showRecipe = new Button("Show Recipe");
+		showRecipe.setLayoutX(50);
+		showRecipe.setLayoutY(555);
+		showRecipeList(showRecipes);
+		root.getChildren().addAll(showRecipes, recipes, showRecipe);
+		dbc.getRecipeByIngredients(selectedIngredients);
 	}
 
 	/**
@@ -253,11 +275,27 @@ public class Client {
 		return url;
 	}
 	
+	/**
+	 * Method that takes the selectedIngredients list and places it in given x and y position 
+	 * @param selectedIngredients
+	 */
+	
 	public void addIngredientstList(ListView<String> selectedIngredients) {
 		selectedIngredients.setLayoutX(900);
 		selectedIngredients.setLayoutY(150);
 		selectedIngredients.setMaxSize(300, 650);
 	
+	}
+	
+	/**
+	 * method that takes the recipes from the database and displays them in a list. 
+	 * @param showRecipes
+	 */
+	
+	public void showRecipeList(ListView<String> showRecipes) {
+		showRecipes.setLayoutX(50);
+		showRecipes.setLayoutY(150);
+		showRecipes.setMaxSize(300, 650);
 	}
 	
 	/**
@@ -746,10 +784,6 @@ public class Client {
 		default:
 			break;
 		}
-	}
-	
-	public void showRecipes() {
-		dbc.getRecipeByIngredients(selectedIngredients);
 	}
 	
 	/**
