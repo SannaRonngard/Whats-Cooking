@@ -67,13 +67,13 @@ public class CheckBoxes implements Initializable {
 	private void handleCheckBoxActionMeat(ActionEvent event) throws IOException {
 
 		if (checkBox_Chicken.isSelected() == true) {
-			if (!ClientHandler.listMeat.contains("Chicken")&!ClientHandler.listMeatDB.contains("13")) {
+			if (!ClientHandler.listMeat.contains("Chicken")&&!ClientHandler.listMeatDB.contains("13")) {
 				ClientHandler.listMeat.add("Chicken");
 				ClientHandler.listMeatDB.add("13");
 			}
 		}
 		if (checkBox_Chicken.isSelected() == false) {
-			if (ClientHandler.listMeat.contains("Chicken")&!ClientHandler.listMeatDB.contains("13")) {
+			if (ClientHandler.listMeat.contains("Chicken")&&!ClientHandler.listMeatDB.contains("13")) {
 				ClientHandler.listMeat.remove("Chicken");
 				ClientHandler.listMeatDB.remove("13");
 			}
@@ -202,25 +202,25 @@ public class CheckBoxes implements Initializable {
 	private void handleCheckBoxActionVeg(ActionEvent event) throws IOException {
 
 		if (checkBox_Avocado.isSelected() == true) {
-			if (!ClientHandler.listVeggies.contains("avocado")&!ClientHandler.listVeggiesDB.contains("1")) {
+			if (!ClientHandler.listVeggies.contains("avocado")&&!ClientHandler.listVeggiesDB.contains("1")) {
 				ClientHandler.listVeggies.add("avocado");
 				ClientHandler.listVeggiesDB.add("1");
 			}
 		}
 		if (checkBox_Avocado.isSelected() == false) {
-			if (ClientHandler.listVeggies.contains("avocado")&!ClientHandler.listVeggiesDB.contains("1")) {
+			if (ClientHandler.listVeggies.contains("avocado")&&!ClientHandler.listVeggiesDB.contains("1")) {
 				ClientHandler.listVeggies.remove("avocado");
 				ClientHandler.listVeggiesDB.remove("1");
 			}
 		}
 		if (checkBox_Tomato.isSelected() == true) {
-			if (!ClientHandler.listVeggies.contains("Tomato")&!ClientHandler.listVeggiesDB.contains("2")) {
+			if (!ClientHandler.listVeggies.contains("Tomato")&&!ClientHandler.listVeggiesDB.contains("2")) {
 				ClientHandler.listVeggies.add("Tomato");
 				ClientHandler.listVeggiesDB.add("2");
 			}
 		}
 		if (checkBox_Tomato.isSelected() == false) {
-			if (ClientHandler.listVeggies.contains("Tomato")&!ClientHandler.listVeggiesDB.contains("2")) {
+			if (ClientHandler.listVeggies.contains("Tomato")&&!ClientHandler.listVeggiesDB.contains("2")) {
 				ClientHandler.listVeggies.remove("Tomato");
 				ClientHandler.listVeggiesDB.add("2");
 			}
@@ -286,13 +286,13 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Garlic.isSelected() == true) {
-			if (!ClientHandler.listVeggies.contains("Garlic")&!ClientHandler.listVeggiesDB.contains("4")) {
+			if (!ClientHandler.listVeggies.contains("Garlic")&&!ClientHandler.listVeggiesDB.contains("4")) {
 				ClientHandler.listVeggies.add("Garlic");
 				ClientHandler.listVeggiesDB.add("4");
 			}
 		}
 		if (checkBox_Garlic.isSelected() == false) {
-			if (ClientHandler.listVeggies.contains("Garlic")&!ClientHandler.listVeggiesDB.contains("4")) {
+			if (ClientHandler.listVeggies.contains("Garlic")&&!ClientHandler.listVeggiesDB.contains("4")) {
 				ClientHandler.listVeggies.remove("Garlic");
 				ClientHandler.listVeggiesDB.remove("4");
 			}
@@ -445,14 +445,14 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Spinach.isSelected() == true) {
-			if (!ClientHandler.listVeggies.contains("Spinach")&!ClientHandler.listVeggiesDB.contains("9")) {
+			if (!ClientHandler.listVeggies.contains("Spinach")&&!ClientHandler.listVeggiesDB.contains("9")) {
 				ClientHandler.listVeggies.add("Spinach");
 				ClientHandler.listVeggiesDB.add("9");
 			}
 		}
 
 		if (checkBox_Spinach.isSelected() == false) {
-			if (ClientHandler.listVeggies.contains("Spinach")&!ClientHandler.listVeggiesDB.contains("9")) {
+			if (ClientHandler.listVeggies.contains("Spinach")&&!ClientHandler.listVeggiesDB.contains("9")) {
 				ClientHandler.listVeggies.remove("Spinach");
 				ClientHandler.listVeggiesDB.remove("9");
 			}
@@ -546,14 +546,14 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Chili.isSelected() == true) {
-			if (!ClientHandler.listVeggies.contains("Chili")&!ClientHandler.listVeggiesDB.contains("3")) {
+			if (!ClientHandler.listVeggies.contains("Chili")&&!ClientHandler.listVeggiesDB.contains("3")) {
 				ClientHandler.listVeggies.add("Chili");
 				ClientHandler.listVeggiesDB.add("3");
 			}
 		}
 
 		if (checkBox_Chili.isSelected() == false) {
-			if (ClientHandler.listVeggies.contains("Chili")&!ClientHandler.listVeggiesDB.contains("3")) {
+			if (ClientHandler.listVeggies.contains("Chili")&&!ClientHandler.listVeggiesDB.contains("3")) {
 				ClientHandler.listVeggies.remove("Chili");
 				ClientHandler.listVeggiesDB.remove("3");
 			}
@@ -631,13 +631,13 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Lemon.isSelected() == true) {
-			if (!ClientHandler.listFruit.contains("Lemon")&!ClientHandler.listFruitDB.contains("5")) {
+			if (!ClientHandler.listFruit.contains("Lemon")&&!ClientHandler.listFruitDB.contains("5")) {
 				ClientHandler.listFruit.add("Lemon");
 				ClientHandler.listFruitDB.add("5");
 			}
 		}
 		if (checkBox_Lemon.isSelected() == false) {
-			if (ClientHandler.listFruit.contains("Lemon")&!ClientHandler.listFruitDB.contains("5")) {
+			if (ClientHandler.listFruit.contains("Lemon")&&!ClientHandler.listFruitDB.contains("5")) {
 				ClientHandler.listFruit.remove("Lemon");
 				ClientHandler.listFruitDB.remove("5");
 			}
@@ -870,14 +870,14 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Bread.isSelected() == true) {
-			if (!ClientHandler.listGrains.contains("Bread")&!ClientHandler.listGrainsDB.contains("11")) {
+			if (!ClientHandler.listGrains.contains("Bread")&&!ClientHandler.listGrainsDB.contains("11")) {
 				ClientHandler.listGrains.add("Bread");
 				ClientHandler.listGrainsDB.add("11");
 			}
 		}
 
 		if (checkBox_Bread.isSelected() == false) {
-			if (ClientHandler.listGrains.contains("Bread")&!ClientHandler.listGrainsDB.contains("11")) {
+			if (ClientHandler.listGrains.contains("Bread")&&!ClientHandler.listGrainsDB.contains("11")) {
 				ClientHandler.listGrains.remove("Bread");
 				ClientHandler.listGrainsDB.remove("11");
 			}
@@ -935,14 +935,14 @@ public class CheckBoxes implements Initializable {
 			}
 		}
 		if (checkBox_Creme_Fraiche.isSelected() == true) {
-			if (!ClientHandler.listDairy.contains("Creme Fraiche")&!ClientHandler.listDairyDB.contains("14")) {
+			if (!ClientHandler.listDairy.contains("Creme Fraiche")&&!ClientHandler.listDairyDB.contains("14")) {
 				ClientHandler.listDairy.add("Creme Fraiche");
 				ClientHandler.listDairyDB.add("14");
 			}
 		}
 
 		if (checkBox_Creme_Fraiche.isSelected() == false) {
-			if (ClientHandler.listDairy.contains("Creme Fraiche")&!ClientHandler.listDairyDB.contains("14")) {
+			if (ClientHandler.listDairy.contains("Creme Fraiche")&&!ClientHandler.listDairyDB.contains("14")) {
 				ClientHandler.listDairy.remove("Creme Fraiche");
 				ClientHandler.listDairyDB.remove("14");
 			}
