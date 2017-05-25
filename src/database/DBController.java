@@ -12,47 +12,12 @@ import java.util.List;
  */
 public class DBController {
 	private DBConnection c;
-	private Recipe recipe;
 
 	public DBController() {
 		this.c = new DBConnection();
-		this.recipe = recipe;
-		
 		c.initiate();
 	}
-	/******************************
-	 * Store a recipe in database *
-	 * @param recipe 			  *
-	 ******************************/
-	public void newRecipe(Recipe recipe) {
-		try {
-			c.getConnection().setAutoCommit(false);
-			Statement st = c.getConnection().createStatement();
-			Statement idSt = c.getConnection().createStatement();
-			ResultSet rs = idSt.executeQuery("SELECT (SELECT COUNT(*) FROM recipe) AS recipeCounter,"
-					+"(SELECT COUNT(*) FROM ingredient) AS ingredientCounter;");
-			rs.next();
-			int recipeId = rs.getInt("recipeCounter");
-			int ingredientId = rs.getInt("ingredientCounter");
-			recipeId++;
-			ingredientId++;
-			rs.close();
-
-			String sql = "INSERT INTO recipe (recipeid,title,prepTime,content) " + "VALUES ('"
-					+ recipeId + "','" + recipe.getTitle() + "','" + recipe.getPrepTime()
-					+ "','" + recipe.getInstructions() + "','" + "');";
-			String[] ingredientArray = recipe.getIngredientArray();
-			for (int i = 0; i < ingredientArray.length; i++) {
-				sql += "\nINSERT INTO ingredient(ingredientid,recipeid,name) VALUES (" + ingredientId + "," + recipeId
-						+ ",'" + ingredientArray[i] + "');";
-				ingredientId++;
-			}
-			st.executeUpdate(sql);
-			st.close();
-			c.getConnection().commit();
-			c.getConnection().close();
-		} catch (SQLException e) {}	
-	}
+	
 	/**
 	 * Returns a recipe
 	 * @param recipeTitle - title of recipe
@@ -104,9 +69,9 @@ public String[] getRecipeByIngredients(String ingredients) {
 		
 			ResultSet rs = stmt.executeQuery(sql1);
 			
-			while(rs.next())
-//                System.out.println(rs.getString("name"));
-			recipe.setRecipeNameToList(rs.getString("name"));
+			while(rs.next()){
+				recipe.setRecipeNameToList(rs.getString("name"));
+			}
 
 			
 		} catch (SQLException e) {
@@ -117,32 +82,6 @@ public String[] getRecipeByIngredients(String ingredients) {
 		result.toArray(rArray);
 		return rArray;
 	}
-//	public Recipe[] getRecipeByIngredients(String ingredients) {
-//		
-//		ArrayList<Recipe> result = new ArrayList<Recipe>();
-//		Statement stmt;
-//		try {
-//			stmt = c.getConnection().createStatement();
-//			String sql1 = "WITH cte AS (SELECT recipe_id, count(*) AS cnt "+
-//			"FROM Recipe_Ingredient WHERE ingredient_id IN " + "(" + ingredients + ") " + 
-//					" GROUP BY recipe_id) SELECT r.id as Recipeid, "+ 
-//			"r.name, c.cnt FROM Recipe r JOIN cte c "+
-//					" ON r.id = c.recipe_id ORDER BY c.cnt DESC";
-//		
-//			ResultSet rs = stmt.executeQuery(sql1);
-//			
-//			while(rs.next())
-//                System.out.println(rs.getString("name"));
-//
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//
-//		Recipe[] rArray = new Recipe[result.size()];
-//		result.toArray(rArray);
-//		return rArray;
-//	}
 	
 	
 	public static void main(String[] args) {
@@ -152,19 +91,20 @@ public String[] getRecipeByIngredients(String ingredients) {
 		
 		/* Test titleSearch() */
 		
-//		Recipe[] titleSearch = dbc.getTitleSearch("Guacamole");
-//		
-//		for (Recipe i : titleSearch) {
-//			
-//			System.out.println(i.getTitle());
-//			System.out.println(i.getPrepTime());
-//			System.out.println("---------------------------");
-//			System.out.println(i.getMeasure());
-//			System.out.println(i.getInstructions());
-//		}
-//		
+		Recipe[] titleSearch = dbc.getTitleSearch("Guacamole");
+		
+		for (Recipe i : titleSearch) {
+			
+			System.out.println(i.getTitle());
+			System.out.println(i.getPrepTime());
+			System.out.println("---------------------------");
+			System.out.println(i.getMeasure());
+			System.out.println(i.getInstructions());
+		}
+		
 		/* Test ingredientSearch() */
 		
+
 		String ingredientString = "1,8";
 		String[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
 		
@@ -172,15 +112,7 @@ public String[] getRecipeByIngredients(String ingredients) {
 			
 			System.out.println(i);
 		}
+
 		
-//		String ingredientString = "1,8";
-//		Recipe[] ingredientSearch = dbc.getRecipeByIngredients(ingredientString);
-//		
-//		for (Recipe i : ingredientSearch) {
-//			
-//			System.out.println(i.getTitle());
-//			System.out.println(i.getMatchInt());
-//		}
-		
-		}
+	}
 }
