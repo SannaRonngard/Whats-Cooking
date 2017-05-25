@@ -184,7 +184,7 @@ public class Client {
 		showRecipe.setOnAction(e -> getRecipeFromDatabase());
 		showRecipeList(showRecipes);
 		root.getChildren().addAll(showRecipes, recipes, showRecipe);
-		dbc.getRecipeByIngredients(selectedIngredients);
+		
 	}
 
 	
