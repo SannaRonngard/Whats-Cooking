@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
@@ -252,8 +253,35 @@ public class Client {
 		String name = tfSearchRecipe.getText();
 		dbc.TitleSearch(name);
 		
+		String stringTitle = r.getTitle();
+		Label title = new Label(stringTitle);
+		title.setLayoutX(200);
+		title.setLayoutY(150);
+		title.setTextFill(Color.web("#FFFFFF"));
+		title.setFont(Font.font("Impact", FontWeight.BOLD, 36));
+		String stringTime = r.getPrepTime();
+		Label time = new Label(stringTime);
+		time.setLayoutX(400);
+		time.setLayoutY(160);
+		time.setTextFill(Color.web("#FFFFFF"));
+		time.setFont(Font.font("Impact", FontWeight.BOLD, 24));
+		Text textMeasures = new Text(r.getMeasure());
+		textMeasures.setStyle("-fx-font-size: 18; -fx-fill: black;");
+		TextFlow measures = new TextFlow(textMeasures);
+		measures.setLayoutX(220);
+		measures.setLayoutY(230);
+		measures.setMaxWidth(Control.USE_PREF_SIZE);
+	    measures.setMaxHeight(Control.USE_PREF_SIZE);
+		Text textInstructions = new Text(r.getInstructions());
+		textInstructions.setStyle("-fx-font-size: 18; -fx-fill: black;");
+		TextFlow instructions = new TextFlow(textInstructions);
+		instructions.setLayoutX(220);
+		instructions.setLayoutY(500);
+		instructions.setMaxWidth(Control.USE_PREF_SIZE);
+	    instructions.setMaxHeight(Control.USE_PREF_SIZE);
+		
 		Button goBackBtn = new Button("Go back");;
-		dairyPane.getChildren().addAll(goBackBtn);
+//		dairyPane.getChildren().addAll(goBackBtn, title, time, measures, instructions);
 		root.getChildren().remove(mainWheelPane);
 		root.getChildren().add(dairyPane);
 		
@@ -261,13 +289,9 @@ public class Client {
 			
 			Pane Recipe = FXMLLoader.load(getClass().getResource("/gui/Recipe.fxml"));
 			dairyPane.getChildren().add(Recipe);
-			Recipe.getChildren().addAll(goBackBtn);
+			Recipe.getChildren().addAll(goBackBtn, title, time, measures, instructions);
 			
 		} catch (IOException e) { e.printStackTrace(); }
-		String title = r.getTitle();
-		lblTitle.setText(title);
-		String text = r.getInstructions();
-        textArea.setText(text);
 		goBackBtn.setOnMouseClicked(e -> {
 			root.getChildren().remove(dairyPane);
 			root.getChildren().add(mainWheelPane);	});			
